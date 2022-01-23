@@ -14,6 +14,7 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ count: state }),
+      credentials: "include",
     }).then((res) => res.json().then((data) => setState(data)));
   };
 
