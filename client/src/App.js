@@ -5,7 +5,9 @@ function App() {
   const [state, setState] = useState(0);
 
   const getHandler = () => {
-    fetch("http://localhost:5000/").then((response) => console.log(response));
+    fetch("http://localhost:5000/", { credentials: "include" }).then(
+      (response) => console.log(response)
+    );
   };
   const postHandler = () => {
     fetch("http://localhost:5000/", {
