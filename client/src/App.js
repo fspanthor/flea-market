@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -20,6 +19,17 @@ function App() {
     }).then((res) => res.json().then((data) => setState(data)));
   };
 
+  const setPrices = () => {
+    fetch("http://localhost:5000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ function: "setPrices" }),
+      credentials: "include",
+    }).then((res) => res.json().then((data) => console.log(data)));
+  };
+
   useEffect(() => {
     console.log(state);
   });
@@ -28,6 +38,7 @@ function App() {
     <div className="App">
       <button onClick={postHandler}>post</button>
       <button onClick={getHandler}>get</button>
+      <button onClick={setPrices}>set prices</button>
     </div>
   );
 }
