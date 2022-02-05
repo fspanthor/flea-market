@@ -4,7 +4,8 @@ from flask_session.__init__ import Session
 import random
 import json
 
-app = Flask(__name__, static_folder='../client/build', static_url_path='/')
+#app = Flask(__name__, static_folder='../client/build', static_url_path='/')
+app = Flask(__name__)
 CORS(app)
 app.config["SESSION_PERMANENT"] = False
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -13,11 +14,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # >>> os.urandom(24)
 app.config['SECRET_KEY'] = '\xe5\xec\xcd\x1a\xdf\xd9\xfb\xf7\xc1\xadO\xed\x8b\xa2"\xea\xe4d\xd9!\x0e\x92D\x11'
 Session(app)
-
-
-def test(x):
-    print(session.get("id"))
-    return x['count'] + 1
 
 
 class Game:
@@ -82,15 +78,17 @@ class Prices:
         return self.__dict__
 
 
-@app.route('/')
-@cross_origin(supports_credentials=True)
-def index():
-    return app.send_static_file('index.html')
+# this is key for making this run in production but messes up local.. need to fix this
+# @app.route('/')
+# @cross_origin(supports_credentials=True)
+# def index():
+#    return app.send_static_file('index.html')
 
 
 @app.route('/', methods=['POST', 'GET'])
 @cross_origin(supports_credentials=True)
 def hello_world():
+    print('request method: ', request.method)
 
     # if session is not created, create session and game
     if not session.get("id"):
@@ -113,7 +111,7 @@ def hello_world():
     # get some attribute from session
 
     if request.method == 'GET':
-
+        print('get')
         print('nachos: ', game_instance.prices.get_prices())
         return 'hello'
 
@@ -124,13 +122,13 @@ def hello_world():
         print(function)
 
         if (function == 'setPrices'):
-            print(game_instance.prices.set_prices())
+            game_instance.prices.set_prices()
 
     return jsonify('200')
 
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+ #   app.run()
 
 '''
     if request.method == 'POST':
