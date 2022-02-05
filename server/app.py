@@ -4,10 +4,14 @@ from flask_session.__init__ import Session
 import random
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 CORS(app)
 app.config["SESSION_PERMANENT"] = False
 app.config['SESSION_TYPE'] = 'filesystem'
+# create secret key with:
+# >>> import os
+# >>> os.urandom(24)
+app.config['SECRET_KEY'] = '\xe5\xec\xcd\x1a\xdf\xd9\xfb\xf7\xc1\xadO\xed\x8b\xa2"\xea\xe4d\xd9!\x0e\x92D\x11'
 Session(app)
 
 
@@ -76,6 +80,12 @@ class Prices:
 
     def get_prices(self):
         return self.__dict__
+
+
+@app.route('/')
+@cross_origin(supports_credentials=True)
+def index():
+    return app.send_static_file('index.html')
 
 
 @app.route('/', methods=['POST', 'GET'])
