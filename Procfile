@@ -1,1 +1,1 @@
-web: gunicorn --chdir server app:app
+web: gunicorn -b :$PORT --chdir server app:app
