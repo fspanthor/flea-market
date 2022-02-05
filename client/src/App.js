@@ -3,13 +3,19 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [state, setState] = useState(0);
 
+  const env = process.env.NODE_ENV;
+  const prodUrl = "https://flea-market-wars.herokuapp.com/";
+
+  const serverAddress =
+    env === "production" ? prodUrl : "http://localhost:5000/";
+
   const getHandler = () => {
-    fetch("http://localhost:5000/", { credentials: "include" }).then(
-      (response) => console.log(response)
+    fetch(serverAddress, { credentials: "include" }).then((response) =>
+      console.log(response)
     );
   };
   const postHandler = () => {
-    fetch("http://localhost:5000/", {
+    fetch(serverAddress, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +26,7 @@ function App() {
   };
 
   const setPrices = () => {
-    fetch("http://localhost:5000/", {
+    fetch(serverAddress, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
