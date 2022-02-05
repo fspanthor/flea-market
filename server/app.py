@@ -3,8 +3,9 @@ from flask_cors import CORS, cross_origin
 from flask_session.__init__ import Session
 import random
 import json
+from game_files.classes import Game
 
-#app = Flask(__name__, static_folder='../client/build', static_url_path='/')
+# app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 app = Flask(__name__)
 CORS(app)
 app.config["SESSION_PERMANENT"] = False
@@ -14,68 +15,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # >>> os.urandom(24)
 app.config['SECRET_KEY'] = '\xe5\xec\xcd\x1a\xdf\xd9\xfb\xf7\xc1\xadO\xed\x8b\xa2"\xea\xe4d\xd9!\x0e\x92D\x11'
 Session(app)
-
-
-class Game:
-    def __init__(self):
-        self.player = Player()
-        self.prices = Prices()
-
-
-class Player:
-    def __init__(self):
-        self.inventory = Inventory()
-
-
-class Inventory:
-    def __init__(self):
-        self.nachos = 3
-        self.dvds = 0
-        self.hotSauce = 0
-        self.pocket_knives = 0
-        self.cell_phones = 0
-        self.golf_carts = 0
-        self.money = 0
-
-    def get_amount(self, item):
-        if hasattr(self, item):
-            return getattr(self, item)
-
-    def add_inventory(self, item, amount):
-        if hasattr(self, item):
-            new_amount = getattr(self, item) + amount
-            setattr(self, item, new_amount)
-
-    def changeWallet(self, money, amount_change):
-        new_amount = money + amount_change
-        setattr(self, money, new_amount)
-
-
-class Prices:
-    def __init__(self):
-        self.nachos = 0
-        self.dvds = 0
-        self.hotSauce = 0
-        self.pocket_knives = 0
-        self.cell_phones = 0
-        self.golf_carts = 0
-
-    def set_prices(self):
-        #10 - 60
-        self.nachos = 10
-        #70 -250
-        self.dvds = 70
-        #300 - 900
-        self.hotSauce = 300
-        #1000 - 4500
-        self.pocket_knives = 1000
-        #5000 - 14000
-        self.cell_phones = 5000
-        #15000 - 30000
-        self.golf_carts = 15000
-
-    def get_prices(self):
-        return self.__dict__
 
 
 # this is key for making this run in production but messes up local.. need to fix this
@@ -118,23 +57,29 @@ def hello_world():
     # run a function to set prices
 
     if request.method == 'POST':
-        function = request.get_json()['function']
-        print(function)
+        function_from_request = request.get_json()['function']
+        print(function_from_request)
 
-        if (function == 'setPrices'):
+        def set_prices():
             game_instance.prices.set_prices()
+            print('new prices: ', game_instance.prices.get_prices())
+            return jsonify(game_instance.prices.get_prices())
 
-    return jsonify('200')
+        def get_prices():
+            return jsonify(game_instance.prices.get_prices())
 
+        def call_function(function_name):
+            switcher = {
+                'SET_PRICES': set_prices,
+                'GET_PRICES': get_prices
+            }
+            func = switcher.get(function_name, 'invalid function')
+            func_return = func()
+            return func_return
+
+        function_response = call_function(function_from_request)
+
+    return (function_response)
 
 # if __name__ == '__main__':
  #   app.run()
-
-'''
-    if request.method == 'POST':
-        print('test: ', session.get("player"))
-        body = request.get_json()
-        print(body)
-        test(body)
-        return jsonify(test(body))
-'''
