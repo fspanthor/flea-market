@@ -31,7 +31,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ function: "SET_PRICES" }),
+      body: JSON.stringify({
+        function: "SET_PRICES",
+        //params: { variable1: "test", variable2: "test2" },
+      }),
       credentials: "include",
     }).then((res) => res.json().then((data) => console.log(data)));
   };

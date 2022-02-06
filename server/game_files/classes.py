@@ -9,10 +9,13 @@ class Player:
     def __init__(self):
         self.inventory = Inventory()
 
+    def check_maximum_buy(self, item):
+        return getattr(self.inventory.money)/getattr(self.inventory[item])
+
 
 class Inventory:
     def __init__(self):
-        self.nachos = 3
+        self.nachos = 0
         self.dvds = 0
         self.hotSauce = 0
         self.pocket_knives = 0

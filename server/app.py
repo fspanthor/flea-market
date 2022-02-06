@@ -2,8 +2,9 @@ from flask import Flask, request, jsonify, session
 from flask_cors import CORS, cross_origin
 from flask_session.__init__ import Session
 import random
-import json
 from game_files.classes import Game
+from game_files.class_interface import call_function
+from utilities.utilities import get_params_if_params_exist
 
 # app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 app = Flask(__name__)
@@ -57,27 +58,12 @@ def hello_world():
     # run a function to set prices
 
     if request.method == 'POST':
+
         function_from_request = request.get_json()['function']
-        print(function_from_request)
+        params_from_request = get_params_if_params_exist(request)
 
-        def set_prices():
-            game_instance.prices.set_prices()
-            print('new prices: ', game_instance.prices.get_prices())
-            return jsonify(game_instance.prices.get_prices())
-
-        def get_prices():
-            return jsonify(game_instance.prices.get_prices())
-
-        def call_function(function_name):
-            switcher = {
-                'SET_PRICES': set_prices,
-                'GET_PRICES': get_prices
-            }
-            func = switcher.get(function_name, 'invalid function')
-            func_return = func()
-            return func_return
-
-        function_response = call_function(function_from_request)
+        function_response = call_function(
+            function_from_request, params_from_request, game_instance)
 
     return (function_response)
 
