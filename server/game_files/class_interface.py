@@ -11,10 +11,15 @@ def get_prices(game_instance):
     return jsonify(game_instance.prices.get_prices())
 
 
+def check_maximum_buy(game_instance, params):
+    return jsonify(game_instance.player.check_maximum_buy(params))
+
+
 def call_function(function_name, params, game_instance):
     switcher = {
         'SET_PRICES': set_prices,
-        'GET_PRICES': get_prices
+        'GET_PRICES': get_prices,
+        'CHECK_MAXIMUM_BUY': check_maximum_buy
     }
     func = switcher.get(function_name, 'invalid function')
     if params is None:

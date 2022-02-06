@@ -1,19 +1,25 @@
 
-class Game:
+import math
+
+
+class Game():
     def __init__(self):
-        self.player = Player()
+        self.player = Player(self)
         self.prices = Prices()
 
 
-class Player:
-    def __init__(self):
+class Player():
+    def __init__(self, game):
+        self.game = game
         self.inventory = Inventory()
 
-    def check_maximum_buy(self, item):
-        return getattr(self.inventory.money)/getattr(self.inventory[item])
+    def check_maximum_buy(self, params):
+        current_money = self.inventory.get_amount('money')
+        current_item_price = self.game.prices.get_item_price(params)
+        return math.floor(current_money/current_item_price) if current_item_price else 0
 
 
-class Inventory:
+class Inventory():
     def __init__(self):
         self.nachos = 0
         self.dvds = 0
@@ -21,7 +27,7 @@ class Inventory:
         self.pocket_knives = 0
         self.cell_phones = 0
         self.golf_carts = 0
-        self.money = 0
+        self.money = 1000
 
     def get_amount(self, item):
         if hasattr(self, item):
@@ -37,7 +43,7 @@ class Inventory:
         setattr(self, money, new_amount)
 
 
-class Prices:
+class Prices():
     def __init__(self):
         self.nachos = 0
         self.dvds = 0
@@ -59,6 +65,10 @@ class Prices:
         self.cell_phones = 5000
         #15000 - 30000
         self.golf_carts = 15000
+
+    def get_item_price(self, item):
+        if hasattr(self, item):
+            return getattr(self, item)
 
     def get_prices(self):
         return self.__dict__

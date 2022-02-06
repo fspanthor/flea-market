@@ -39,15 +39,45 @@ function App() {
     }).then((res) => res.json().then((data) => console.log(data)));
   };
 
+  const sendFunctionRequest = (func, serverAddress) => {
+    console.log(func);
+    fetch(serverAddress, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        function: func.function,
+        ...(func.params && { params: func.params }),
+      }),
+      credentials: "include",
+    }).then((res) => res.json().then((data) => console.log(data)));
+  };
+
   useEffect(() => {
     console.log(state);
   });
 
   return (
     <div className="App">
-      <button onClick={postHandler}>post</button>
       <button onClick={getHandler}>get</button>
-      <button onClick={setPrices}>set prices</button>
+      <button
+        onClick={() =>
+          sendFunctionRequest({ function: "SET_PRICES" }, serverAddress)
+        }
+      >
+        setPrices
+      </button>
+      <button
+        onClick={() =>
+          sendFunctionRequest(
+            { function: "CHECK_MAXIMUM_BUY", params: "dvds" },
+            serverAddress
+          )
+        }
+      >
+        checkMaximumBuy
+      </button>
     </div>
   );
 }

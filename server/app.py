@@ -40,15 +40,6 @@ def hello_world():
     game_instance = session.get('game')
 
     # get some attribute from session
-    '''
-    if request.method == 'GET':
-        print('game: ', session.get("game"))
-        x = session.get("game")
-        print('nachos: ', x.player.inventory.get_amount('nachos'))
-        return 'hello'
-'''
-
-    # get some attribute from session
 
     if request.method == 'GET':
         print('get')
@@ -58,10 +49,8 @@ def hello_world():
     # run a function to set prices
 
     if request.method == 'POST':
-
         function_from_request = request.get_json()['function']
         params_from_request = get_params_if_params_exist(request)
-
         function_response = call_function(
             function_from_request, params_from_request, game_instance)
 
