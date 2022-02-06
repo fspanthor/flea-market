@@ -71,7 +71,7 @@ function App() {
       <button
         onClick={() =>
           sendFunctionRequest(
-            { function: "CHECK_MAXIMUM_BUY", params: "dvds" },
+            { function: "CHECK_MAXIMUM_BUY", params: { value: "dvds" } },
             serverAddress
           )
         }

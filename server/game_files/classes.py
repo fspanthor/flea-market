@@ -15,7 +15,7 @@ class Player():
 
     def check_maximum_buy(self, params):
         current_money = self.inventory.get_amount('money')
-        current_item_price = self.game.prices.get_item_price(params)
+        current_item_price = self.game.prices.get_item_price(params['value'])
         return math.floor(current_money/current_item_price) if current_item_price else 0
 
 
