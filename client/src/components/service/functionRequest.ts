@@ -1,4 +1,9 @@
-export const sendFunctionRequest = (func, serverAddress) => {
+interface FuncType {
+  function: string;
+  params?: { value: string };
+}
+
+export const sendFunctionRequest = (func: FuncType, serverAddress: string) => {
   fetch(serverAddress, {
     method: "POST",
     headers: {
