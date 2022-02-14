@@ -1,31 +1,24 @@
+import { useState } from "react";
+import { checkMaximumBuy, setPrices } from "../gameFunctions/gameFuntions";
 import { sendFunctionRequest } from "./service/functionRequest";
 
 const Main = () => {
-  const env = process.env.NODE_ENV;
-  const prodUrl = "https://flea-market-wars.herokuapp.com/";
-
-  const serverAddress =
-    env === "production" ? prodUrl : "http://localhost:5000/";
+  const startGame = async () => {
+    console.log(await setPrices());
+  };
 
   return (
     <div>
-      <button
-        onClick={() =>
-          sendFunctionRequest({ function: "SET_PRICES" }, serverAddress)
-        }
-      >
+      <div>
+        <h1>FLEA MARKET</h1>
+        <button onClick={startGame} color="blue">
+          press any key to start..{" "}
+        </button>
+      </div>
+      <button onClick={() => sendFunctionRequest({ function: "SET_PRICES" })}>
         setPrices
       </button>
-      <button
-        onClick={() =>
-          sendFunctionRequest(
-            { function: "CHECK_MAXIMUM_BUY", params: { value: "dvds" } },
-            serverAddress
-          )
-        }
-      >
-        checkMaximumBuy
-      </button>
+      <button onClick={() => checkMaximumBuy("dvds")}>check max buy</button>
     </div>
   );
 };

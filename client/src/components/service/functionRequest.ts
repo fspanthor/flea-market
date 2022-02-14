@@ -1,10 +1,15 @@
 interface FuncType {
   function: string;
-  params?: { value: string };
+  params?: { value?: string; money?: number; amountChange?: number };
 }
 
-export const sendFunctionRequest = (func: FuncType, serverAddress: string) => {
-  fetch(serverAddress, {
+const env = process.env.NODE_ENV;
+const prodUrl = "https://flea-market-wars.herokuapp.com/";
+
+const serverAddress = env === "production" ? prodUrl : "http://localhost:5000/";
+
+export const sendFunctionRequest = async (func: FuncType) => {
+  const response = await fetch(serverAddress, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,5 +19,7 @@ export const sendFunctionRequest = (func: FuncType, serverAddress: string) => {
       ...(func.params && { params: func.params }),
     }),
     credentials: "include",
-  }).then((res) => res.json().then((data) => console.log(data)));
+  });
+  const data = await response.json();
+  return data;
 };

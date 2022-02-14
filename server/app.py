@@ -46,8 +46,6 @@ def hello_world():
         print('nachos: ', game_instance.prices.get_prices())
         return 'hello'
 
-    # run a function to set prices
-
     if request.method == 'POST':
         function_from_request = request.get_json()['function']
         params_from_request = get_params_if_params_exist(request)
