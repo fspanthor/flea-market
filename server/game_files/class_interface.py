@@ -21,8 +21,11 @@ def check_maximum_buy(game_instance, params):
 
 
 def change_wallet(game_instance, params):
-    print(params['money'])
     return jsonify(game_instance.player.trench_coat.change_wallet(params['money'], params['amountChange']))
+
+
+def retrieve_game_state(game_instance):
+    return jsonify(game_instance.game_manager.game_state())
 
 
 def call_function(function_name, params, game_instance):
@@ -30,7 +33,8 @@ def call_function(function_name, params, game_instance):
         'SET_PRICES': set_prices,
         'GET_PRICES': get_prices,
         'CHECK_MAXIMUM_BUY': check_maximum_buy,
-        'CHANGE_WALLET': change_wallet
+        'CHANGE_WALLET': change_wallet,
+        'RETRIEVE_GAME_STATE': retrieve_game_state,
     }
     func = switcher.get(function_name, 'invalid function')
     if params is None:

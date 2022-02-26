@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { checkMaximumBuy, setPrices } from "../gameFunctions/gameFuntions";
+import {
+  checkMaximumBuy,
+  setPrices,
+  retrieveGameState,
+} from "../gameFunctions/gameFuntions";
 import { sendFunctionRequest } from "./service/functionRequest";
 
 const Main = () => {
@@ -19,6 +22,9 @@ const Main = () => {
         setPrices
       </button>
       <button onClick={() => checkMaximumBuy("dvds")}>check max buy</button>
+      <button onClick={async () => console.log(await retrieveGameState())}>
+        retrieve game state
+      </button>
     </div>
   );
 };

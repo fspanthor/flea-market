@@ -1,5 +1,6 @@
 
 import math
+from enum import Enum
 
 
 class Game():
@@ -7,6 +8,7 @@ class Game():
         self.player = Player(self)
         self.location = Location()
         self.prices = Prices()
+        self.game_manager = Game_Manager(self)
 
 
 class Player():
@@ -100,15 +102,59 @@ class Prices():
         return self.__dict__
 
 
+class Locations(Enum):
+    BRONX = 'bronx',
+    FLORIDA = 'florida'
+
+
 class Location():
     def __init__(self):
-        self.location = ''
+        self.location = Locations.BRONX
 
     def set_location(self, location):
         if hasattr(self, location):
             setattr(self, location)
             return getattr(self, location)
 
+    def get_location(self):
+        return getattr(self, 'location')
 
-def get_location(self):
-    return getattr(self, 'location')
+
+class Game_Manager():
+    def __init__(self, game):
+        self.day = 0
+        self.game_mode = ''
+        self.game = game
+
+    def game_state(self):
+        if self.day == 30:
+            return 'game over'
+        if self.game.location.get_location() == Locations.BRONX:
+            self.game_mode = Game_Mode.SHARK_BANK_STASH
+            return 'prompt for shark, ask for bank, ask for stash'
+        if self.game_mode == Game_Mode.SHARK_BANK_STASH:
+            return 'prompt for shark bank stash'
+        if self.game_mode == Game_Mode.BUY_SELL_JET:
+            return 'prompt for buy sell jet'
+        if self.game_mode == Game_Mode.BUY:
+            return 'prompt for what will you buy'
+        if self.game_mode == Game_Mode.BUY_HOW_MUCH:
+            return 'prompt for buy how much'
+        if self.game_mode == Game_Mode.SELL:
+            return 'prompt for what will you buy'
+        if self.game_mode == Game_Mode.SELL_HOW_MUCH:
+            return 'prompt for buy how much'
+        if self.game_mode == Game_Mode.JET:
+            return 'prompt for where to jet'
+        else:
+            return 'test'
+
+
+class Game_Mode(Enum):
+    SHARK_BANK_STASH = 'shark_bank_stash'
+    BUY_SELL_JET = 'buy_sell_jet'
+    BUY = 'buy'
+    BUY_HOW_MUCH = 'buy_how_much'
+    SELL = 'sell'
+    SELL_HOW_MUCH = 'sell_how_much'
+    JET = 'jet'
