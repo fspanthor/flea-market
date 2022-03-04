@@ -5,11 +5,11 @@ import {
 } from "../gameFunctions/gameFuntions";
 import { sendFunctionRequest } from "./service/functionRequest";
 import { increment, selectCount } from "../redux/slices/fleaMarketSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
 
 const Main = () => {
-  const count = useSelector(selectCount);
-  const dispatch = useDispatch();
+  const count = useAppSelector(selectCount);
+  const dispatch = useAppDispatch();
   const startGame = async () => {
     console.log(await setPrices());
   };
