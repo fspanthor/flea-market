@@ -2,10 +2,11 @@ import {
   checkMaximumBuy,
   setPrices,
   retrieveGameState,
-} from "../gameFunctions/gameFuntions";
+} from "../gameFunctions/gameFunctions";
 import { sendFunctionRequest } from "./service/functionRequest";
 import { increment, selectCount } from "../redux/slices/fleaMarketSlice";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
+import Prices from "./game/Prices";
 
 const Main = () => {
   const count = useAppSelector(selectCount);
@@ -17,6 +18,7 @@ const Main = () => {
   return (
     <div>
       <div>
+        <Prices />
         <h1>FLEA MARKET</h1>
         <button onClick={() => dispatch(increment())}>{count}</button>
         <button onClick={startGame} color="blue">

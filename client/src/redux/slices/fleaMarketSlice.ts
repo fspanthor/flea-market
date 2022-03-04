@@ -1,18 +1,40 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState, AppDispatch } from "../../app/store";
 
-interface FleaMarketState {
-  value: number;
+interface PricesStateType {
+  golfCarts: number;
+  cellPhones: number;
+  pocketKnives: number;
+  hotSauce: number;
+  dvds: number;
+  nachos: number;
 }
 
-const initialState: FleaMarketState = {
+interface FleaMarketStateType {
+  value: number;
+  prices: PricesStateType;
+}
+
+const initialState: FleaMarketStateType = {
   value: 0,
+  prices: {
+    golfCarts: 0,
+    cellPhones: 0,
+    pocketKnives: 0,
+    hotSauce: 0,
+    dvds: 0,
+    nachos: 0,
+  },
 };
 
 export const fleaMarketSlice = createSlice({
   name: "fleaMarket",
   initialState,
   reducers: {
+    setPrices: (state, action: PayloadAction<PricesStateType>) => {
+      console.log("payload: ", action.payload);
+      state.prices = action.payload;
+    },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the immer library,
@@ -29,7 +51,7 @@ export const fleaMarketSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount } =
+export const { setPrices, increment, decrement, incrementByAmount } =
   fleaMarketSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -46,5 +68,7 @@ export const incrementAsync = (amount: number) => (dispatch: AppDispatch) => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectCount = (state: RootState) => state.fleaMarket.value;
+
+export const selectPrices = (state: RootState) => state.fleaMarket.prices;
 
 export default fleaMarketSlice.reducer;

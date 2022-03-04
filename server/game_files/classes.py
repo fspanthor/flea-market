@@ -27,7 +27,7 @@ class Trench_Coat():
     def __init__(self):
         self.nachos = 0
         self.dvds = 0
-        self.hotSauce = 0
+        self.hot_sauce = 0
         self.pocket_knives = 0
         self.cell_phones = 0
         self.golf_carts = 0
@@ -51,7 +51,7 @@ class Stash():
     def __init__(self):
         self.nachos = 0
         self.dvds = 0
-        self.hotSauce = 0
+        self.hot_sauce = 0
         self.pocket_knives = 0
         self.cell_phones = 0
         self.golf_carts = 0
@@ -75,7 +75,7 @@ class Prices():
     def __init__(self):
         self.nachos = 0
         self.dvds = 0
-        self.hotSauce = 0
+        self.hot_sauce = 0
         self.pocket_knives = 0
         self.cell_phones = 0
         self.golf_carts = 0
@@ -86,7 +86,7 @@ class Prices():
         #70 -250
         self.dvds = 70
         #300 - 900
-        self.hotSauce = 300
+        self.hot_sauce = 300
         #1000 - 4500
         self.pocket_knives = 1000
         #5000 - 14000

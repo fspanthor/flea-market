@@ -10,14 +10,9 @@ def set_prices(game_instance):
 def get_prices(game_instance):
     return jsonify(game_instance.prices.get_prices())
 
-#params.value = item
-
 
 def check_maximum_buy(game_instance, params):
     return jsonify(game_instance.player.check_maximum_buy(params['value']))
-
-# params.money = current money
-# params.amount_change = amount to change
 
 
 def change_wallet(game_instance, params):
