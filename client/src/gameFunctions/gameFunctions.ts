@@ -8,6 +8,8 @@ enum FleaMarketFunction {
   GET_PRICES = "GET_PRICES",
   BUY_SELL_JET = "BUY_SELL_JET",
   INSTRUCTIONS = "INSTRUCTIONS",
+  GET_INSTRUCTIONS = "GET_INSTRUCTIONS",
+  INSTRUCTIONS_CONTINUE = "INSTRUCTIONS_CONTINUE",
 }
 export const setPrices = async () => {
   return await sendFunctionRequest({
@@ -65,5 +67,18 @@ export const instructionsPrompt = async (key: string) => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.INSTRUCTIONS,
     params: { key: key },
+  });
+};
+
+export const instructionsContinue = async (key: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.INSTRUCTIONS_CONTINUE,
+    params: { key: key },
+  });
+};
+
+export const getInstructions = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.GET_INSTRUCTIONS,
   });
 };

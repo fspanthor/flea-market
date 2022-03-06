@@ -28,7 +28,15 @@ def buy_sell_jet(game_instance, params):
 
 
 def instructions(game_instance, params):
-    return jsonify(game_instance.instructions.instructionsText(params['key']))
+    return jsonify(game_instance.instructions.instructions_prompt(params['key']))
+
+
+def get_instructions(game_instance):
+    return jsonify(game_instance.instructions.get_instructions())
+
+
+def instructions_continue(game_instance, params):
+    return jsonify(game_instance.instructions.instructions_continue(params['key']))
 
 
 def call_function(function_name, params, game_instance):
@@ -39,7 +47,9 @@ def call_function(function_name, params, game_instance):
         'CHANGE_WALLET': change_wallet,
         'RETRIEVE_GAME_STATE': retrieve_game_state,
         'BUY_SELL_JET': buy_sell_jet,
-        'INSTRUCTIONS': instructions
+        'INSTRUCTIONS': instructions,
+        'GET_INSTRUCTIONS': get_instructions,
+        'INSTRUCTIONS_CONTINUE': instructions_continue,
     }
     func = switcher.get(function_name, 'invalid function')
     if params is None:

@@ -17,15 +17,25 @@ class Instructions():
         self.instructions = 'these are the instructions'
         self.game_manager = game.game_manager
 
-    def instructionsText(self, key):
+    def instructions_prompt(self, key):
         if key == 'y':
-            self.game_manager.game_mode = Game_Mode.INSTRUCTIONS
+            self.game_manager.set_game_mode(Game_Mode.INSTRUCTIONS)
             return self.game_manager.get_game_mode().value
         if key == 'n':
-            self.game_manager.game_mode = Game_Mode.BUY_SELL_JET
+            self.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
             return self.game_manager.get_game_mode().value
         else:
             return self.game_manager.get_game_mode().value
+
+    def get_instructions(self):
+        return getattr(self, 'instructions')
+
+    def instructions_continue(self, key):
+        if key:
+            self.game_manager.game_mode = Game_Mode.BUY_SELL_JET
+            return self.game_manager.get_game_mode().value
+        else:
+            return
 
 
 class Player():
@@ -145,19 +155,22 @@ class Game_Manager():
 
     def buy_sell_jet(self, key):
         if key == 'b':
-            self.game_mode = Game_Mode.BUY
+            self.set_game_mode(Game_Mode.BUY)
             return self.get_game_mode().value
         if key == 's':
-            self.game_mode = Game_Mode.SELL
+            self.set_game_mode(Game_Mode.SELL)
             return self.get_game_mode().value
         if key == 'j':
-            self.game_mode = Game_Mode.JET
+            self.set_game_mode(Game_Mode.JET)
             return self.get_game_mode().value
         else:
             return self.get_game_mode().value
 
     def get_game_mode(self):
         return getattr(self, 'game_mode')
+
+    def set_game_mode(self, new_mode):
+        setattr(self, 'game_mode', new_mode)
 
     def get_game_state(self):
         if self.day == 30:
