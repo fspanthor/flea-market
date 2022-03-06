@@ -1,16 +1,8 @@
-import {
-  checkMaximumBuy,
-  setPrices,
-  retrieveGameState,
-} from "../gameFunctions/gameFunctions";
-import { sendFunctionRequest } from "./service/functionRequest";
-import { increment, selectCount } from "../redux/slices/fleaMarketSlice";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { checkMaximumBuy, setPrices } from "../gameFunctions/gameFunctions";
 import Prices from "./game/Prices";
+import Interactive from "./game/Interactive";
 
 const Main = () => {
-  const count = useAppSelector(selectCount);
-  const dispatch = useAppDispatch();
   const startGame = async () => {
     console.log(await setPrices());
   };
@@ -19,19 +11,12 @@ const Main = () => {
     <div>
       <div>
         <Prices />
-        <h1>FLEA MARKET</h1>
-        <button onClick={() => dispatch(increment())}>{count}</button>
+        <Interactive />
         <button onClick={startGame} color="blue">
           press any key to start..{" "}
         </button>
       </div>
-      <button onClick={() => sendFunctionRequest({ function: "SET_PRICES" })}>
-        setPrices
-      </button>
       <button onClick={() => checkMaximumBuy("dvds")}>check max buy</button>
-      <button onClick={async () => console.log(await retrieveGameState())}>
-        retrieve game state
-      </button>
     </div>
   );
 };

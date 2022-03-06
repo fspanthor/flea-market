@@ -1,6 +1,11 @@
 interface FuncType {
   function: string;
-  params?: { value?: string; money?: number; amountChange?: number };
+  params?: {
+    value?: string;
+    money?: number;
+    amountChange?: number;
+    key?: string;
+  };
 }
 
 const env = process.env.NODE_ENV;

@@ -9,6 +9,23 @@ class Game():
         self.location = Location()
         self.prices = Prices()
         self.game_manager = Game_Manager(self)
+        self.instructions = Instructions(self)
+
+
+class Instructions():
+    def __init__(self, game):
+        self.instructions = 'these are the instructions'
+        self.game_manager = game.game_manager
+
+    def instructionsText(self, key):
+        if key == 'y':
+            self.game_manager.game_mode = Game_Mode.INSTRUCTIONS
+            return self.game_manager.get_game_mode().value
+        if key == 'n':
+            self.game_manager.game_mode = Game_Mode.BUY_SELL_JET
+            return self.game_manager.get_game_mode().value
+        else:
+            return self.game_manager.get_game_mode().value
 
 
 class Player():
@@ -109,7 +126,7 @@ class Locations(Enum):
 
 class Location():
     def __init__(self):
-        self.location = Locations.BRONX
+        self.location = Locations.FLORIDA
 
     def set_location(self, location):
         if hasattr(self, location):
@@ -122,11 +139,27 @@ class Location():
 
 class Game_Manager():
     def __init__(self, game):
-        self.day = 0
-        self.game_mode = ''
+        self.day = 1
+        self.game_mode = Game_Mode.INIT
         self.game = game
 
-    def game_state(self):
+    def buy_sell_jet(self, key):
+        if key == 'b':
+            self.game_mode = Game_Mode.BUY
+            return self.get_game_mode().value
+        if key == 's':
+            self.game_mode = Game_Mode.SELL
+            return self.get_game_mode().value
+        if key == 'j':
+            self.game_mode = Game_Mode.JET
+            return self.get_game_mode().value
+        else:
+            return self.get_game_mode().value
+
+    def get_game_mode(self):
+        return getattr(self, 'game_mode')
+
+    def get_game_state(self):
         if self.day == 30:
             return 'game over'
         if self.game.location.get_location() == Locations.BRONX:
@@ -158,3 +191,5 @@ class Game_Mode(Enum):
     SELL = 'sell'
     SELL_HOW_MUCH = 'sell_how_much'
     JET = 'jet'
+    INSTRUCTIONS = 'instructions'
+    INIT = 'init'

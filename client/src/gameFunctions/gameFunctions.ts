@@ -6,6 +6,8 @@ enum FleaMarketFunction {
   CHANGE_WALLET = "CHANGE_WALLET",
   SET_PRICES = "SET_PRICES",
   GET_PRICES = "GET_PRICES",
+  BUY_SELL_JET = "BUY_SELL_JET",
+  INSTRUCTIONS = "INSTRUCTIONS",
 }
 export const setPrices = async () => {
   return await sendFunctionRequest({
@@ -49,5 +51,19 @@ export const checkMaximumBuy = async (value: string) => {
 export const retrieveGameState = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.RETRIEVE_GAME_STATE,
+  });
+};
+
+export const buySellJetPrompt = async (key: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.BUY_SELL_JET,
+    params: { key: key },
+  });
+};
+
+export const instructionsPrompt = async (key: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.INSTRUCTIONS,
+    params: { key: key },
   });
 };

@@ -23,6 +23,14 @@ def retrieve_game_state(game_instance):
     return jsonify(game_instance.game_manager.game_state())
 
 
+def buy_sell_jet(game_instance, params):
+    return jsonify(game_instance.game_manager.buy_sell_jet(params['key']))
+
+
+def instructions(game_instance, params):
+    return jsonify(game_instance.instructions.instructionsText(params['key']))
+
+
 def call_function(function_name, params, game_instance):
     switcher = {
         'SET_PRICES': set_prices,
@@ -30,6 +38,8 @@ def call_function(function_name, params, game_instance):
         'CHECK_MAXIMUM_BUY': check_maximum_buy,
         'CHANGE_WALLET': change_wallet,
         'RETRIEVE_GAME_STATE': retrieve_game_state,
+        'BUY_SELL_JET': buy_sell_jet,
+        'INSTRUCTIONS': instructions
     }
     func = switcher.get(function_name, 'invalid function')
     if params is None:
