@@ -8,7 +8,7 @@ class Game():
         self.player = Player(self)
         self.location = Location()
         self.prices = Prices()
-        self.game_manager = Game_Manager(self)
+        self.game_manager = GameManager(self)
         self.instructions = Instructions(self)
 
 
@@ -41,7 +41,7 @@ class Instructions():
 class Player():
     def __init__(self, game):
         self.game = game
-        self.trench_coat = Trench_Coat()
+        self.trench_coat = TrenchCoat()
         self.stash = Stash()
 
     def check_maximum_buy(self, item):
@@ -50,7 +50,7 @@ class Player():
         return math.floor(current_money/current_item_price) if current_item_price else 0
 
 
-class Trench_Coat():
+class TrenchCoat():
     def __init__(self):
         self.nachos = 0
         self.dvds = 0
@@ -147,7 +147,7 @@ class Location():
         return getattr(self, 'location')
 
 
-class Game_Manager():
+class GameManager():
     def __init__(self, game):
         self.day = 1
         self.game_mode = Game_Mode.INIT
