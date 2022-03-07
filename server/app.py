@@ -25,9 +25,9 @@ Session(app)
 #    return app.send_static_file('index.html')
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST'])
 @cross_origin(supports_credentials=True)
-def hello_world():
+def flea_market_flask_post():
     print('request method: ', request.method)
 
     # if session is not created, create session and game
@@ -40,11 +40,6 @@ def hello_world():
     game_instance = session.get('game')
 
     # get some attribute from session
-
-    if request.method == 'GET':
-        print('get')
-        print('nachos: ', game_instance.prices.get_prices())
-        return 'hello'
 
     if request.method == 'POST':
         function_from_request = request.get_json()['function']
