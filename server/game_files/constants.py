@@ -12,3 +12,8 @@ class Game_Mode(Enum):
     JET = 'jet'
     INSTRUCTIONS = 'instructions'
     INIT = 'init'
+
+
+class Locations(Enum):
+    BRONX = 'bronx',
+    FLORIDA = 'florida'

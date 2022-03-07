@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify, session
 from flask_cors import CORS, cross_origin
 from flask_session.__init__ import Session
 import random
-from game_files.classes import Game
 from game_files.class_interface import call_function
+from game_files.cla.Game import Game
 from utilities.utilities import get_params_if_params_exist
 
 # app = Flask(__name__, static_folder='../client/build', static_url_path='/')
