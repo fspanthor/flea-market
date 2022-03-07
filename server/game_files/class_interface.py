@@ -1,7 +1,7 @@
-from .cla.Instructions.instructions_interface import instructions_interface
-from .cla.Prices.prices_interface import prices_interface
-from .cla.Player.player_interface import player_interface
-from .cla.GameManager.game_manager_interface import game_manager_interface
+from .classes.Instructions.instructions_interface import instructions_interface
+from .classes.Prices.prices_interface import prices_interface
+from .classes.Player.player_interface import player_interface
+from .classes.GameManager.game_manager_interface import game_manager_interface
 
 switcher = instructions_interface | prices_interface | player_interface | game_manager_interface
 
