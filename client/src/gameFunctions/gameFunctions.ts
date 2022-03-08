@@ -1,6 +1,6 @@
 import { sendFunctionRequest } from "../components/service/functionRequest";
 
-enum FleaMarketFunction {
+export enum FleaMarketFunction {
   RETRIEVE_GAME_STATE = "RETRIEVE_GAME_STATE",
   CHECK_MAXIMUM_BUY = "CHECK_MAXIMUM_BUY",
   CHANGE_WALLET = "CHANGE_WALLET",
@@ -53,32 +53,5 @@ export const checkMaximumBuy = async (value: string) => {
 export const retrieveGameState = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.RETRIEVE_GAME_STATE,
-  });
-};
-
-export const buySellJetPrompt = async (key: string) => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.BUY_SELL_JET,
-    params: { key: key },
-  });
-};
-
-export const instructionsPrompt = async (key: string) => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.INSTRUCTIONS,
-    params: { key: key },
-  });
-};
-
-export const instructionsContinue = async (key: string) => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.INSTRUCTIONS_CONTINUE,
-    params: { key: key },
-  });
-};
-
-export const getInstructions = async () => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.GET_INSTRUCTIONS,
   });
 };

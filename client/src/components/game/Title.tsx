@@ -1,5 +1,13 @@
-import { instructionsPrompt } from "../../gameFunctions/gameFunctions";
+import { FleaMarketFunction } from "../../gameFunctions/gameFunctions";
+import { sendFunctionRequest } from "../service/functionRequest";
 import Input from "./Input";
+
+const instructionsPrompt = async (key: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.INSTRUCTIONS,
+    params: { key: key },
+  });
+};
 
 const Title = () => {
   return (
