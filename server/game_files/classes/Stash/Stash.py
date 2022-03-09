@@ -6,7 +6,7 @@ class Stash():
         self.pocket_knives = 0
         self.cell_phones = 0
         self.golf_carts = 0
-        self.money = 0
+        self.bank = 0
 
     def get_amount(self, item):
         if hasattr(self, item):
@@ -17,6 +17,9 @@ class Stash():
             new_amount = getattr(self, item) + amount
             setattr(self, item, new_amount)
 
-    def stash(self, money, amount_change):
-        self.money = money + amount_change
-        return self.money
+    def stash(self, bank, amount_change):
+        self.bank = bank + amount_change
+        return self.bank
+
+    def get_stash(self):
+        return self.__dict__
