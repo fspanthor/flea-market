@@ -7,6 +7,9 @@ class GameManager():
         self.game_mode = Game_Mode.INIT
         self.game = game
 
+    def get_day(self):
+        return getattr(self, 'day')
+
     def buy_sell_jet(self, key):
         if key == 'b':
             self.set_game_mode(Game_Mode.BUY)

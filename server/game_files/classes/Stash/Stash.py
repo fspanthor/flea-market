@@ -19,7 +19,7 @@ class Stash():
 
     def stash(self, bank, amount_change):
         self.bank = bank + amount_change
-        return self.bank
+        return getattr(self, 'bank')
 
     def get_stash(self):
         return self.__dict__
