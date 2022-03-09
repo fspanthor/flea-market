@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { toCamel } from "../../app/utilities";
 import { setGameState } from "../../redux/slices/fleaMarketSlice";
@@ -9,17 +9,23 @@ interface InputPropsType {
 
 const Input = ({ gameFunction }: InputPropsType) => {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    document.body.addEventListener("keydown", (e) => handleKeyDown(e));
-    const handleKeyDown = async (e: KeyboardEvent) => {
+
+  const handleKeyDown = useCallback(
+    async (e: KeyboardEvent) => {
+      document.body.removeEventListener("keydown", handleKeyDown);
       e.preventDefault();
       e.stopPropagation();
       if (!e.repeat) {
         const gameFunctionReturn = await gameFunction(e.key);
         dispatch(setGameState(toCamel(gameFunctionReturn)));
       }
-    };
-  }, [dispatch, gameFunction]);
+    },
+    [dispatch, gameFunction]
+  );
+
+  useEffect(() => {
+    document.body.addEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   return <div>input component</div>;
 };

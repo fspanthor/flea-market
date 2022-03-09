@@ -30,7 +30,7 @@ const Instructions = () => {
   return (
     <div>
       <div>press any key to continue</div>
-      <Input gameFunction={instructionsContinue} />
+      {instructions && <Input gameFunction={instructionsContinue} />}
       {instructions}
     </div>
   );
