@@ -3,7 +3,7 @@ from ...constants import Game_Mode, Locations
 
 class GameManager():
     def __init__(self, game):
-        self.day = 1
+        self.day = 0
         self.game_mode = Game_Mode.INIT
         self.game = game
 

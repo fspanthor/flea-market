@@ -1,15 +1,10 @@
 import { useEffect } from "react";
+import { GameStateEnum } from "../../app/constants";
 import { useAppSelector } from "../../app/hooks";
 import { selectGameState } from "../../redux/slices/fleaMarketSlice";
 import BuySellJet from "./BuySellJet";
 import Instructions from "./Instructions";
 import Title from "./Title";
-
-enum GameStateEnum {
-  INIT = "init",
-  BUY_SELL_JET = "buySellJet",
-  INSTRUCTIONS = "instructions",
-}
 
 const Interactive = () => {
   const gameState = useAppSelector(selectGameState);

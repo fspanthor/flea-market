@@ -14,6 +14,10 @@ class Game_Mode(Enum):
     INIT = 'init'
 
 
+class Play_Mode(Enum):
+    GAME_START = 'game_start'
+
+
 class Locations(Enum):
     BRONX = 'bronx',
     FLORIDA = 'florida'

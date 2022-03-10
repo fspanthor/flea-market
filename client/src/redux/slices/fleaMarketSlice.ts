@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 
-interface PricesStateType {
+export interface PricesStateType {
   golfCarts: number;
   cellPhones: number;
   pocketKnives: number;
@@ -12,6 +12,7 @@ interface PricesStateType {
 
 interface GameManagerStateType {
   gameState?: string;
+  day: number;
 }
 
 interface FleaMarketStateType {
@@ -32,6 +33,7 @@ const initialState: FleaMarketStateType = {
   },
   gameManager: {
     gameState: "init",
+    day: 0,
   },
 };
 
@@ -56,5 +58,6 @@ export const { setPrices, setGameState } = fleaMarketSlice.actions;
 export const selectPrices = (state: RootState) => state.fleaMarket.prices;
 export const selectGameState = (state: RootState) =>
   state.fleaMarket.gameManager.gameState;
+export const selectDay = (state: RootState) => state.fleaMarket.gameManager.day;
 
 export default fleaMarketSlice.reducer;
