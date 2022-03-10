@@ -27,7 +27,7 @@ const Input = ({ gameFunction }: InputPropsType) => {
     document.body.addEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  return <div>input component</div>;
+  return null;
 };
 
 export default Input;

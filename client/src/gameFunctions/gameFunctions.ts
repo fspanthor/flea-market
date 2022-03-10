@@ -10,6 +10,7 @@ export enum FleaMarketFunction {
   INSTRUCTIONS = "INSTRUCTIONS",
   GET_INSTRUCTIONS = "GET_INSTRUCTIONS",
   INSTRUCTIONS_CONTINUE = "INSTRUCTIONS_CONTINUE",
+  GET_STASH = "GET_STASH",
 }
 export const setPrices = async () => {
   return await sendFunctionRequest({
@@ -32,6 +33,27 @@ export const getPrices = async () => {
   const formattedResponse = Object.assign(
     {},
     { cellPhones, dvds, golfCarts, hotSauce, nachos, pocketKnives }
+  );
+  return formattedResponse;
+};
+
+export const getStash = async () => {
+  const serverResponse = await sendFunctionRequest({
+    function: FleaMarketFunction.GET_STASH,
+  });
+  const {
+    cell_phones: cellPhones,
+    dvds,
+    golf_carts: golfCarts,
+    hot_sauce: hotSauce,
+    nachos,
+    pocket_knives: pocketKnives,
+    bank,
+    debt,
+  } = serverResponse;
+  const formattedResponse = Object.assign(
+    {},
+    { cellPhones, dvds, golfCarts, hotSauce, nachos, pocketKnives, bank, debt }
   );
   return formattedResponse;
 };

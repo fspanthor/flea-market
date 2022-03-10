@@ -7,6 +7,7 @@ interface priceDataType {
 const Prices = ({ priceData }: priceDataType) => {
   return (
     <div>
+      <h3>Hey dude, the prices here are:</h3>
       <ul>
         <li>{`Golf Carts:  ${priceData.golfCarts}`}</li>
         <li>{`Cell Phones:  ${priceData.cellPhones}`}</li>

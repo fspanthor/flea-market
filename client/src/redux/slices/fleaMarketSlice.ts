@@ -10,6 +10,17 @@ export interface PricesStateType {
   nachos: number;
 }
 
+export interface StashStateType {
+  golfCarts: number;
+  cellPhones: number;
+  pocketKnives: number;
+  hotSauce: number;
+  dvds: number;
+  nachos: number;
+  bank: number;
+  debt: number;
+}
+
 interface GameManagerStateType {
   gameState?: string;
   day: number;
@@ -19,6 +30,7 @@ interface FleaMarketStateType {
   value: number;
   prices: PricesStateType;
   gameManager: GameManagerStateType;
+  stash: StashStateType;
 }
 
 const initialState: FleaMarketStateType = {
@@ -30,6 +42,16 @@ const initialState: FleaMarketStateType = {
     hotSauce: 0,
     dvds: 0,
     nachos: 0,
+  },
+  stash: {
+    golfCarts: 0,
+    cellPhones: 0,
+    pocketKnives: 0,
+    hotSauce: 0,
+    dvds: 0,
+    nachos: 0,
+    bank: 0,
+    debt: 0,
   },
   gameManager: {
     gameState: "init",
@@ -48,14 +70,18 @@ export const fleaMarketSlice = createSlice({
     setGameState: (state, action: PayloadAction<string>) => {
       state.gameManager.gameState = action.payload;
     },
+    setStash: (state, action: PayloadAction<StashStateType>) => {
+      state.stash = action.payload;
+    },
   },
 });
 
 //actions
-export const { setPrices, setGameState } = fleaMarketSlice.actions;
+export const { setPrices, setGameState, setStash } = fleaMarketSlice.actions;
 
 //selectors
 export const selectPrices = (state: RootState) => state.fleaMarket.prices;
+export const selectStash = (state: RootState) => state.fleaMarket.stash;
 export const selectGameState = (state: RootState) =>
   state.fleaMarket.gameManager.gameState;
 export const selectDay = (state: RootState) => state.fleaMarket.gameManager.day;
