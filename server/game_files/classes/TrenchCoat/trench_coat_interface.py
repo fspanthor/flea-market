@@ -6,5 +6,5 @@ def get_trench_coat(game_instance):
 
 
 trench_coat_interface = {
-    'GET_TRENCH_COAT': 'get_trench_coat'
+    'GET_TRENCH_COAT': get_trench_coat
 }

@@ -6,9 +6,9 @@ class TrenchCoat():
         self.pocket_knives = 0
         self.cell_phones = 0
         self.golf_carts = 0
-        self.money = 0
-        self.max_hold = 100
         self.corn_dogs = 0
+        self.cash = 0
+        self.max_hold = 100
 
     def get_amount(self, item):
         if hasattr(self, item):
@@ -19,9 +19,9 @@ class TrenchCoat():
             new_amount = getattr(self, item) + amount
             setattr(self, item, new_amount)
 
-    def change_wallet(self, money, amount_change):
-        self.money = money + amount_change
-        return getattr(self, money)
+    def change_wallet(self, cash, amount_change):
+        self.cash = cash + amount_change
+        return getattr(self, cash)
 
     def get_trench_coat(self):
         return self.__dict__
