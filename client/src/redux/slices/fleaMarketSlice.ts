@@ -44,6 +44,7 @@ interface FleaMarketStateType {
   gameManager: GameManagerStateType;
   stash: StashStateType;
   trenchCoat: TrenchCoatStateType;
+  location: string;
 }
 
 const initialState: FleaMarketStateType = {
@@ -81,6 +82,7 @@ const initialState: FleaMarketStateType = {
     gameState: "init",
     day: 0,
   },
+  location: "",
 };
 
 //reducer
@@ -100,16 +102,20 @@ export const fleaMarketSlice = createSlice({
     setTrenchCoat: (state, action: PayloadAction<TrenchCoatStateType>) => {
       state.trenchCoat = action.payload;
     },
+    setLocation: (state, action: PayloadAction<string>) => {
+      state.location = action.payload;
+    },
   },
 });
 
 //actions
-export const { setPrices, setGameState, setStash, setTrenchCoat } =
+export const { setPrices, setGameState, setStash, setTrenchCoat, setLocation } =
   fleaMarketSlice.actions;
 
 //selectors
 export const selectPrices = (state: RootState) => state.fleaMarket.prices;
 export const selectStash = (state: RootState) => state.fleaMarket.stash;
+export const selectLocation = (state: RootState) => state.fleaMarket.location;
 export const selectTrenchCoat = (state: RootState) =>
   state.fleaMarket.trenchCoat;
 export const selectGameState = (state: RootState) =>

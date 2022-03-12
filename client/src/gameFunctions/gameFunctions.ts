@@ -12,6 +12,7 @@ export enum FleaMarketFunction {
   INSTRUCTIONS_CONTINUE = "INSTRUCTIONS_CONTINUE",
   GET_STASH = "GET_STASH",
   GET_TRENCH_COAT = "GET_TRENCH_COAT",
+  GET_LOCATION = "GET_LOCATION",
 }
 export const setPrices = async () => {
   return await sendFunctionRequest({
@@ -89,6 +90,12 @@ export const getTrenchCoat = async () => {
     }
   );
   return formattedResponse;
+};
+
+export const getLocation = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.GET_LOCATION,
+  });
 };
 
 export const changeWallet = async (money: number, amountChange: number) => {

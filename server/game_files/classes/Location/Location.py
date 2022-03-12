@@ -11,4 +11,4 @@ class Location():
             return getattr(self, location)
 
     def get_location(self):
-        return self.__dict__
+        return getattr(self, 'location')
