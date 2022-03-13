@@ -4,6 +4,7 @@ import HUD from "./game/View/HUD";
 import { useAppSelector } from "../app/hooks";
 import { selectGameState } from "../redux/slices/fleaMarketSlice";
 import { GameStateEnum } from "../app/constants";
+import AudioPlayer from "./game/AudioPlayer";
 
 const Main = () => {
   const gameState = useAppSelector(selectGameState);
@@ -22,6 +23,7 @@ const Main = () => {
           press any key to start..{" "}
         </button>
       </div>
+      {gameState !== GameStateEnum.INIT && <AudioPlayer />}
       <button onClick={() => checkMaximumBuy("dvds")}>check max buy</button>
     </div>
   );
