@@ -10,10 +10,16 @@ export const buySellJetPrompt = async (key: string) => {
   });
 };
 
+const buySellJetAllowableKeys = ["b", "s", "j"];
+
 const BuySellJet = () => {
   return (
     <div>
-      <Input gameFunction={buySellJetPrompt} reduxAction={setGameState} />
+      <Input
+        gameFunction={buySellJetPrompt}
+        reduxAction={setGameState}
+        allowableKeys={buySellJetAllowableKeys}
+      />
       <span>Will you buy, sell or jet?</span>
     </div>
   );

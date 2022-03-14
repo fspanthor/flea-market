@@ -10,6 +10,8 @@ const instructionsPrompt = async (key: string) => {
   });
 };
 
+const titleAllowableKeys = ["y", "n"];
+
 const Title = () => {
   return (
     <div>
@@ -18,8 +20,12 @@ const Title = () => {
       <h2>ACTUAL FLEA MARKET EXPERIENCES</h2>
       <h2>BY FSPANTHOR</h2>
       <h2>COPYRIGHT (2022)</h2>
-      <h3>DO YOU WANT INSTRUCTIONS?</h3>
-      <Input gameFunction={instructionsPrompt} reduxAction={setGameState} />
+      <h3>DO YOU WANT INSTRUCTIONS? PRESS (Y) OR (N) KEY</h3>
+      <Input
+        gameFunction={instructionsPrompt}
+        reduxAction={setGameState}
+        allowableKeys={titleAllowableKeys}
+      />
     </div>
   );
 };
