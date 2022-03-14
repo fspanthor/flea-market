@@ -24,10 +24,12 @@ import Location from "./Location";
 
 const HUD = () => {
   const dispatch = useAppDispatch();
+
   const priceData = useAppSelector(selectPrices);
   const stashData = useAppSelector(selectStash);
   const trenchCoatData = useAppSelector(selectTrenchCoat);
   const locationData = useAppSelector(selectLocation);
+
   const [showPriceData, setShowPriceData] = useState(false);
   const [showStashData, setShowStashData] = useState(false);
   const [showTrenchCoatData, setShowTrenchCoatData] = useState(false);

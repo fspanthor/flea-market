@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FleaMarketFunction } from "../../gameFunctions/gameFunctions";
+import { setGameState } from "../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../service/functionRequest";
 import Input from "./Input";
 
@@ -30,7 +31,9 @@ const Instructions = () => {
   return (
     <div>
       <div>press any key to continue</div>
-      {instructions && <Input gameFunction={instructionsContinue} />}
+      {instructions && (
+        <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
+      )}
       {instructions}
     </div>
   );

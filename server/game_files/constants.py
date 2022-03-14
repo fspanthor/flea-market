@@ -19,5 +19,9 @@ class Play_Mode(Enum):
 
 
 class Locations(Enum):
-    BRONX = 'bronx',
     FLORIDA = 'florida'
+    ASHBY_BART = 'ashby_bart'
+    SAN_JOSE_SUPER_MALL = 'san_jose_super_mall'
+    SOLANO_SWAP_MEET = 'solano_swap_meet'
+    COMMUNITY_COLLEGE_FLEA_MARKET = 'community_college_flea_market'
+    HAUNTED_MALL = 'haunted_mall'

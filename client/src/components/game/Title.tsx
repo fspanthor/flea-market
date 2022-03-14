@@ -1,4 +1,5 @@
 import { FleaMarketFunction } from "../../gameFunctions/gameFunctions";
+import { setGameState } from "../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../service/functionRequest";
 import Input from "./Input";
 
@@ -18,7 +19,7 @@ const Title = () => {
       <h2>BY FSPANTHOR</h2>
       <h2>COPYRIGHT (2022)</h2>
       <h3>DO YOU WANT INSTRUCTIONS?</h3>
-      <Input gameFunction={instructionsPrompt} />
+      <Input gameFunction={instructionsPrompt} reduxAction={setGameState} />
     </div>
   );
 };
