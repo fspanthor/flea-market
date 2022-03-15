@@ -30,11 +30,11 @@ const Instructions = () => {
 
   return (
     <div>
-      <div>press any key to continue</div>
       {instructions && (
         <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
       )}
       {instructions}
+      <div>press any key to continue</div>
     </div>
   );
 };
