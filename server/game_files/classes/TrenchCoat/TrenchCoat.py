@@ -1,6 +1,6 @@
 class TrenchCoat():
     def __init__(self):
-        self.nachos = 0
+        self.fake_shoes = 0
         self.dvds = 0
         self.hot_sauce = 0
         self.pocket_knives = 0

@@ -10,7 +10,7 @@ from .Shark.Shark import Shark
 class Game():
     def __init__(self):
         self.player = Player(self)
-        self.location = Location()
+        self.location = Location(self)
         self.prices = Prices()
         self.game_manager = GameManager(self)
         self.instructions = Instructions(self)

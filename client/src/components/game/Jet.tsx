@@ -1,11 +1,11 @@
 import { FleaMarketFunction } from "../../gameFunctions/gameFunctions";
-import { setLocation } from "../../redux/slices/fleaMarketSlice";
+import { setLocationResponse } from "../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../service/functionRequest";
 import Input from "./Input";
 
 export const jetPrompt = async (key: string) => {
   return await sendFunctionRequest({
-    function: FleaMarketFunction.JET,
+    function: FleaMarketFunction.CHANGE_LOCATION,
     params: { key: key },
   });
 };
@@ -13,7 +13,7 @@ export const jetPrompt = async (key: string) => {
 const Jet = () => {
   return (
     <div>
-      <Input gameFunction={jetPrompt} reduxAction={setLocation} />
+      <Input gameFunction={jetPrompt} reduxAction={setLocationResponse} />
       <span>Where to?</span>
     </div>
   );

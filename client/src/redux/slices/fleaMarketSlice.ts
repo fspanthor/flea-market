@@ -1,13 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 
+export interface SetLocationResponseType {
+  day: number;
+  gameState: string;
+  location: string;
+  prices: PricesStateType;
+}
+
 export interface PricesStateType {
   golfCarts: number;
   cellPhones: number;
   pocketKnives: number;
   hotSauce: number;
   dvds: number;
-  nachos: number;
+  fakeShoes: number;
 }
 
 export interface StashStateType {
@@ -16,7 +23,7 @@ export interface StashStateType {
   pocketKnives: number;
   hotSauce: number;
   dvds: number;
-  nachos: number;
+  fakeShoes: number;
   bank: number;
   debt: number;
 }
@@ -27,7 +34,7 @@ export interface TrenchCoatStateType {
   pocketKnives: number;
   hotSauce: number;
   dvds: number;
-  nachos: number;
+  fakeShoes: number;
   cornDogs: number;
   cash: number;
   maxHold: number;
@@ -55,7 +62,7 @@ const initialState: FleaMarketStateType = {
     pocketKnives: 0,
     hotSauce: 0,
     dvds: 0,
-    nachos: 0,
+    fakeShoes: 0,
   },
   stash: {
     golfCarts: 0,
@@ -63,7 +70,7 @@ const initialState: FleaMarketStateType = {
     pocketKnives: 0,
     hotSauce: 0,
     dvds: 0,
-    nachos: 0,
+    fakeShoes: 0,
     bank: 0,
     debt: 0,
   },
@@ -73,7 +80,7 @@ const initialState: FleaMarketStateType = {
     pocketKnives: 0,
     hotSauce: 0,
     dvds: 0,
-    nachos: 0,
+    fakeShoes: 0,
     cornDogs: 0,
     cash: 0,
     maxHold: 0,
@@ -105,12 +112,28 @@ export const fleaMarketSlice = createSlice({
     setLocation: (state, action: PayloadAction<string>) => {
       state.location = action.payload;
     },
+    setLocationResponse: (
+      state,
+      action: PayloadAction<SetLocationResponseType>
+    ) => {
+      console.log(action.payload);
+      state.location = action.payload.location;
+      state.gameManager.day = action.payload.day;
+      state.gameManager.gameState = action.payload.gameState;
+      state.prices = action.payload.prices;
+    },
   },
 });
 
 //actions
-export const { setPrices, setGameState, setStash, setTrenchCoat, setLocation } =
-  fleaMarketSlice.actions;
+export const {
+  setPrices,
+  setGameState,
+  setStash,
+  setTrenchCoat,
+  setLocation,
+  setLocationResponse,
+} = fleaMarketSlice.actions;
 
 //selectors
 export const selectPrices = (state: RootState) => state.fleaMarket.prices;

@@ -1,11 +1,13 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { toCamel } from "../../app/utilities";
+import { SetLocationResponseType } from "../../redux/slices/fleaMarketSlice";
 
 interface InputPropsType {
   gameFunction: (key: string) => Promise<any>;
-  reduxAction: ActionCreatorWithPayload<string, string>;
+  reduxAction:
+    | ActionCreatorWithPayload<string>
+    | ActionCreatorWithPayload<SetLocationResponseType>;
   allowableKeys?: string[];
 }
 
@@ -33,7 +35,7 @@ const Input = ({
         e.stopPropagation();
         if (!e.repeat) {
           const gameFunctionReturn = await gameFunction(e.key);
-          dispatch(reduxAction(toCamel(gameFunctionReturn)));
+          dispatch(reduxAction(gameFunctionReturn));
         }
       }
     },

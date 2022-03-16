@@ -1,3 +1,5 @@
+
+from ...utilities.utils import to_camel_case
 from ...constants import Game_Mode
 
 
@@ -11,12 +13,12 @@ class Instructions():
     def instructions_prompt(self, key):
         if key == 'y':
             self.game_manager.set_game_mode(Game_Mode.INSTRUCTIONS)
-            return self.game_manager.get_game_mode().value
+            return to_camel_case(self.game_manager.get_game_mode().value)
         if key == 'n':
             self.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
-            return self.game_manager.get_game_mode().value
+            return to_camel_case(self.game_manager.get_game_mode().value)
         else:
-            return self.game_manager.get_game_mode().value
+            return to_camel_case(self.game_manager.get_game_mode().value)
 
     def get_instructions(self):
         return getattr(self, 'instructions')

@@ -10,6 +10,9 @@ class GameManager():
     def get_day(self):
         return getattr(self, 'day')
 
+    def increment_day(self):
+        self.day = self.day + 1
+
     def buy_sell_jet(self, key):
         if key == 'b':
             self.set_game_mode(Game_Mode.BUY)
@@ -26,26 +29,18 @@ class GameManager():
     def jet(self, key):
         if key == '1':
             self.game.location.set_location(Locations.FLORIDA)
-            return self.game.location.get_location().value
         if key == '2':
             self.game.location.set_location(Locations.ASHBY_BART)
-            return self.game.location.get_location().value
         if key == '3':
             self.game.location.set_location(
                 Locations.SAN_JOSE_SUPER_MALL)
-            return self.game.location.get_location().value
         if key == '4':
             self.game.location.set_location(Locations.SOLANO_SWAP_MEET)
-            return self.game.location.get_location().value
         if key == '5':
             self.game.location.set_location(
                 Locations.COMMUNITY_COLLEGE_FLEA_MARKET)
-            return self.game.location.get_location().value
         if key == '6':
             self.game.location.set_location(Locations.HAUNTED_MALL)
-            return self.game.location.get_location().value
-        else:
-            return self.game.location.get_location().value
 
     def get_game_mode(self):
         return getattr(self, 'game_mode')

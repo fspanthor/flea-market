@@ -8,6 +8,7 @@ export enum FleaMarketFunction {
   GET_PRICES = "GET_PRICES",
   BUY_SELL_JET = "BUY_SELL_JET",
   JET = "JET",
+  CHANGE_LOCATION = "CHANGE_LOCATION",
   INSTRUCTIONS = "INSTRUCTIONS",
   GET_INSTRUCTIONS = "GET_INSTRUCTIONS",
   INSTRUCTIONS_CONTINUE = "INSTRUCTIONS_CONTINUE",
@@ -30,12 +31,12 @@ export const getPrices = async () => {
     dvds,
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
-    nachos,
+    fake_shoes: fakeShoes,
     pocket_knives: pocketKnives,
   } = serverResponse;
   const formattedResponse = Object.assign(
     {},
-    { cellPhones, dvds, golfCarts, hotSauce, nachos, pocketKnives }
+    { cellPhones, dvds, golfCarts, hotSauce, fakeShoes, pocketKnives }
   );
   return formattedResponse;
 };
@@ -49,14 +50,23 @@ export const getStash = async () => {
     dvds,
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
-    nachos,
+    fake_Shoes: fakeShoes,
     pocket_knives: pocketKnives,
     bank,
     debt,
   } = serverResponse;
   const formattedResponse = Object.assign(
     {},
-    { cellPhones, dvds, golfCarts, hotSauce, nachos, pocketKnives, bank, debt }
+    {
+      cellPhones,
+      dvds,
+      golfCarts,
+      hotSauce,
+      fakeShoes,
+      pocketKnives,
+      bank,
+      debt,
+    }
   );
   return formattedResponse;
 };
@@ -70,7 +80,7 @@ export const getTrenchCoat = async () => {
     dvds,
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
-    nachos,
+    fake_shoes: fakeShoes,
     pocket_knives: pocketKnives,
     corn_dogs: cornDogs,
     cash,
@@ -83,7 +93,7 @@ export const getTrenchCoat = async () => {
       dvds,
       golfCarts,
       hotSauce,
-      nachos,
+      fakeShoes,
       pocketKnives,
       cornDogs,
       cash,
