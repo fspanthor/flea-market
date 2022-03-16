@@ -1,28 +1,56 @@
+from enum import IntEnum
 import random
+
+
+class Price_Limit(IntEnum):
+    DVDS_LOW = 10
+    DVDS_HIGH = 60
+    HOT_SAUCE_LOW = 70
+    HOT_SAUCE_HIGH = 250
+    POCKET_KNIVES_LOW = 300
+    POCKET_KNIVES_HIGH = 900
+    FAKE_SHOES_LOW = 1000
+    FAKE_SHOES_HIGH = 4500
+    CELL_PHONES_LOW = 5000
+    CELL_PHONES_HIGH = 14000
+    GOLF_CARTS_LOW = 15000
+    GOLF_CARTS_HIGH = 30000
 
 
 class Prices():
     def __init__(self):
-        self.fake_shoes = 0
-        self.dvds = 0
-        self.hot_sauce = 0
-        self.pocket_knives = 0
-        self.cell_phones = 0
-        self.golf_carts = 0
+        self.fake_shoes = self.randomize(
+            Price_Limit.FAKE_SHOES_LOW, Price_Limit.FAKE_SHOES_HIGH)
+        self.dvds = self.randomize(
+            Price_Limit.DVDS_LOW, Price_Limit.DVDS_HIGH)
+        self.hot_sauce = self.randomize(
+            Price_Limit.HOT_SAUCE_LOW, Price_Limit.HOT_SAUCE_HIGH)
+        self.pocket_knives = self.randomize(
+            Price_Limit.POCKET_KNIVES_LOW, Price_Limit.POCKET_KNIVES_HIGH)
+        self.cell_phones = self.randomize(
+            Price_Limit.CELL_PHONES_LOW, Price_Limit.CELL_PHONES_HIGH)
+        self.golf_carts = self.randomize(
+            Price_Limit.GOLF_CARTS_LOW, Price_Limit.GOLF_CARTS_HIGH)
 
     def set_prices(self):
         #10 - 60
-        self.dvds = self.randomize(10, 60)
+        self.dvds = self.randomize(
+            Price_Limit.DVDS_LOW, Price_Limit.DVDS_HIGH)
         #70 -250
-        self.hot_sauce = self.randomize(70, 250)
+        self.hot_sauce = self.randomize(
+            Price_Limit.HOT_SAUCE_LOW, Price_Limit.HOT_SAUCE_HIGH)
         #300 - 900
-        self.pocket_knives = self.randomize(300, 900)
+        self.pocket_knives = self.randomize(
+            Price_Limit.POCKET_KNIVES_LOW, Price_Limit.POCKET_KNIVES_HIGH)
         #1000 - 4500
-        self.fake_shoes = self.randomize(1000, 4500)
+        self.fake_shoes = self.randomize(
+            Price_Limit.FAKE_SHOES_LOW, Price_Limit.FAKE_SHOES_HIGH)
         #5000 - 14000
-        self.cell_phones = self.randomize(5000, 14000)
+        self.cell_phones = self.randomize(
+            Price_Limit.CELL_PHONES_LOW, Price_Limit.CELL_PHONES_HIGH)
         #15000 - 30000
-        self.golf_carts = self.randomize(15000, 30000)
+        self.golf_carts = self.randomize(
+            Price_Limit.GOLF_CARTS_LOW, Price_Limit.GOLF_CARTS_HIGH)
 
     def get_item_price(self, item):
         if hasattr(self, item):
@@ -32,7 +60,7 @@ class Prices():
         return self.__dict__
 
     def randomize(self, lower_bound, upper_bound):
-        return random.randint(lower_bound, upper_bound)
+        return round(random.randint(lower_bound, upper_bound)/10)*10
 
     def determine_sale(self):
         sale_decider = random.randint(1, 5)

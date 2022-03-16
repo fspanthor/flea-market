@@ -26,6 +26,6 @@ class Instructions():
     def instructions_continue(self, key):
         if key:
             self.game_manager.game_mode = Game_Mode.BUY_SELL_JET
-            return self.game_manager.get_game_mode().value
+            return to_camel_case(self.game_manager.get_game_mode().value)
         else:
             return
