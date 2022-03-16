@@ -32,11 +32,11 @@ export const getPrices = async () => {
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
     fake_shoes: fakeShoes,
-    pocket_knives: pocketKnives,
+    switchblades,
   } = serverResponse;
   const formattedResponse = Object.assign(
     {},
-    { cellPhones, dvds, golfCarts, hotSauce, fakeShoes, pocketKnives }
+    { cellPhones, dvds, golfCarts, hotSauce, fakeShoes, switchblades }
   );
   return formattedResponse;
 };
@@ -51,7 +51,7 @@ export const getStash = async () => {
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
     fake_Shoes: fakeShoes,
-    pocket_knives: pocketKnives,
+    switchblades,
     bank,
     debt,
   } = serverResponse;
@@ -63,7 +63,7 @@ export const getStash = async () => {
       golfCarts,
       hotSauce,
       fakeShoes,
-      pocketKnives,
+      switchblades,
       bank,
       debt,
     }
@@ -81,7 +81,7 @@ export const getTrenchCoat = async () => {
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
     fake_shoes: fakeShoes,
-    pocket_knives: pocketKnives,
+    switchblades,
     corn_dogs: cornDogs,
     cash,
     max_hold: maxHold,
@@ -94,7 +94,7 @@ export const getTrenchCoat = async () => {
       golfCarts,
       hotSauce,
       fakeShoes,
-      pocketKnives,
+      switchblades,
       cornDogs,
       cash,
       maxHold,

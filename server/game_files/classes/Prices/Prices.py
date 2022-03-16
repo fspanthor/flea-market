@@ -7,8 +7,8 @@ class Price_Limit(IntEnum):
     DVDS_HIGH = 60
     HOT_SAUCE_LOW = 70
     HOT_SAUCE_HIGH = 250
-    POCKET_KNIVES_LOW = 300
-    POCKET_KNIVES_HIGH = 900
+    SWITCHBLADES_LOW = 300
+    SWITCHBLADES_HIGH = 900
     FAKE_SHOES_LOW = 1000
     FAKE_SHOES_HIGH = 4500
     CELL_PHONES_LOW = 5000
@@ -25,8 +25,8 @@ class Prices():
             Price_Limit.DVDS_LOW, Price_Limit.DVDS_HIGH)
         self.hot_sauce = self.randomize(
             Price_Limit.HOT_SAUCE_LOW, Price_Limit.HOT_SAUCE_HIGH)
-        self.pocket_knives = self.randomize(
-            Price_Limit.POCKET_KNIVES_LOW, Price_Limit.POCKET_KNIVES_HIGH)
+        self.switchblades = self.randomize(
+            Price_Limit.SWITCHBLADES_LOW, Price_Limit.SWITCHBLADES_HIGH)
         self.cell_phones = self.randomize(
             Price_Limit.CELL_PHONES_LOW, Price_Limit.CELL_PHONES_HIGH)
         self.golf_carts = self.randomize(
@@ -40,8 +40,8 @@ class Prices():
         self.hot_sauce = self.randomize(
             Price_Limit.HOT_SAUCE_LOW, Price_Limit.HOT_SAUCE_HIGH)
         #300 - 900
-        self.pocket_knives = self.randomize(
-            Price_Limit.POCKET_KNIVES_LOW, Price_Limit.POCKET_KNIVES_HIGH)
+        self.switchblades = self.randomize(
+            Price_Limit.SWITCHBLADES_LOW, Price_Limit.SWITCHBLADES_HIGH)
         #1000 - 4500
         self.fake_shoes = self.randomize(
             Price_Limit.FAKE_SHOES_LOW, Price_Limit.FAKE_SHOES_HIGH)
@@ -72,7 +72,7 @@ class Prices():
             if sale_item == 2:
                 self.hot_sauce = random.randint(7, 25)
             if sale_item == 3:
-                self.pocket_knives = random.randint(30, 90)
+                self.switchblades = random.randint(30, 90)
             if sale_item == 4:
                 self.fake_shoes = random.randint(100, 450)
             if sale_item == 5:

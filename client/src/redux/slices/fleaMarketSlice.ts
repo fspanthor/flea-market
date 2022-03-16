@@ -11,7 +11,7 @@ export interface SetLocationResponseType {
 export interface PricesStateType {
   golfCarts: number;
   cellPhones: number;
-  pocketKnives: number;
+  switchblades: number;
   hotSauce: number;
   dvds: number;
   fakeShoes: number;
@@ -20,7 +20,7 @@ export interface PricesStateType {
 export interface StashStateType {
   golfCarts: number;
   cellPhones: number;
-  pocketKnives: number;
+  switchblades: number;
   hotSauce: number;
   dvds: number;
   fakeShoes: number;
@@ -31,7 +31,7 @@ export interface StashStateType {
 export interface TrenchCoatStateType {
   golfCarts: number;
   cellPhones: number;
-  pocketKnives: number;
+  switchblades: number;
   hotSauce: number;
   dvds: number;
   fakeShoes: number;
@@ -59,7 +59,7 @@ const initialState: FleaMarketStateType = {
   prices: {
     golfCarts: 0,
     cellPhones: 0,
-    pocketKnives: 0,
+    switchblades: 0,
     hotSauce: 0,
     dvds: 0,
     fakeShoes: 0,
@@ -67,7 +67,7 @@ const initialState: FleaMarketStateType = {
   stash: {
     golfCarts: 0,
     cellPhones: 0,
-    pocketKnives: 0,
+    switchblades: 0,
     hotSauce: 0,
     dvds: 0,
     fakeShoes: 0,
@@ -77,7 +77,7 @@ const initialState: FleaMarketStateType = {
   trenchCoat: {
     golfCarts: 0,
     cellPhones: 0,
-    pocketKnives: 0,
+    switchblades: 0,
     hotSauce: 0,
     dvds: 0,
     fakeShoes: 0,

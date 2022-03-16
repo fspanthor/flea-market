@@ -3,7 +3,7 @@ class TrenchCoat():
         self.fake_shoes = 0
         self.dvds = 0
         self.hot_sauce = 0
-        self.pocket_knives = 0
+        self.switchblades = 0
         self.cell_phones = 0
         self.golf_carts = 0
         self.corn_dogs = 0

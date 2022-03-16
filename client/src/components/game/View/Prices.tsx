@@ -11,7 +11,7 @@ const Prices = ({ priceData }: priceDataType) => {
       <ul>
         <li>{`Golf Carts:  ${priceData.golfCarts}`}</li>
         <li>{`Cell Phones:  ${priceData.cellPhones}`}</li>
-        <li>{`Pocket Knives:  ${priceData.pocketKnives}`}</li>
+        <li>{`Switchblades:  ${priceData.switchblades}`}</li>
         <li>{`Hot Sauce:  ${priceData.hotSauce}`}</li>
         <li>{`DVDs:  ${priceData.dvds}`}</li>
         <li>{`Fake Shoes:  ${priceData.fakeShoes}`}</li>

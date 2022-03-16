@@ -11,7 +11,7 @@ const TrenchCoat = ({ trenchCoatData }: trenchCoatDataType) => {
       <ul>
         <li>{`Golf Carts:  ${trenchCoatData.golfCarts}`}</li>
         <li>{`Cell Phones:  ${trenchCoatData.cellPhones}`}</li>
-        <li>{`Pocket Knives:  ${trenchCoatData.pocketKnives}`}</li>
+        <li>{`Switchblades:  ${trenchCoatData.switchblades}`}</li>
         <li>{`Hot Sauce:  ${trenchCoatData.hotSauce}`}</li>
         <li>{`DVDs:  ${trenchCoatData.dvds}`}</li>
         <li>{`Fake Shoes:  ${trenchCoatData.fakeShoes}`}</li>

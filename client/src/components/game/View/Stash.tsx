@@ -11,7 +11,7 @@ const Stash = ({ stashData }: stashDataType) => {
       <ul>
         <li>{`Golf Carts:  ${stashData.golfCarts}`}</li>
         <li>{`Cell Phones:  ${stashData.cellPhones}`}</li>
-        <li>{`Pocket Knives:  ${stashData.pocketKnives}`}</li>
+        <li>{`Switchblades:  ${stashData.switchblades}`}</li>
         <li>{`Hot Sauce:  ${stashData.hotSauce}`}</li>
         <li>{`DVDs:  ${stashData.dvds}`}</li>
         <li>{`Fake Shoes:  ${stashData.fakeShoes}`}</li>
