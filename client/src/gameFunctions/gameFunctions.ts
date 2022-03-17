@@ -16,12 +16,13 @@ export enum FleaMarketFunction {
   GET_TRENCH_COAT = "GET_TRENCH_COAT",
   GET_LOCATION = "GET_LOCATION",
   NEW_GAME = "NEW_GAME",
+  GET_DAY = "GET_DAY",
 }
-export const setPrices = async () => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.SET_PRICES,
-  });
-};
+// export const setPrices = async () => {
+//   return await sendFunctionRequest({
+//     function: FleaMarketFunction.SET_PRICES,
+//   });
+// };
 
 export const getPrices = async () => {
   const serverResponse = await sendFunctionRequest({
@@ -110,12 +111,18 @@ export const getLocation = async () => {
   });
 };
 
-export const changeWallet = async (money: number, amountChange: number) => {
+export const getDay = async () => {
   return await sendFunctionRequest({
-    function: FleaMarketFunction.CHANGE_WALLET,
-    params: { money: money, amountChange: amountChange },
+    function: FleaMarketFunction.GET_DAY,
   });
 };
+
+// export const changeWallet = async (money: number, amountChange: number) => {
+//   return await sendFunctionRequest({
+//     function: FleaMarketFunction.CHANGE_WALLET,
+//     params: { money: money, amountChange: amountChange },
+//   });
+// };
 
 export const checkMaximumBuy = async (value: string) => {
   return await sendFunctionRequest({
@@ -124,8 +131,8 @@ export const checkMaximumBuy = async (value: string) => {
   });
 };
 
-export const retrieveGameState = async () => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.RETRIEVE_GAME_STATE,
-  });
-};
+// export const retrieveGameState = async () => {
+//   return await sendFunctionRequest({
+//     function: FleaMarketFunction.RETRIEVE_GAME_STATE,
+//   });
+// };

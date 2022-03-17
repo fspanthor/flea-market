@@ -26,7 +26,7 @@ const Main = () => {
       setGameState(initGameState);
     };
     startNewGame();
-  });
+  }, []);
 
   return (
     <div>

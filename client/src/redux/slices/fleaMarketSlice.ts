@@ -112,6 +112,9 @@ export const fleaMarketSlice = createSlice({
     setLocation: (state, action: PayloadAction<string>) => {
       state.location = action.payload;
     },
+    setDay: (state, action: PayloadAction<number>) => {
+      state.gameManager.day = action.payload;
+    },
     setLocationResponse: (
       state,
       action: PayloadAction<SetLocationResponseType>
@@ -132,6 +135,7 @@ export const {
   setTrenchCoat,
   setLocation,
   setLocationResponse,
+  setDay,
 } = fleaMarketSlice.actions;
 
 //selectors

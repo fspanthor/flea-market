@@ -20,7 +20,7 @@ const BuySellJet = () => {
         reduxAction={setGameState}
         allowableKeys={buySellJetAllowableKeys}
       />
-      <span>Will you buy, sell or jet?</span>
+      <span>WILL YOU (B)UY (S)ELL OR (J)ET?</span>
     </div>
   );
 };

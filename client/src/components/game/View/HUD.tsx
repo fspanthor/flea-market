@@ -2,16 +2,19 @@ import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
+  getDay,
   getLocation,
   getPrices,
   getStash,
   getTrenchCoat,
 } from "../../../gameFunctions/gameFunctions";
 import {
+  selectDay,
   selectLocation,
   selectPrices,
   selectStash,
   selectTrenchCoat,
+  setDay,
   setLocation,
   setPrices,
   setStash,
@@ -21,6 +24,7 @@ import Prices from "./Prices";
 import Stash from "./Stash";
 import TrenchCoat from "./TrenchCoat";
 import Location from "./Location";
+import Date from "./Date";
 
 const HUD = () => {
   const dispatch = useAppDispatch();
@@ -29,11 +33,13 @@ const HUD = () => {
   const stashData = useAppSelector(selectStash);
   const trenchCoatData = useAppSelector(selectTrenchCoat);
   const locationData = useAppSelector(selectLocation);
+  const dayData = useAppSelector(selectDay);
 
   const [showPriceData, setShowPriceData] = useState(false);
   const [showStashData, setShowStashData] = useState(false);
   const [showTrenchCoatData, setShowTrenchCoatData] = useState(false);
   const [showLocationData, setShowLocationData] = useState(false);
+  const [showDayData, setShowDayData] = useState(false);
 
   const fetchPrices = useCallback(async () => {
     const gameState = await getPrices();
@@ -59,12 +65,26 @@ const HUD = () => {
     setShowLocationData(true);
   }, [dispatch]);
 
+  const fetchDay = useCallback(async () => {
+    const dayState = await getDay();
+    dispatch(setDay(dayState));
+    setShowDayData(true);
+  }, [dispatch]);
+
   useEffect(() => {
     fetchPrices();
     fetchStash();
     fetchTrenchCoat();
     fetchLocation();
-  }, [dispatch, fetchLocation, fetchPrices, fetchStash, fetchTrenchCoat]);
+    fetchDay();
+  }, [
+    dispatch,
+    fetchDay,
+    fetchLocation,
+    fetchPrices,
+    fetchStash,
+    fetchTrenchCoat,
+  ]);
 
   return (
     <div>
@@ -72,6 +92,7 @@ const HUD = () => {
       {showStashData && <Stash stashData={stashData} />}
       {showTrenchCoatData && <TrenchCoat trenchCoatData={trenchCoatData} />}
       {showLocationData && <Location locationData={locationData} />}
+      {showDayData && <Date dayData={dayData} />}
     </div>
   );
 };
