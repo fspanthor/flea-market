@@ -9,12 +9,12 @@ const Prices = ({ priceData }: priceDataType) => {
     <div>
       <h3>Hey dude, the prices here are:</h3>
       <ul>
-        <li>{`Golf Carts:  ${priceData.golfCarts}`}</li>
-        <li>{`Cell Phones:  ${priceData.cellPhones}`}</li>
-        <li>{`Switchblades:  ${priceData.switchblades}`}</li>
-        <li>{`Hot Sauce:  ${priceData.hotSauce}`}</li>
         <li>{`DVDs:  ${priceData.dvds}`}</li>
+        <li>{`Hot Sauce:  ${priceData.hotSauce}`}</li>
+        <li>{`Switchblades:  ${priceData.switchblades}`}</li>
         <li>{`Fake Shoes:  ${priceData.fakeShoes}`}</li>
+        <li>{`Cell Phones:  ${priceData.cellPhones}`}</li>
+        <li>{`Golf Carts:  ${priceData.golfCarts}`}</li>
       </ul>
     </div>
   );
