@@ -40,7 +40,7 @@ const Instructions = () => {
         <li>Switchblades: 300 - 900</li>
         <li>Fake Shoes: 1000 - 4500</li>
         <li>Cell Phones: 5000 - 14000</li>
-        <li>Golf Carts: 15000 - 30000</li>
+        <li>Massage Chairs: 15000 - 30000</li>
       </ul>
       <div>PRESS ANY KEY TO CONTINUE......</div>
     </div>

@@ -14,7 +14,7 @@ const TrenchCoat = ({ trenchCoatData }: trenchCoatDataType) => {
         <li>{`Switchblades:  ${trenchCoatData.switchblades}`}</li>
         <li>{`Fake Shoes:  ${trenchCoatData.fakeShoes}`}</li>
         <li>{`Cell Phones:  ${trenchCoatData.cellPhones}`}</li>
-        <li>{`Golf Carts:  ${trenchCoatData.golfCarts}`}</li>
+        <li>{`Massage Chairs:  ${trenchCoatData.massageChairs}`}</li>
         <li>{`Corn Dogs:  ${trenchCoatData.cornDogs}`}</li>
         <li>{`Cash:  ${trenchCoatData.cash}`}</li>
         <li>{`Max Hold:  ${trenchCoatData.maxHold}`}</li>

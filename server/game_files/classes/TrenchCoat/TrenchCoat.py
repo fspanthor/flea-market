@@ -5,7 +5,7 @@ class TrenchCoat():
         self.hot_sauce = 0
         self.switchblades = 0
         self.cell_phones = 0
-        self.golf_carts = 0
+        self.massage_chairs = 0
         self.corn_dogs = 0
         self.cash = 0
         self.max_hold = 100
@@ -16,7 +16,7 @@ class TrenchCoat():
         self.hot_sauce = 0
         self.switchblades = 0
         self.cell_phones = 0
-        self.golf_carts = 0
+        self.massage_chairs = 0
         self.corn_dogs = 0
         self.cash = 0
         self.max_hold = 100

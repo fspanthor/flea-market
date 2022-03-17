@@ -5,7 +5,7 @@ class Stash():
         self.hot_sauce = 0
         self.switchblades = 0
         self.cell_phones = 0
-        self.golf_carts = 0
+        self.massage_chairs = 0
         self.bank = 0
         self.debt = 5500
 
@@ -15,7 +15,7 @@ class Stash():
         self.hot_sauce = 0
         self.switchblades = 0
         self.cell_phones = 0
-        self.golf_carts = 0
+        self.massage_chairs = 0
         self.bank = 0
         self.debt = 5500
 

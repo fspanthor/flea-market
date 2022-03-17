@@ -31,14 +31,14 @@ export const getPrices = async () => {
   const {
     cell_phones: cellPhones,
     dvds,
-    golf_carts: golfCarts,
+    massage_chairs: massageChairs,
     hot_sauce: hotSauce,
     fake_shoes: fakeShoes,
     switchblades,
   } = serverResponse;
   const formattedResponse = Object.assign(
     {},
-    { cellPhones, dvds, golfCarts, hotSauce, fakeShoes, switchblades }
+    { cellPhones, dvds, massageChairs, hotSauce, fakeShoes, switchblades }
   );
   return formattedResponse;
 };
@@ -50,7 +50,7 @@ export const getStash = async () => {
   const {
     cell_phones: cellPhones,
     dvds,
-    golf_carts: golfCarts,
+    massage_chairs: massageChairs,
     hot_sauce: hotSauce,
     fake_shoes: fakeShoes,
     switchblades,
@@ -62,7 +62,7 @@ export const getStash = async () => {
     {
       cellPhones,
       dvds,
-      golfCarts,
+      massageChairs,
       hotSauce,
       fakeShoes,
       switchblades,
@@ -80,7 +80,7 @@ export const getTrenchCoat = async () => {
   const {
     cell_phones: cellPhones,
     dvds,
-    golf_carts: golfCarts,
+    massage_chairs: massageChairs,
     hot_sauce: hotSauce,
     fake_shoes: fakeShoes,
     switchblades,
@@ -93,7 +93,7 @@ export const getTrenchCoat = async () => {
     {
       cellPhones,
       dvds,
-      golfCarts,
+      massageChairs,
       hotSauce,
       fakeShoes,
       switchblades,

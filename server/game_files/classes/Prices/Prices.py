@@ -29,7 +29,7 @@ class Prices():
             Price_Limit.SWITCHBLADES_LOW, Price_Limit.SWITCHBLADES_HIGH)
         self.cell_phones = self.randomize(
             Price_Limit.CELL_PHONES_LOW, Price_Limit.CELL_PHONES_HIGH)
-        self.golf_carts = self.randomize(
+        self.massage_chairs = self.randomize(
             Price_Limit.GOLF_CARTS_LOW, Price_Limit.GOLF_CARTS_HIGH)
 
     def set_prices(self):
@@ -49,7 +49,7 @@ class Prices():
         self.cell_phones = self.randomize(
             Price_Limit.CELL_PHONES_LOW, Price_Limit.CELL_PHONES_HIGH)
         #15000 - 30000
-        self.golf_carts = self.randomize(
+        self.massage_chairs = self.randomize(
             Price_Limit.GOLF_CARTS_LOW, Price_Limit.GOLF_CARTS_HIGH)
 
     def get_item_price(self, item):
@@ -78,4 +78,4 @@ class Prices():
             if sale_item == 5:
                 self.cell_phones = random.randint(500, 1400)
             if sale_item == 6:
-                self.golf_carts = random.randint(1500, 3000)
+                self.massage_chairs = random.randint(1500, 3000)
