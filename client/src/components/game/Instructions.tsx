@@ -34,7 +34,15 @@ const Instructions = () => {
         <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
       )}
       {instructions}
-      <div>press any key to continue</div>
+      <ul>
+        <li>DVDs: 10 - 60</li>
+        <li>Hot Sauce: 70 - 250</li>
+        <li>Switchblades: 300 - 900</li>
+        <li>Fake Shoes: 1000 - 4500</li>
+        <li>Cell Phones: 5000 - 14000</li>
+        <li>Golf Carts: 15000 - 30000</li>
+      </ul>
+      <div>PRESS ANY KEY TO CONTINUE......</div>
     </div>
   );
 };
