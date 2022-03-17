@@ -17,8 +17,13 @@ def jet(game_instance, params):
     return jsonify(game_instance.game_manager.jet(params['key']))
 
 
+def new_game(game_instance):
+    return jsonify(game_instance.game_manager.new_game())
+
+
 game_manager_interface = {
     'BUY_SELL_JET': buy_sell_jet,
     'RETRIEVE_GAME_STATE': retrieve_game_state,
     'JET': jet,
+    'NEW_GAME': new_game,
 }

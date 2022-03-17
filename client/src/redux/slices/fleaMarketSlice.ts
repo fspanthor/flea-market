@@ -116,7 +116,6 @@ export const fleaMarketSlice = createSlice({
       state,
       action: PayloadAction<SetLocationResponseType>
     ) => {
-      console.log(action.payload);
       state.location = action.payload.location;
       state.gameManager.day = action.payload.day;
       state.gameManager.gameState = action.payload.gameState;

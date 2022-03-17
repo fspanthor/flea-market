@@ -15,6 +15,7 @@ export enum FleaMarketFunction {
   GET_STASH = "GET_STASH",
   GET_TRENCH_COAT = "GET_TRENCH_COAT",
   GET_LOCATION = "GET_LOCATION",
+  NEW_GAME = "NEW_GAME",
 }
 export const setPrices = async () => {
   return await sendFunctionRequest({
@@ -50,7 +51,7 @@ export const getStash = async () => {
     dvds,
     golf_carts: golfCarts,
     hot_sauce: hotSauce,
-    fake_Shoes: fakeShoes,
+    fake_shoes: fakeShoes,
     switchblades,
     bank,
     debt,

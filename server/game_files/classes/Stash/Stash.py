@@ -9,6 +9,16 @@ class Stash():
         self.bank = 0
         self.debt = 5500
 
+    def reset_stash(self):
+        self.fake_shoes = 0
+        self.dvds = 0
+        self.hot_sauce = 0
+        self.switchblades = 0
+        self.cell_phones = 0
+        self.golf_carts = 0
+        self.bank = 0
+        self.debt = 5500
+
     def get_amount(self, item):
         if hasattr(self, item):
             return getattr(self, item)

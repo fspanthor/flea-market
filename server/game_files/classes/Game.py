@@ -15,4 +15,3 @@ class Game():
         self.game_manager = GameManager(self)
         self.instructions = Instructions(self)
         self.shark = Shark()
-        self.trench_coat = TrenchCoat()
