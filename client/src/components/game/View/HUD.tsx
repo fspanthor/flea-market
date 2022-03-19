@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
+
 import {
   selectDay,
   selectLocation,
@@ -20,6 +20,7 @@ import TrenchCoat from "./TrenchCoat";
 import Location from "./Location";
 import Date from "./Date";
 import { sendFunctionRequest } from "../../service/functionRequest";
+import { FleaMarketFunction } from "../../../app/constants";
 
 const getPrices = async () => {
   return await sendFunctionRequest({

@@ -1,4 +1,4 @@
-import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
+import { FleaMarketFunction } from "../../../app/constants";
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";

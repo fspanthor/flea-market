@@ -1,6 +1,7 @@
 import { memo, useCallback } from "react";
+import { FleaMarketFunction } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
-import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
+
 import {
   selectCurrentItem,
   selectMaximumBuy,

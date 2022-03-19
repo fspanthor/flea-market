@@ -1,9 +1,8 @@
-import { FleaMarketFunction } from "../gameFunctions/gameFunctions";
 import Interactive from "./game/Input/Interactive";
 import HUD from "./game/View/HUD";
 import { useAppSelector } from "../app/hooks";
 import { selectGameState, setGameState } from "../redux/slices/fleaMarketSlice";
-import { GameStateEnum } from "../app/constants";
+import { FleaMarketFunction, GameStateEnum } from "../app/constants";
 import { useEffect } from "react";
 import { sendFunctionRequest } from "./service/functionRequest";
 import AudioPlayer from "./game/Common/AudioPlayer";
