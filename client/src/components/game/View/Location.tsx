@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface LocationDataType {
   locationData: string;
 }
@@ -17,4 +19,4 @@ const formattedLocation = (location: string) => {
 const Location = ({ locationData }: LocationDataType) => {
   return <div>Location: {formattedLocation(locationData)}</div>;
 };
-export default Location;
+export default memo(Location);

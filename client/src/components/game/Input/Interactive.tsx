@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { GameStateEnum } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import { selectGameState } from "../../../redux/slices/fleaMarketSlice";
@@ -21,4 +22,4 @@ const Interactive = () => {
   );
 };
 
-export default Interactive;
+export default memo(Interactive);

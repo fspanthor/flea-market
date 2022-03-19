@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { StashStateType } from "../../../redux/slices/fleaMarketSlice";
 
 interface stashDataType {
@@ -22,4 +23,4 @@ const Stash = ({ stashData }: stashDataType) => {
   );
 };
 
-export default Stash;
+export default memo(Stash);

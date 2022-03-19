@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { useAppDispatch } from "../../../app/hooks";
 
 //redux action uses ActionCreatorWithPayload<any, string> because I cant figure out how
@@ -12,8 +12,10 @@ interface InputPropsType {
 
 /**
  *
- * @param param0 gameFunction: function to call on server, reduxAction: action to store function return in redux store
- * allowableKeys: keys that will send request. if this is not supplied all keys will accepted to send request
+ * gameFunction:function to call on server
+ * reduxAction: action to store function return in redux store
+ * allowableKeys: keys that will send request, if this is not supplied all keys will accepted to send request
+ *
  * @returns void
  */
 const Input = ({
@@ -45,7 +47,7 @@ const Input = ({
     document.body.addEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  return null;
+  return <div>_</div>;
 };
 
-export default Input;
+export default memo(Input);

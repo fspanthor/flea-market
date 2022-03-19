@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { PricesStateType } from "../../../redux/slices/fleaMarketSlice";
 
 interface priceDataType {
@@ -20,4 +21,4 @@ const Prices = ({ priceData }: priceDataType) => {
   );
 };
 
-export default Prices;
+export default memo(Prices);

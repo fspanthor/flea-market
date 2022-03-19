@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { FleaMarketFunction } from "../../../app/constants";
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
@@ -30,4 +31,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default memo(Title);

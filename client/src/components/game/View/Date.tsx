@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface DateDataType {
   dayData: number;
 }
@@ -12,4 +14,4 @@ const Date = ({ dayData }: DateDataType) => {
     </div>
   );
 };
-export default Date;
+export default memo(Date);

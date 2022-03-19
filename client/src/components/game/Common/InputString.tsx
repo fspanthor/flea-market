@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectCurrentItem } from "../../../redux/slices/fleaMarketSlice";
 
@@ -77,4 +77,4 @@ const InputString = ({
 
   return <div>_{input}</div>;
 };
-export default InputString;
+export default memo(InputString);

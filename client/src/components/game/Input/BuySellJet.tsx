@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { FleaMarketFunction } from "../../../app/constants";
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
@@ -15,14 +16,14 @@ const buySellJetAllowableKeys = ["b", "s", "j"];
 const BuySellJet = () => {
   return (
     <div>
+      <span>WILL YOU (B)UY (S)ELL OR (J)ET?</span>
       <Input
         gameFunction={buySellJetPrompt}
         reduxAction={setGameState}
         allowableKeys={buySellJetAllowableKeys}
       />
-      <span>WILL YOU (B)UY (S)ELL OR (J)ET?</span>
     </div>
   );
 };
 
-export default BuySellJet;
+export default memo(BuySellJet);

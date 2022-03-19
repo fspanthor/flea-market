@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { FleaMarketFunction } from "../../../app/constants";
 import { setLocationResponse } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
@@ -15,11 +16,6 @@ const jetAllowableKeys = ["1", "2", "3", "4", "5", "6"];
 const Jet = () => {
   return (
     <div>
-      <Input
-        gameFunction={jetPrompt}
-        reduxAction={setLocationResponse}
-        allowableKeys={jetAllowableKeys}
-      />
       <span>WHERE TO DUDE:</span>
       <ul>
         <li>(1) FLORIDA</li>
@@ -29,8 +25,13 @@ const Jet = () => {
         <li>(5) COMMUNITY COLLEGE FLEA MARKET</li>
         <li>(6) HAUNTED MALL</li>
       </ul>
+      <Input
+        gameFunction={jetPrompt}
+        reduxAction={setLocationResponse}
+        allowableKeys={jetAllowableKeys}
+      />
     </div>
   );
 };
 
-export default Jet;
+export default memo(Jet);

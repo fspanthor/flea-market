@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 
@@ -122,4 +122,4 @@ const HUD = () => {
     </div>
   );
 };
-export default HUD;
+export default memo(HUD);

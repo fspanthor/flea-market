@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { FleaMarketFunction } from "../../../app/constants";
 
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
@@ -31,9 +31,6 @@ const Instructions = () => {
 
   return (
     <div>
-      {instructions && (
-        <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
-      )}
       {instructions}
       <ul>
         <li>DVDs: 10 - 60</li>
@@ -44,8 +41,11 @@ const Instructions = () => {
         <li>Massage Chairs: 15000 - 30000</li>
       </ul>
       <div>PRESS ANY KEY TO CONTINUE......</div>
+      {instructions && (
+        <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
+      )}
     </div>
   );
 };
 
-export default Instructions;
+export default memo(Instructions);

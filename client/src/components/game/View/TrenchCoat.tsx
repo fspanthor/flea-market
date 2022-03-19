@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { TrenchCoatStateType } from "../../../redux/slices/fleaMarketSlice";
 
 interface trenchCoatDataType {
@@ -22,4 +23,4 @@ const TrenchCoat = ({ trenchCoatData }: trenchCoatDataType) => {
     </div>
   );
 };
-export default TrenchCoat;
+export default memo(TrenchCoat);
