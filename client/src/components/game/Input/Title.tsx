@@ -5,7 +5,7 @@ import Input from "../Common/Input";
 
 const instructionsPrompt = async (key: string) => {
   return await sendFunctionRequest({
-    function: FleaMarketFunction.INSTRUCTIONS,
+    function: FleaMarketFunction.INSTRUCTIONS_PROMPT,
     params: { key: key },
   });
 };
