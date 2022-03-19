@@ -47,7 +47,7 @@ const Input = ({
     document.body.addEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  return <div>_</div>;
+  return <div>{">_"}</div>;
 };
 
 export default memo(Input);

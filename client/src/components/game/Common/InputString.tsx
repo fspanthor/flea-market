@@ -36,7 +36,7 @@ const InputString = ({
    */
   const handleKeyDown = useCallback(
     async (e: KeyboardEvent) => {
-      const numberKeys = ["0", "1", "2", "3", "4", " 5", "6", "7", "8", "9"];
+      const numberKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
       if (
         allowableKeys === undefined ||
         allowableKeys.find((allowableKey) => allowableKey === e.key)
@@ -75,6 +75,6 @@ const InputString = ({
     document.body.addEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  return <div>_{input}</div>;
+  return <div>{`>${input}`}_</div>;
 };
 export default memo(InputString);

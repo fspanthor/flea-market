@@ -34,14 +34,14 @@ const Buy = () => {
   return (
     <div>
       WHAT WILL YOU BUY?
-      {maxBuy === undefined && (
+      {maxBuy === null && (
         <Input
           gameFunction={checkMaximumBuy}
           reduxAction={setMaximumBuy}
           allowableKeys={buyAllowableKeys}
         />
       )}
-      {maxBuy !== undefined && currentItem.length > 0 && (
+      {maxBuy !== null && currentItem.length > 0 && (
         <div>
           <div>HOW MANY {currentItem.toUpperCase()} WILL YOU BUY?</div>
           <div>YOU CAN AFFORD({maxBuy})</div>
