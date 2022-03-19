@@ -1,12 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import {
-  FleaMarketFunction,
-  getDay,
-  getLocation,
-  getTrenchCoat,
-} from "../../../gameFunctions/gameFunctions";
+import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
 import {
   selectDay,
   selectLocation,
@@ -35,6 +30,24 @@ const getPrices = async () => {
 const getStash = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.GET_STASH,
+  });
+};
+
+const getTrenchCoat = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.GET_TRENCH_COAT,
+  });
+};
+
+const getLocation = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.GET_LOCATION,
+  });
+};
+
+const getDay = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.GET_DAY,
   });
 };
 

@@ -1,5 +1,3 @@
-import { sendFunctionRequest } from "../components/service/functionRequest";
-
 export enum FleaMarketFunction {
   RETRIEVE_GAME_STATE = "RETRIEVE_GAME_STATE",
   CHECK_MAXIMUM_BUY = "CHECK_MAXIMUM_BUY",
@@ -19,54 +17,3 @@ export enum FleaMarketFunction {
   GET_DAY = "GET_DAY",
   BUY_ITEM = "BUY_ITEM",
 }
-
-export const getTrenchCoat = async () => {
-  const serverResponse = await sendFunctionRequest({
-    function: FleaMarketFunction.GET_TRENCH_COAT,
-  });
-  const {
-    cell_phones: cellPhones,
-    dvds,
-    massage_chairs: massageChairs,
-    hot_sauce: hotSauce,
-    fake_shoes: fakeShoes,
-    switchblades,
-    corn_dogs: cornDogs,
-    cash,
-    max_hold: maxHold,
-  } = serverResponse;
-  const formattedResponse = Object.assign(
-    {},
-    {
-      cellPhones,
-      dvds,
-      massageChairs,
-      hotSauce,
-      fakeShoes,
-      switchblades,
-      cornDogs,
-      cash,
-      maxHold,
-    }
-  );
-  return formattedResponse;
-};
-
-export const getLocation = async () => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.GET_LOCATION,
-  });
-};
-
-export const getDay = async () => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.GET_DAY,
-  });
-};
-
-export const checkMaximumBuy = async (value: string) => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.CHECK_MAXIMUM_BUY,
-    params: { value: value },
-  });
-};

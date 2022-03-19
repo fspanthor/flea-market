@@ -1,3 +1,6 @@
+from ...utilities.utils import dict_keys_to_camel_case
+
+
 class TrenchCoat():
     def __init__(self):
         self.fake_shoes = 0
@@ -37,4 +40,4 @@ class TrenchCoat():
         self.cash -= amount_change
 
     def get_trench_coat(self):
-        return self.__dict__
+        return dict_keys_to_camel_case(self.__dict__)

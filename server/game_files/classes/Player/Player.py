@@ -2,7 +2,7 @@ import math
 
 from ...constants import Game_Mode, Items, allowable_items
 
-from ...utilities.utils import dict_keys_to_camel_case, to_camel_case, to_snake_case
+from ...utilities.utils import to_camel_case, to_snake_case
 from ..Stash.Stash import Stash
 from ..TrenchCoat.TrenchCoat import TrenchCoat
 
@@ -67,7 +67,7 @@ class Player():
                 self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
 
                 payload = {
-                    'trenchCoat': dict_keys_to_camel_case(self.trench_coat.get_trench_coat()),
+                    'trenchCoat': self.trench_coat.get_trench_coat(),
                     'maximumBuy': None,
                     'currentItem': '',
                     'gameState': to_camel_case(self.game.game_manager.game_mode.value)
@@ -78,7 +78,7 @@ class Player():
                 self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
                 print('not enough money')
                 payload = {
-                    'trenchCoat': dict_keys_to_camel_case(self.trench_coat.get_trench_coat()),
+                    'trenchCoat': self.trench_coat.get_trench_coat(),
                     'maximumBuy': None,
                     'currentItem': '',
                     'gameState': to_camel_case(self.game.game_manager.game_mode.value)
@@ -86,7 +86,7 @@ class Player():
                 return payload
         else:
             payload = {
-                'trenchCoat': dict_keys_to_camel_case(self.trench_coat.get_trench_coat()),
+                'trenchCoat': self.trench_coat.get_trench_coat(),
                 'maximumBuy': None,
                 'currentItem': '',
                 'gameState': to_camel_case(self.game.game_manager.game_mode.value)

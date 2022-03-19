@@ -1,9 +1,6 @@
 import { memo, useCallback } from "react";
 import { useAppSelector } from "../../../app/hooks";
-import {
-  checkMaximumBuy,
-  FleaMarketFunction,
-} from "../../../gameFunctions/gameFunctions";
+import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
 import {
   selectCurrentItem,
   selectMaximumBuy,
@@ -13,6 +10,13 @@ import {
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";
 import InputString from "../Common/InputString";
+
+const checkMaximumBuy = async (value: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.CHECK_MAXIMUM_BUY,
+    params: { value: value },
+  });
+};
 
 const Buy = () => {
   const buyItem = useCallback(async (item: string, amount: number) => {
