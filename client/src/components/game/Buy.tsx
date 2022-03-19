@@ -22,12 +22,18 @@ const Buy = () => {
     });
   }, []);
 
+  const buyAllowableKeys = ["d", "h", "s", "f", "c", "m"];
+
   const maxBuy = useAppSelector(selectMaximumBuy);
   const currentItem = useAppSelector(selectCurrentItem);
   return (
     <div>
       WHAT WILL YOU BUY?
-      <Input gameFunction={checkMaximumBuy} reduxAction={setMaximumBuy} />
+      <Input
+        gameFunction={checkMaximumBuy}
+        reduxAction={setMaximumBuy}
+        allowableKeys={buyAllowableKeys}
+      />
       {maxBuy !== undefined && currentItem.length > 0 && (
         <div>
           <div>HOW MANY {currentItem.toUpperCase()} WILL YOU BUY?</div>

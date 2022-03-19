@@ -57,7 +57,7 @@ const InputString = ({
           setInput((prevState) => prevState + e.key);
           return;
         }
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && input.length > 0) {
           document.body.removeEventListener("keydown", handleKeyDown);
           const gameFunctionReturn = await gameFunction(
             currentItem,

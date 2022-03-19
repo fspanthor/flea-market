@@ -34,3 +34,7 @@ class Items(Enum):
     FAKE_SHOES = 'fake_shoes'
     CELL_PHONES = 'cell_phones'
     MASSAGE_CHAIRS = 'massage_chairs'
+
+
+allowable_items = ([Items.DVDS.value, Items.HOT_SAUCE.value, Items.SWITCHBLADES.value,
+                    Items.FAKE_SHOES.value, Items.CELL_PHONES.value, Items.MASSAGE_CHAIRS.value])
