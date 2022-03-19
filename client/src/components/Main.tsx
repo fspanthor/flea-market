@@ -1,7 +1,4 @@
-import {
-  checkMaximumBuy,
-  FleaMarketFunction,
-} from "../gameFunctions/gameFunctions";
+import { FleaMarketFunction } from "../gameFunctions/gameFunctions";
 import Interactive from "./game/Interactive";
 import HUD from "./game/View/HUD";
 import { useAppSelector } from "../app/hooks";
@@ -36,7 +33,6 @@ const Main = () => {
         <Interactive />
       </div>
       {/* {gameState !== GameStateEnum.INIT && <AudioPlayer />} */}
-      <button onClick={() => checkMaximumBuy("dvds")}>check max buy</button>
     </div>
   );
 };

@@ -51,6 +51,20 @@ class GameManager():
         if key == '6':
             self.game.location.set_location(Locations.HAUNTED_MALL)
 
+    def requested_location(self, key):
+        if key == '1':
+            return Locations.FLORIDA.value
+        if key == '2':
+            return Locations.ASHBY_BART.value
+        if key == '3':
+            return Locations.SAN_JOSE_SUPER_MALL.value
+        if key == '4':
+            return Locations.SOLANO_SWAP_MEET.value
+        if key == '5':
+            return Locations.COMMUNITY_COLLEGE_FLEA_MARKET.value
+        if key == '6':
+            return Locations.HAUNTED_MALL.value
+
     def get_game_mode(self):
         return getattr(self, 'game_mode')
 

@@ -10,10 +10,16 @@ export const jetPrompt = async (key: string) => {
   });
 };
 
+const jetAllowableKeys = ["1", "2", "3", "4", "5", "6"];
+
 const Jet = () => {
   return (
     <div>
-      <Input gameFunction={jetPrompt} reduxAction={setLocationResponse} />
+      <Input
+        gameFunction={jetPrompt}
+        reduxAction={setLocationResponse}
+        allowableKeys={jetAllowableKeys}
+      />
       <span>WHERE TO DUDE:</span>
       <ul>
         <li>(1) FLORIDA</li>
