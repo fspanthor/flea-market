@@ -44,7 +44,6 @@ class Player():
 
         # convert item to snake_case
         item_to_buy = to_snake_case(item)
-        print(item)
         # check requested item exists
         if item_to_buy in allowable_items:
 
@@ -76,7 +75,6 @@ class Player():
             # not enough money or not enough space in hold
             else:
                 self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
-                print('not enough money')
                 payload = {
                     'trenchCoat': self.trench_coat.get_trench_coat(),
                     'maximumBuy': None,
