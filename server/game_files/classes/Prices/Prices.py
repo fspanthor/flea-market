@@ -1,6 +1,8 @@
 from enum import IntEnum
 import random
 
+from ...utilities.utils import dict_keys_to_camel_case
+
 
 class Price_Limit(IntEnum):
     DVDS_LOW = 10
@@ -57,7 +59,7 @@ class Prices():
             return getattr(self, item)
 
     def get_prices(self):
-        return self.__dict__
+        return dict_keys_to_camel_case(self.__dict__)
 
     def randomize(self, lower_bound, upper_bound):
         return round(random.randint(lower_bound, upper_bound)/10)*10
