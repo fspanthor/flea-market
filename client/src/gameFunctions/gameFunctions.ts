@@ -20,36 +20,6 @@ export enum FleaMarketFunction {
   BUY_ITEM = "BUY_ITEM",
 }
 
-export const getStash = async () => {
-  const serverResponse = await sendFunctionRequest({
-    function: FleaMarketFunction.GET_STASH,
-  });
-  const {
-    cell_phones: cellPhones,
-    dvds,
-    massage_chairs: massageChairs,
-    hot_sauce: hotSauce,
-    fake_shoes: fakeShoes,
-    switchblades,
-    bank,
-    debt,
-  } = serverResponse;
-  const formattedResponse = Object.assign(
-    {},
-    {
-      cellPhones,
-      dvds,
-      massageChairs,
-      hotSauce,
-      fakeShoes,
-      switchblades,
-      bank,
-      debt,
-    }
-  );
-  return formattedResponse;
-};
-
 export const getTrenchCoat = async () => {
   const serverResponse = await sendFunctionRequest({
     function: FleaMarketFunction.GET_TRENCH_COAT,

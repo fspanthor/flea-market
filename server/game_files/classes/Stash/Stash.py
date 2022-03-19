@@ -1,3 +1,6 @@
+from ...utilities.utils import dict_keys_to_camel_case
+
+
 class Stash():
     def __init__(self):
         self.fake_shoes = 0
@@ -33,4 +36,4 @@ class Stash():
         return getattr(self, 'bank')
 
     def get_stash(self):
-        return self.__dict__
+        return dict_keys_to_camel_case(self.__dict__)

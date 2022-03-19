@@ -5,7 +5,6 @@ import {
   FleaMarketFunction,
   getDay,
   getLocation,
-  getStash,
   getTrenchCoat,
 } from "../../../gameFunctions/gameFunctions";
 import {
@@ -30,6 +29,12 @@ import { sendFunctionRequest } from "../../service/functionRequest";
 const getPrices = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.GET_PRICES,
+  });
+};
+
+const getStash = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.GET_STASH,
   });
 };
 
