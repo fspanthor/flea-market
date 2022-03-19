@@ -1,6 +1,6 @@
-import { GameStateEnum } from "../../app/constants";
-import { useAppSelector } from "../../app/hooks";
-import { selectGameState } from "../../redux/slices/fleaMarketSlice";
+import { GameStateEnum } from "../../../app/constants";
+import { useAppSelector } from "../../../app/hooks";
+import { selectGameState } from "../../../redux/slices/fleaMarketSlice";
 import Buy from "./Buy";
 import BuySellJet from "./BuySellJet";
 import Instructions from "./Instructions";

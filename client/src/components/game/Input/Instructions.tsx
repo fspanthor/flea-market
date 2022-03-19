@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { FleaMarketFunction } from "../../gameFunctions/gameFunctions";
-import { setGameState } from "../../redux/slices/fleaMarketSlice";
-import { sendFunctionRequest } from "../service/functionRequest";
-import Input from "./Input";
+import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
+import { setGameState } from "../../../redux/slices/fleaMarketSlice";
+import { sendFunctionRequest } from "../../service/functionRequest";
+import Input from "../Common/Input";
 
 const instructionsContinue = async (key: string) => {
   return await sendFunctionRequest({

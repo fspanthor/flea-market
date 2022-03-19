@@ -19,11 +19,6 @@ export enum FleaMarketFunction {
   GET_DAY = "GET_DAY",
   BUY_ITEM = "BUY_ITEM",
 }
-// export const setPrices = async () => {
-//   return await sendFunctionRequest({
-//     function: FleaMarketFunction.SET_PRICES,
-//   });
-// };
 
 export const getPrices = async () => {
   const serverResponse = await sendFunctionRequest({

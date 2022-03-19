@@ -1,7 +1,7 @@
-import { FleaMarketFunction } from "../../gameFunctions/gameFunctions";
-import { setLocationResponse } from "../../redux/slices/fleaMarketSlice";
-import { sendFunctionRequest } from "../service/functionRequest";
-import Input from "./Input";
+import { FleaMarketFunction } from "../../../gameFunctions/gameFunctions";
+import { setLocationResponse } from "../../../redux/slices/fleaMarketSlice";
+import { sendFunctionRequest } from "../../service/functionRequest";
+import Input from "../Common/Input";
 
 export const jetPrompt = async (key: string) => {
   return await sendFunctionRequest({

@@ -1,7 +1,7 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useCallback, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectCurrentItem } from "../../redux/slices/fleaMarketSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { selectCurrentItem } from "../../../redux/slices/fleaMarketSlice";
 
 interface InputStringPropsType {
   gameFunction: (item: string, amount: number) => Promise<any>;

@@ -1,18 +1,18 @@
 import { memo, useCallback } from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../../app/hooks";
 import {
   checkMaximumBuy,
   FleaMarketFunction,
-} from "../../gameFunctions/gameFunctions";
+} from "../../../gameFunctions/gameFunctions";
 import {
   selectCurrentItem,
   selectMaximumBuy,
   setMaximumBuy,
   setPostBuy,
-} from "../../redux/slices/fleaMarketSlice";
-import { sendFunctionRequest } from "../service/functionRequest";
-import Input from "./Input";
-import InputString from "./InputString";
+} from "../../../redux/slices/fleaMarketSlice";
+import { sendFunctionRequest } from "../../service/functionRequest";
+import Input from "../Common/Input";
+import InputString from "../Common/InputString";
 
 const Buy = () => {
   const buyItem = useCallback(async (item: string, amount: number) => {

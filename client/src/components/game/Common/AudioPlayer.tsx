@@ -1,13 +1,13 @@
 import { memo, useEffect, useRef } from "react";
 import { useState } from "react";
-import { GameStateEnum } from "../../app/constants";
-import { useAppSelector } from "../../app/hooks";
-import { selectGameState } from "../../redux/slices/fleaMarketSlice";
-import fleaMarketTheme from "../../assets/audio/flea-market-theme.mp3";
-import fleaMarketMain from "../../assets/audio/flea-market-main.mp3";
+import { GameStateEnum } from "../../../app/constants";
+import { useAppSelector } from "../../../app/hooks";
+import { selectGameState } from "../../../redux/slices/fleaMarketSlice";
+import fleaMarketTheme from "../../../assets/audio/flea-market-theme.mp3";
+import fleaMarketMain from "../../../assets/audio/flea-market-main.mp3";
 
 const AudioPlayer = () => {
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   const gameState = useAppSelector(selectGameState);
   const [audioTrack, setAudioTrack] = useState();

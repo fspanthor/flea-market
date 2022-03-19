@@ -16,7 +16,6 @@ class Player():
     def check_maximum_buy(self, key):
         # this is a safety measure in case a bad character makes it to this function
         if key != 'd' or 'h' or 's' or 'f' or 'c' or 'm':
-            print('setting dvd')
             item = Items.DVDS.value
 
         if key == 'd':
