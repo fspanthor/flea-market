@@ -25,8 +25,7 @@ class Location():
         updated_location = to_camel_case(self.location.value)
         # update prices
         self.game.prices.set_prices()
-        updated_prices = self.game.prices.get_prices()
-        dict_keys_to_camel_case(updated_prices)
+        updated_prices = dict_keys_to_camel_case(self.game.prices.get_prices())
         # increment day
         self.game.game_manager.increment_day()
         updated_day = self.game.game_manager.day

@@ -25,3 +25,12 @@ class Locations(Enum):
     SOLANO_SWAP_MEET = 'solano_swap_meet'
     COMMUNITY_COLLEGE_FLEA_MARKET = 'community_college_flea_market'
     HAUNTED_MALL = 'haunted_mall'
+
+
+class Items(Enum):
+    DVDS = 'dvds'
+    HOT_SAUCE = 'hot_sauce'
+    SWITCHBLADES = 'switchblades'
+    FAKE_SHOES = 'fake_shoes'
+    CELL_PHONES = 'cell_phones'
+    MASSAGE_CHAIRS = 'massage_chairs'

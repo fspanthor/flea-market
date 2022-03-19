@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 def to_camel_case(str):
     temp = str.split('_')
     res = temp[0] + ''.join(ele.title() for ele in temp[1:])
@@ -5,8 +8,15 @@ def to_camel_case(str):
 
 
 def dict_keys_to_camel_case(dict):
-    for key in dict.copy():
-        dict[to_camel_case(key)] = dict.pop(key)
+    dict_copy = dict.copy()
+    for key in dict:
+        dict_copy[to_camel_case(key)] = dict_copy.pop(key)
+    return dict_copy
+
+
+def to_snake_case(str):
+    temp = str
+    return reduce(lambda x, y: x + ('_' if y.isupper() else '') + y, temp).lower()
 
 
 def get_params_if_params_exist(request):

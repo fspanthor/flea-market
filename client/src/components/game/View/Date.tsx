@@ -3,6 +3,13 @@ interface DateDataType {
 }
 
 const Date = ({ dayData }: DateDataType) => {
-  return <div>{`Date: 10/${dayData}/04`}</div>;
+  console.log(dayData);
+  return (
+    <div>
+      {dayData !== 14
+        ? `Date: April ${dayData} 2001`
+        : `Date: Avril ${dayData} 2001`}
+    </div>
+  );
 };
 export default Date;

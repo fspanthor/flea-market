@@ -43,6 +43,13 @@ export interface TrenchCoatStateType {
 interface GameManagerStateType {
   gameState?: string;
   day: number;
+  maximumBuy: number | undefined;
+  currentItem: string;
+}
+
+interface MaximumBuyStateType {
+  maximumBuy: number;
+  currentItem: string;
 }
 
 interface FleaMarketStateType {
@@ -52,6 +59,12 @@ interface FleaMarketStateType {
   stash: StashStateType;
   trenchCoat: TrenchCoatStateType;
   location: string;
+}
+interface PostBuyStateType {
+  trenchCoat: TrenchCoatStateType;
+  maximumBuy: number | undefined;
+  currentItem: string;
+  gameState: string;
 }
 
 const initialState: FleaMarketStateType = {
@@ -88,6 +101,8 @@ const initialState: FleaMarketStateType = {
   gameManager: {
     gameState: "init",
     day: 0,
+    maximumBuy: undefined,
+    currentItem: "",
   },
   location: "",
 };
@@ -115,6 +130,16 @@ export const fleaMarketSlice = createSlice({
     setDay: (state, action: PayloadAction<number>) => {
       state.gameManager.day = action.payload;
     },
+    setMaximumBuy: (state, action: PayloadAction<MaximumBuyStateType>) => {
+      state.gameManager.maximumBuy = action.payload.maximumBuy;
+      state.gameManager.currentItem = action.payload.currentItem;
+    },
+    setPostBuy: (state, action: PayloadAction<PostBuyStateType>) => {
+      state.trenchCoat = action.payload.trenchCoat;
+      state.gameManager.maximumBuy = action.payload.maximumBuy;
+      state.gameManager.currentItem = action.payload.currentItem;
+      state.gameManager.gameState = action.payload.gameState;
+    },
     setLocationResponse: (
       state,
       action: PayloadAction<SetLocationResponseType>
@@ -136,6 +161,8 @@ export const {
   setLocation,
   setLocationResponse,
   setDay,
+  setMaximumBuy,
+  setPostBuy,
 } = fleaMarketSlice.actions;
 
 //selectors
@@ -147,5 +174,9 @@ export const selectTrenchCoat = (state: RootState) =>
 export const selectGameState = (state: RootState) =>
   state.fleaMarket.gameManager.gameState;
 export const selectDay = (state: RootState) => state.fleaMarket.gameManager.day;
+export const selectMaximumBuy = (state: RootState) =>
+  state.fleaMarket.gameManager.maximumBuy;
+export const selectCurrentItem = (state: RootState) =>
+  state.fleaMarket.gameManager.currentItem;
 
 export default fleaMarketSlice.reducer;

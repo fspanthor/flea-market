@@ -1,6 +1,8 @@
 interface FuncType {
   function: string;
   params?: {
+    item?: string;
+    amount?: number;
     value?: string;
     money?: number;
     amountChange?: number;

@@ -1,13 +1,12 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { SetLocationResponseType } from "../../redux/slices/fleaMarketSlice";
 
+//redux action uses ActionCreatorWithPayload<any, string> because I cant figure out how
+//to union ActionCreatorWithPayload<number, string> and ActionCreatorWithPayload<string, string>
 interface InputPropsType {
   gameFunction: (key: string) => Promise<any>;
-  reduxAction:
-    | ActionCreatorWithPayload<string>
-    | ActionCreatorWithPayload<SetLocationResponseType>;
+  reduxAction: ActionCreatorWithPayload<any, string>;
   allowableKeys?: string[];
 }
 

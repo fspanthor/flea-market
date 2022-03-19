@@ -3,4 +3,5 @@ export enum GameStateEnum {
   BUY_SELL_JET = "buySellJet",
   INSTRUCTIONS = "instructions",
   JET = "jet",
+  BUY = "buy",
 }
