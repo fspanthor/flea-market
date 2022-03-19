@@ -64,6 +64,7 @@ class Prices():
     def randomize(self, lower_bound, upper_bound):
         return round(random.randint(lower_bound, upper_bound)/10)*10
 
+# not in use yet
     def determine_sale(self):
         sale_decider = random.randint(1, 5)
         # 1/5 chance that something will go on sale

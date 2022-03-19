@@ -6,7 +6,6 @@ def get_location(game_instance):
 
 
 def change_location(game_instance, params):
-    print('running')
     return jsonify(game_instance.location.change_location(params['key']))
 
 
