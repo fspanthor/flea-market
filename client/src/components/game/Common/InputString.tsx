@@ -52,7 +52,7 @@ const InputString = ({
           }
           return;
         }
-        if (allowableKey(e.key, numberKeys)) {
+        if (allowableKey(e.key, numberKeys) && input.length < 100) {
           document.body.removeEventListener("keydown", handleKeyDown);
           setInput((prevState) => prevState + e.key);
           return;
