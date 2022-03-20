@@ -6,6 +6,7 @@ import Buy from "./Buy";
 import BuySellJet from "./BuySellJet";
 import Instructions from "./Instructions";
 import Jet from "./Jet";
+import Sell from "./Sell";
 import Title from "./Title";
 
 const Interactive = () => {
@@ -18,6 +19,7 @@ const Interactive = () => {
       {gameState === GameStateEnum.BUY_SELL_JET && <BuySellJet />}
       {gameState === GameStateEnum.JET && <Jet />}
       {gameState === GameStateEnum.BUY && <Buy />}
+      {gameState === GameStateEnum.SELL && <Sell />}
     </div>
   );
 };

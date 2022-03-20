@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import { FleaMarketFunction } from "../../../app/constants";
+import { FleaMarketFunction, itemAllowableKeys } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 
 import {
@@ -27,8 +27,6 @@ const Buy = () => {
     });
   }, []);
 
-  const buyAllowableKeys = ["d", "h", "s", "f", "c", "m"];
-
   const maxBuy = useAppSelector(selectMaximumBuy);
   const currentItem = useAppSelector(selectCurrentItem);
   return (
@@ -38,7 +36,7 @@ const Buy = () => {
         <Input
           gameFunction={checkMaximumBuy}
           reduxAction={setMaximumBuy}
-          allowableKeys={buyAllowableKeys}
+          allowableKeys={itemAllowableKeys}
         />
       )}
       {maxBuy !== null && currentItem.length > 0 && (

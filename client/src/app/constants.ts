@@ -2,8 +2,9 @@ export enum GameStateEnum {
   INIT = "init",
   BUY_SELL_JET = "buySellJet",
   INSTRUCTIONS = "instructions",
-  JET = "jet",
   BUY = "buy",
+  SELL = "sell",
+  JET = "jet",
 }
 
 export enum FleaMarketFunction {
@@ -20,4 +21,7 @@ export enum FleaMarketFunction {
   NEW_GAME = "NEW_GAME",
   GET_DAY = "GET_DAY",
   BUY_ITEM = "BUY_ITEM",
+  STAGE_CURRENT_ITEM = "STAGE_CURRENT_ITEM",
 }
+
+export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];

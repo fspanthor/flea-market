@@ -4,6 +4,10 @@ interface LocationDataType {
   locationData: string;
 }
 
+/**
+ * @param location location in snake case
+ * @returns location with first letter capitalied and spaces
+ */
 const formattedLocation = (location: string) => {
   return (
     location

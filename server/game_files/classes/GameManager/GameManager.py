@@ -1,3 +1,4 @@
+from ...utilities.utils import get_item_for_key, to_camel_case
 from ...constants import Game_Mode, Locations
 
 
@@ -6,15 +7,35 @@ class GameManager():
         self.day = 1
         self.game_mode = Game_Mode.INIT
         self.game = game
+        self.current_item = ''
 
     def new_game(self):
         self.day = 1
         self.game_mode = Game_Mode.INIT.value
+        self.current_item = ''
         self.game.location.set_location(Locations.FLORIDA)
         self.game.prices.set_prices()
         self.game.player.stash.reset_stash()
         self.game.player.trench_coat.reset_trench_coat()
         return self.game_mode
+
+    def set_current_item(self, current_item):
+        setattr(self, 'current_item', current_item)
+        return getattr(self, 'current_item')
+
+# when current item resets its needs to be empty string
+# there are times when an empty current_item can be submitted via request.. cant be None
+    def reset_current_item(self):
+        setattr(self, 'current_item', '')
+
+    def get_current_item(self):
+        return getattr(self, 'current_item')
+
+# set current item and return in camel case
+    def stage_current_item(self, key):
+        item = get_item_for_key(key)
+        current_item = self.set_current_item(item)
+        return to_camel_case(current_item)
 
     def get_day(self):
         return getattr(self, 'day')

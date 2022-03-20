@@ -1,8 +1,8 @@
 import math
 
-from ...constants import Game_Mode, Items, allowable_items
+from ...constants import Game_Mode, allowable_items
 
-from ...utilities.utils import to_camel_case, to_snake_case
+from ...utilities.utils import get_item_for_key, to_camel_case, to_snake_case
 from ..Stash.Stash import Stash
 from ..TrenchCoat.TrenchCoat import TrenchCoat
 
@@ -14,28 +14,18 @@ class Player():
         self.stash = Stash()
 
     def check_maximum_buy(self, key):
-        # this is a safety measure in case a bad character makes it to this function
-        if key != 'd' or 'h' or 's' or 'f' or 'c' or 'm':
-            item = Items.DVDS.value
-
-        if key == 'd':
-            item = Items.DVDS.value
-        if key == 'h':
-            item = Items.HOT_SAUCE.value
-        if key == 's':
-            item = Items.SWITCHBLADES.value
-        if key == 'f':
-            item = Items.FAKE_SHOES.value
-        if key == 'c':
-            item = Items.CELL_PHONES.value
-        if key == 'm':
-            item = Items.MASSAGE_CHAIRS.value
+        item = get_item_for_key(key)
 
         current_money = self.trench_coat.get_amount('cash')
         current_item_price = self.game.prices.get_item_price(item)
+
+        # maximum buy is not stored on server because it can be derived during buy
         maximum_buy = math.floor(
             current_money/current_item_price) if current_item_price else 0
-        current_item = to_camel_case(item)
+
+        current_item = to_camel_case(
+            self.game.game_manager.set_current_item(item))
+
         return {'maximumBuy': maximum_buy,
                 'currentItem': current_item
                 }
@@ -65,28 +55,34 @@ class Player():
                 # set to buy sell jet
                 self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
 
+                # reset current item
+                self.game.game_manager.reset_current_item()
+
                 payload = {
                     'trenchCoat': self.trench_coat.get_trench_coat(),
                     'maximumBuy': None,
-                    'currentItem': '',
+                    'currentItem': self.game.game_manager.get_current_item(),
                     'gameState': to_camel_case(self.game.game_manager.game_mode.value)
                 }
                 return payload
             # not enough money or not enough space in hold
             else:
+                self.game.game_manager.reset_current_item()
                 self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
                 payload = {
                     'trenchCoat': self.trench_coat.get_trench_coat(),
                     'maximumBuy': None,
-                    'currentItem': '',
+                    'currentItem': self.game.game_manager.get_current_item(),
                     'gameState': to_camel_case(self.game.game_manager.game_mode.value)
                 }
                 return payload
         else:
+            self.game.game_manager.reset_current_item()
+            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
             payload = {
                 'trenchCoat': self.trench_coat.get_trench_coat(),
                 'maximumBuy': None,
-                'currentItem': '',
+                'currentItem': self.game.game_manager.get_current_item(),
                 'gameState': to_camel_case(self.game.game_manager.game_mode.value)
             }
             return payload

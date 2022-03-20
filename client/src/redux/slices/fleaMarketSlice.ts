@@ -130,12 +130,14 @@ export const fleaMarketSlice = createSlice({
     setDay: (state, action: PayloadAction<number>) => {
       state.gameManager.day = action.payload;
     },
+    setCurrentItem: (state, action: PayloadAction<string>) => {
+      state.gameManager.currentItem = action.payload;
+    },
     setMaximumBuy: (state, action: PayloadAction<MaximumBuyStateType>) => {
       state.gameManager.maximumBuy = action.payload.maximumBuy;
       state.gameManager.currentItem = action.payload.currentItem;
     },
     setBuyResponse: (state, action: PayloadAction<BuyResponseStateType>) => {
-      console.log(action.payload);
       state.trenchCoat = action.payload.trenchCoat;
       state.gameManager.maximumBuy = action.payload.maximumBuy;
       state.gameManager.currentItem = action.payload.currentItem;
@@ -164,6 +166,7 @@ export const {
   setDay,
   setMaximumBuy,
   setBuyResponse,
+  setCurrentItem,
 } = fleaMarketSlice.actions;
 
 //selectors
