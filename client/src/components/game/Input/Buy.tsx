@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../app/hooks";
 import {
   selectCurrentItem,
   selectMaximumBuy,
-  setBuyResponse,
+  setBuySellResponse,
   setMaximumBuy,
 } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
@@ -43,7 +43,10 @@ const Buy = () => {
         <div>
           <div>HOW MANY {currentItem.toUpperCase()} WILL YOU BUY?</div>
           <div>YOU CAN AFFORD({maxBuy})</div>
-          <InputString gameFunction={buyItem} reduxAction={setBuyResponse} />
+          <InputString
+            gameFunction={buyItem}
+            reduxAction={setBuySellResponse}
+          />
         </div>
       )}
     </div>

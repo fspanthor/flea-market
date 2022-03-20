@@ -21,6 +21,7 @@ export enum FleaMarketFunction {
   NEW_GAME = "NEW_GAME",
   GET_DAY = "GET_DAY",
   BUY_ITEM = "BUY_ITEM",
+  SELL_ITEM = "SELL_ITEM",
   STAGE_CURRENT_ITEM = "STAGE_CURRENT_ITEM",
 }
 

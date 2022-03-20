@@ -86,3 +86,32 @@ class Player():
                 'gameState': to_camel_case(self.game.game_manager.game_mode.value)
             }
             return payload
+
+    def sell_item(self, item, amount):
+        # convert item to snake_case
+        item_to_sell = to_snake_case(item)
+
+        # subtract inventory
+        self.trench_coat.subtract_inventory(item_to_sell, amount)
+
+        # add to hold
+        self.trench_coat.max_hold += amount
+
+        # add profit
+        total_profit = self.game.prices.get_item_price(
+            item_to_sell) * amount
+        self.trench_coat.add_cash(total_profit)
+
+        # set to buy sell jet
+        self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+
+        # reset current item
+        self.game.game_manager.reset_current_item()
+
+        payload = {
+            'trenchCoat': self.trench_coat.get_trench_coat(),
+            'maximumBuy': None,
+            'currentItem': self.game.game_manager.get_current_item(),
+            'gameState': to_camel_case(self.game.game_manager.game_mode.value)
+        }
+        return payload

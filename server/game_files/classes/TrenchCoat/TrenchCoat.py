@@ -33,6 +33,11 @@ class TrenchCoat():
             new_amount = getattr(self, item) + amount
             setattr(self, item, new_amount)
 
+    def subtract_inventory(self, item, amount):
+        if hasattr(self, item):
+            new_amount = getattr(self, item) - amount
+            setattr(self, item, new_amount)
+
     def add_cash(self, amount_change):
         self.cash += amount_change
 

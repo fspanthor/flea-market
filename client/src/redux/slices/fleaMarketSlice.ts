@@ -60,7 +60,7 @@ interface FleaMarketStateType {
   trenchCoat: TrenchCoatStateType;
   location: string;
 }
-interface BuyResponseStateType {
+interface BuySellResponseStateType {
   trenchCoat: TrenchCoatStateType;
   maximumBuy: number | null;
   currentItem: string;
@@ -137,7 +137,10 @@ export const fleaMarketSlice = createSlice({
       state.gameManager.maximumBuy = action.payload.maximumBuy;
       state.gameManager.currentItem = action.payload.currentItem;
     },
-    setBuyResponse: (state, action: PayloadAction<BuyResponseStateType>) => {
+    setBuySellResponse: (
+      state,
+      action: PayloadAction<BuySellResponseStateType>
+    ) => {
       state.trenchCoat = action.payload.trenchCoat;
       state.gameManager.maximumBuy = action.payload.maximumBuy;
       state.gameManager.currentItem = action.payload.currentItem;
@@ -165,7 +168,7 @@ export const {
   setLocationResponse,
   setDay,
   setMaximumBuy,
-  setBuyResponse,
+  setBuySellResponse,
   setCurrentItem,
 } = fleaMarketSlice.actions;
 

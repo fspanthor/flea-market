@@ -9,7 +9,12 @@ def buy_item(game_instance, params):
     return jsonify(game_instance.player.buy_item(params['item'], params['amount']))
 
 
+def sell_item(game_instance, params):
+    return jsonify(game_instance.player.sell_item(params['item'], params['amount']))
+
+
 player_interface = {
     'CHECK_MAXIMUM_BUY': check_maximum_buy,
-    'BUY_ITEM': buy_item
+    'BUY_ITEM': buy_item,
+    'SELL_ITEM': sell_item
 }
