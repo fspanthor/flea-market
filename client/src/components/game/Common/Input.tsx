@@ -24,7 +24,6 @@ const Input = ({
   allowableKeys,
 }: InputPropsType) => {
   const dispatch = useAppDispatch();
-
   const handleKeyDown = useCallback(
     async (e: KeyboardEvent) => {
       if (

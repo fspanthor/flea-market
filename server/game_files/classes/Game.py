@@ -14,4 +14,4 @@ class Game():
         self.prices = Prices()
         self.game_manager = GameManager(self)
         self.instructions = Instructions(self)
-        self.shark = Shark()
+        self.shark = Shark(self)

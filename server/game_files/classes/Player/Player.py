@@ -1,6 +1,6 @@
 import math
 
-from ...constants import Game_Mode, allowable_items
+from ...constants import Game_Mode, Game_Sub_Menu, allowable_items
 
 from ...utilities.utils import get_item_for_key, to_camel_case, to_snake_case
 from ..Stash.Stash import Stash
@@ -11,7 +11,7 @@ class Player():
     def __init__(self, game):
         self.game = game
         self.trench_coat = TrenchCoat()
-        self.stash = Stash()
+        self.stash = Stash(game)
 
     def check_maximum_buy(self, key):
         item = get_item_for_key(key)

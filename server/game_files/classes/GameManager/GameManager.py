@@ -1,11 +1,12 @@
 from ...utilities.utils import get_item_for_key, to_camel_case
-from ...constants import Game_Mode, Locations
+from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
 
 class GameManager():
     def __init__(self, game):
         self.day = 1
         self.game_mode = Game_Mode.INIT
+        self.game_sub_menu = ''
         self.game = game
         self.current_item = ''
 
@@ -17,6 +18,7 @@ class GameManager():
         self.game.prices.set_prices()
         self.game.player.stash.reset_stash()
         self.game.player.trench_coat.reset_trench_coat()
+        self.game.shark.reset_shark()
         return self.game_mode
 
     def set_current_item(self, current_item):
@@ -91,6 +93,12 @@ class GameManager():
 
     def set_game_mode(self, new_mode):
         setattr(self, 'game_mode', new_mode)
+
+    def set_game_sub_menu(self, new_sub_menu):
+        setattr(self, 'game_sub_menu', new_sub_menu)
+
+    def get_game_sub_menu(self):
+        return getattr(self, 'game_sub_menu')
 
     def get_game_state(self):
         if self.day == 30:

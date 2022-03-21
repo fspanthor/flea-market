@@ -4,8 +4,10 @@ import type { RootState } from "../../app/store";
 export interface SetLocationResponseType {
   day: number;
   gameState: string;
+  gameSubMenu?: string;
   location: string;
   prices: PricesStateType;
+  debt: number;
 }
 
 export interface PricesStateType {
@@ -42,9 +44,15 @@ export interface TrenchCoatStateType {
 
 interface GameManagerStateType {
   gameState?: string;
+  gameSubMenu?: string;
   day: number;
   maximumBuy: number | null;
   currentItem: string;
+}
+
+interface GameStateAndSubMenuType {
+  gameState?: string;
+  gameSubMenu?: string;
 }
 
 interface MaximumBuyStateType {
@@ -100,6 +108,7 @@ const initialState: FleaMarketStateType = {
   },
   gameManager: {
     gameState: "init",
+    gameSubMenu: "",
     day: 0,
     maximumBuy: null,
     currentItem: "",
@@ -117,6 +126,16 @@ export const fleaMarketSlice = createSlice({
     },
     setGameState: (state, action: PayloadAction<string>) => {
       state.gameManager.gameState = action.payload;
+    },
+    setGameSubMenu: (state, action: PayloadAction<string>) => {
+      state.gameManager.gameSubMenu = action.payload;
+    },
+    setGameStateAndSubMenu: (
+      state,
+      action: PayloadAction<GameStateAndSubMenuType>
+    ) => {
+      state.gameManager.gameState = action.payload.gameState;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
     },
     setStash: (state, action: PayloadAction<StashStateType>) => {
       state.stash = action.payload;
@@ -153,7 +172,9 @@ export const fleaMarketSlice = createSlice({
       state.location = action.payload.location;
       state.gameManager.day = action.payload.day;
       state.gameManager.gameState = action.payload.gameState;
+      state.gameManager.gameSubMenu = action.payload?.gameSubMenu;
       state.prices = action.payload.prices;
+      state.stash.debt = action.payload.debt;
     },
   },
 });
@@ -170,6 +191,8 @@ export const {
   setMaximumBuy,
   setBuySellResponse,
   setCurrentItem,
+  setGameSubMenu,
+  setGameStateAndSubMenu,
 } = fleaMarketSlice.actions;
 
 //selectors
@@ -180,6 +203,8 @@ export const selectTrenchCoat = (state: RootState) =>
   state.fleaMarket.trenchCoat;
 export const selectGameState = (state: RootState) =>
   state.fleaMarket.gameManager.gameState;
+export const selectGameSubMenu = (state: RootState) =>
+  state.fleaMarket.gameManager.gameSubMenu;
 export const selectDay = (state: RootState) => state.fleaMarket.gameManager.day;
 export const selectMaximumBuy = (state: RootState) =>
   state.fleaMarket.gameManager.maximumBuy;

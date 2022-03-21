@@ -12,6 +12,16 @@ class Game_Mode(Enum):
     JET = 'jet'
     INSTRUCTIONS = 'instructions'
     INIT = 'init'
+    MANAGE_INVENTORY = 'manage_inventory'
+
+
+class Game_Sub_Menu(Enum):
+    PROMPT_FOR_SHARK = 'prompt_for_shark'
+    PROMPT_FOR_STASH = 'prompt_for_stash'
+    PROMPT_FOR_BANK = 'prompt_for_bank'
+    SHARK = 'shark'
+    STASH = 'stash'
+    BANK = 'bank'
 
 
 class Play_Mode(Enum):
