@@ -88,30 +88,44 @@ class Player():
             return payload
 
     def sell_item(self, item, amount):
+
         # convert item to snake_case
         item_to_sell = to_snake_case(item)
+        total_sellable = self.trench_coat.get_amount(item_to_sell)
 
-        # subtract inventory
-        self.trench_coat.subtract_inventory(item_to_sell, amount)
+        if ((item_to_sell in allowable_items) and (amount <= total_sellable)):
 
-        # add to hold
-        self.trench_coat.max_hold += amount
+            # subtract inventory
+            self.trench_coat.subtract_inventory(item_to_sell, amount)
 
-        # add profit
-        total_profit = self.game.prices.get_item_price(
-            item_to_sell) * amount
-        self.trench_coat.add_cash(total_profit)
+            # add to hold
+            self.trench_coat.max_hold += amount
 
-        # set to buy sell jet
-        self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+            # add profit
+            total_profit = self.game.prices.get_item_price(
+                item_to_sell) * amount
+            self.trench_coat.add_cash(total_profit)
 
-        # reset current item
-        self.game.game_manager.reset_current_item()
+            # set to buy sell jet
+            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
 
-        payload = {
-            'trenchCoat': self.trench_coat.get_trench_coat(),
-            'maximumBuy': None,
-            'currentItem': self.game.game_manager.get_current_item(),
-            'gameState': to_camel_case(self.game.game_manager.game_mode.value)
-        }
-        return payload
+            # reset current item
+            self.game.game_manager.reset_current_item()
+
+            payload = {
+                'trenchCoat': self.trench_coat.get_trench_coat(),
+                'maximumBuy': None,
+                'currentItem': self.game.game_manager.get_current_item(),
+                'gameState': to_camel_case(self.game.game_manager.game_mode.value)
+            }
+            return payload
+        else:
+            # if item to sell is not allowable, or amount to sell is too low, reset sell prompt
+            self.game.game_manager.reset_current_item()
+            payload = {
+                'trenchCoat': self.trench_coat.get_trench_coat(),
+                'maximumBuy': None,
+                'currentItem': self.game.game_manager.get_current_item(),
+                'gameState': to_camel_case(self.game.game_manager.game_mode.value)
+            }
+            return payload
