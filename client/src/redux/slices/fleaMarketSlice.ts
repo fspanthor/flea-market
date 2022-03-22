@@ -55,6 +55,12 @@ interface GameStateAndSubMenuType {
   gameSubMenu?: string;
 }
 
+interface SetRepayBorrowSharkResponseType {
+  debt: number;
+  cash: number;
+  gameSubMenu: string;
+}
+
 interface MaximumBuyStateType {
   maximumBuy: number;
   currentItem: string;
@@ -152,6 +158,14 @@ export const fleaMarketSlice = createSlice({
     setCurrentItem: (state, action: PayloadAction<string>) => {
       state.gameManager.currentItem = action.payload;
     },
+    setRepayBorrowSharkResponse: (
+      state,
+      action: PayloadAction<SetRepayBorrowSharkResponseType>
+    ) => {
+      state.stash.debt = action.payload.debt;
+      state.trenchCoat.cash = action.payload.cash;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+    },
     setMaximumBuy: (state, action: PayloadAction<MaximumBuyStateType>) => {
       state.gameManager.maximumBuy = action.payload.maximumBuy;
       state.gameManager.currentItem = action.payload.currentItem;
@@ -193,6 +207,7 @@ export const {
   setCurrentItem,
   setGameSubMenu,
   setGameStateAndSubMenu,
+  setRepayBorrowSharkResponse,
 } = fleaMarketSlice.actions;
 
 //selectors

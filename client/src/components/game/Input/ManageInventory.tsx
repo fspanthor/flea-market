@@ -59,7 +59,8 @@ const ManageInventory = () => {
           promptReduxAction={setGameStateAndSubMenu}
         />
       )}
-      {gameSubMenu === GameSubMenuEnum.SHARK && <ManageShark />}
+      {(gameSubMenu === GameSubMenuEnum.SHARK ||
+        GameSubMenuEnum.SHARK_BORROW) && <ManageShark />}
       {gameSubMenu === GameSubMenuEnum.STASH && <ManageStash />}
       {gameSubMenu === GameSubMenuEnum.BANK && <ManageBank />}
     </div>

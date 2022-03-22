@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectCurrentItem } from "../../../redux/slices/fleaMarketSlice";
 
 interface InputStringPropsType {
-  gameFunction: (item: string, amount: number) => Promise<any>;
+  gameFunction: any;
   reduxAction: ActionCreatorWithPayload<any, string>;
   allowableKeys?: string[];
 }
@@ -59,10 +59,12 @@ const InputString = ({
         }
         if (e.key === "Enter" && input.length > 0) {
           document.body.removeEventListener("keydown", handleKeyDown);
-          const gameFunctionReturn = await gameFunction(
-            currentItem,
-            parseInt(input)
-          );
+          //if gameFunction has 2 arguments, send both currentItem and amount
+          //else, just send 1 argument for amount
+          const gameFunctionReturn =
+            gameFunction.length === 2
+              ? await gameFunction(currentItem, parseInt(input))
+              : await gameFunction(parseInt(input));
           dispatch(reduxAction(gameFunctionReturn));
           return;
         }

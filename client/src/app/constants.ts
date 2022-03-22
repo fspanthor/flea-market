@@ -13,6 +13,7 @@ export enum GameSubMenuEnum {
   PROMPT_FOR_STASH = "promptForStash",
   PROMPT_FOR_BANK = "promptForBank",
   SHARK = "shark",
+  SHARK_BORROW = "sharkBorrow",
   STASH = "stash",
   BANK = "bank",
 }
@@ -36,6 +37,9 @@ export enum FleaMarketFunction {
   SHARK_CONTINUE = "SHARK_CONTINUE",
   STASH_CONTINUE = "STASH_CONTINUE",
   BANK_CONTINUE = "BANK_CONTINUE",
+  REPAY_SHARK = "REPAY_SHARK",
+  GET_MAXIMUM_REPAY = "GET_MAXIMUM_REPAY",
+  BORROW_FROM_SHARK = "BORROW_FROM_SHARK",
 }
 
 export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];

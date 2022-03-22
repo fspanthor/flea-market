@@ -20,6 +20,7 @@ class Game_Sub_Menu(Enum):
     PROMPT_FOR_STASH = 'prompt_for_stash'
     PROMPT_FOR_BANK = 'prompt_for_bank'
     SHARK = 'shark'
+    SHARK_BORROW = "shark_borrow"
     STASH = 'stash'
     BANK = 'bank'
 
