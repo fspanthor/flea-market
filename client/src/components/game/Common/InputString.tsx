@@ -7,12 +7,14 @@ interface InputStringPropsType {
   gameFunction: any;
   reduxAction: ActionCreatorWithPayload<any, string>;
   allowableKeys?: string[];
+  comparator?: number;
 }
 
 const InputString = ({
   gameFunction,
   reduxAction,
   allowableKeys,
+  comparator,
 }: InputStringPropsType) => {
   const currentItem = useAppSelector(selectCurrentItem);
 
@@ -61,16 +63,29 @@ const InputString = ({
           document.body.removeEventListener("keydown", handleKeyDown);
           //if gameFunction has 2 arguments, send both currentItem and amount
           //else, just send 1 argument for amount
-          const gameFunctionReturn =
-            gameFunction.length === 2
-              ? await gameFunction(currentItem, parseInt(input))
-              : await gameFunction(parseInt(input));
-          dispatch(reduxAction(gameFunctionReturn));
-          return;
+          //if comparator is passed, perform validation
+          if (comparator === undefined || parseInt(input) < comparator) {
+            const gameFunctionReturn =
+              gameFunction.length === 2
+                ? await gameFunction(currentItem, parseInt(input))
+                : await gameFunction(parseInt(input));
+            dispatch(reduxAction(gameFunctionReturn));
+            return;
+          } else {
+            setInput(() => "");
+          }
         }
       }
     },
-    [allowableKeys, currentItem, dispatch, gameFunction, input, reduxAction]
+    [
+      allowableKeys,
+      comparator,
+      currentItem,
+      dispatch,
+      gameFunction,
+      input,
+      reduxAction,
+    ]
   );
 
   useEffect(() => {

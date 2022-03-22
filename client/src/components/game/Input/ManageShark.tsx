@@ -1,6 +1,8 @@
 import { FleaMarketFunction, GameSubMenuEnum } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
+  selectCash,
+  selectDebt,
   selectGameSubMenu,
   setRepayBorrowSharkResponse,
 } from "../../../redux/slices/fleaMarketSlice";
@@ -22,6 +24,8 @@ const borrowFromShark = async (amount: number) => {
 };
 
 const ManageShark = () => {
+  const currentCash = useAppSelector(selectCash);
+  const currentDebt = useAppSelector(selectDebt);
   const gameSubMenu = useAppSelector(selectGameSubMenu);
   return (
     <div>
@@ -31,6 +35,7 @@ const ManageShark = () => {
           <InputString
             gameFunction={repayShark}
             reduxAction={setRepayBorrowSharkResponse}
+            comparator={currentCash}
           />
         </div>
       )}
@@ -40,6 +45,7 @@ const ManageShark = () => {
           <InputString
             gameFunction={borrowFromShark}
             reduxAction={setRepayBorrowSharkResponse}
+            comparator={currentDebt}
           />
         </div>
       )}

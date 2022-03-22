@@ -225,5 +225,8 @@ export const selectMaximumBuy = (state: RootState) =>
   state.fleaMarket.gameManager.maximumBuy;
 export const selectCurrentItem = (state: RootState) =>
   state.fleaMarket.gameManager.currentItem;
+export const selectDebt = (state: RootState) => state.fleaMarket.stash.debt;
+export const selectCash = (state: RootState) =>
+  state.fleaMarket.trenchCoat.cash;
 
 export default fleaMarketSlice.reducer;
