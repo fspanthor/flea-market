@@ -64,7 +64,7 @@ const InputString = ({
           //if gameFunction has 2 arguments, send both currentItem and amount
           //else, just send 1 argument for amount
           //if comparator is passed, perform validation
-          if (comparator === undefined || parseInt(input) < comparator) {
+          if (comparator === undefined || parseInt(input) <= comparator) {
             const gameFunctionReturn =
               gameFunction.length === 2
                 ? await gameFunction(currentItem, parseInt(input))

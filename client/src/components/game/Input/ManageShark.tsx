@@ -25,7 +25,6 @@ const borrowFromShark = async (amount: number) => {
 
 const ManageShark = () => {
   const currentCash = useAppSelector(selectCash);
-  const currentDebt = useAppSelector(selectDebt);
   const gameSubMenu = useAppSelector(selectGameSubMenu);
   return (
     <div>
@@ -40,12 +39,13 @@ const ManageShark = () => {
         </div>
       )}
       {gameSubMenu === GameSubMenuEnum.SHARK_BORROW && (
+        //if shark is completely paid off can borrow 2000
         <div>
           HOW MUCH TO BORROW?
           <InputString
             gameFunction={borrowFromShark}
             reduxAction={setRepayBorrowSharkResponse}
-            comparator={currentDebt}
+            comparator={currentCash > 0 ? currentCash : 2000}
           />
         </div>
       )}
