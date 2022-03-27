@@ -23,6 +23,7 @@ class Game_Sub_Menu(Enum):
     SHARK_BORROW = "shark_borrow"
     STASH = 'stash'
     BANK = 'bank'
+    BANK_WITHDRAW = 'bank_withdraw'
 
 
 class Play_Mode(Enum):

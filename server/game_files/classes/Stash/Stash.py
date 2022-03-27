@@ -43,7 +43,16 @@ class Stash():
     def bank_continue(self, key):
         if key == 'y':
             self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.BANK)
-            return to_camel_case(self.game.game_manager.get_game_sub_menu().value)
+            game_mode = to_camel_case(
+                self.game.game_manager.get_game_mode().value)
+
+            sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+            payload = {
+                'gameSubMenu': sub_menu,
+                'gameState': game_mode
+            }
+            return payload
         if key == 'n':
             # reset sub menu
             self.game.game_manager.set_game_sub_menu(
@@ -56,9 +65,108 @@ class Stash():
                 self.game.game_manager.get_game_mode().value)
 
             payload = {
-                'subMenu': sub_menu,
+                'gameSubMenu': sub_menu,
                 'gameState': game_mode
             }
             return payload
         else:
-            return to_camel_case(self.game.game_manager.get_game_sub_menu().value)
+            game_mode = to_camel_case(
+                self.game.game_manager.get_game_mode().value)
+
+            sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+            payload = {
+                'gameSubMenu': sub_menu,
+                'gameState': game_mode
+            }
+            return payload
+
+    def deposit_to_bank(self, amount):
+        starting_cash = self.game.player.trench_coat.get_amount('cash')
+
+        if amount <= starting_cash:
+
+            # add to bank
+            self.bank += amount
+
+            # subtract from cash
+            self.game.player.trench_coat.subtract_cash(amount)
+
+            # update game state
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.BANK_WITHDRAW)
+
+            updated_bank = self.bank
+            updated_cash = self.game.player.trench_coat.get_amount('cash')
+            updated_game_sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+
+            payload = {
+                'bank': updated_bank,
+                'cash': updated_cash,
+                'gameSubMenu': updated_game_sub_menu
+            }
+            return payload
+        else:
+            # change game state
+            # update game state
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.BANK_WITHDRAW)
+            updated_game_sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+
+            payload = {
+                'bank': self.bank,
+                'cash': self.game.player.trench_coat.get_amount('cash'),
+                'gameSubMenu': updated_game_sub_menu
+            }
+            return payload
+
+    def withdraw_from_bank(self, amount):
+        starting_bank = self.bank
+
+        if amount <= starting_bank:
+
+            # subtract from bank
+            self.bank -= amount
+
+            # add to cash
+            self.game.player.trench_coat.add_cash(amount)
+
+            # reset sub menu
+            self.game.game_manager.set_game_sub_menu(
+                '')
+            # reset game mode to buy sell jet
+            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+
+            updated_bank = self.bank
+            updated_cash = self.game.player.trench_coat.get_amount('cash')
+            sub_menu = self.game.game_manager.get_game_sub_menu()
+            game_mode = to_camel_case(
+                self.game.game_manager.get_game_mode().value)
+
+            payload = {
+                'bank': updated_bank,
+                'cash': updated_cash,
+                'gameSubMenu': sub_menu,
+                'gameState': game_mode
+            }
+            return payload
+        else:
+           # reset sub menu
+            self.game.game_manager.set_game_sub_menu(
+                '')
+            # reset game mode to buy sell jet
+            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+
+            sub_menu = self.game.game_manager.get_game_sub_menu()
+            game_mode = to_camel_case(
+                self.game.game_manager.get_game_mode().value)
+
+            payload = {
+                'bank': self.bank,
+                'cash': self.game.player.trench_coat.get_amount('cash'),
+                'gameSubMenu': sub_menu,
+                'gameState': game_mode
+            }
+            return payload

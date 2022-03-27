@@ -61,6 +61,19 @@ interface SetRepayBorrowSharkResponseType {
   gameSubMenu: string;
 }
 
+interface SetDepositWithdrawBankResponseType {
+  bank: number;
+  cash: number;
+  gameSubMenu: string;
+}
+
+interface SetDepositWithdrawBankResponseConclusionType {
+  bank: number;
+  cash: number;
+  gameState: string;
+  gameSubMenu: string;
+}
+
 interface MaximumBuyStateType {
   maximumBuy: number;
   currentItem: string;
@@ -166,6 +179,23 @@ export const fleaMarketSlice = createSlice({
       state.trenchCoat.cash = action.payload.cash;
       state.gameManager.gameSubMenu = action.payload.gameSubMenu;
     },
+    setDepositWithdrawBankResponse: (
+      state,
+      action: PayloadAction<SetDepositWithdrawBankResponseType>
+    ) => {
+      state.stash.bank = action.payload.bank;
+      state.trenchCoat.cash = action.payload.cash;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+    },
+    setDepositWithdrawBankResponseConclusion: (
+      state,
+      action: PayloadAction<SetDepositWithdrawBankResponseConclusionType>
+    ) => {
+      state.stash.bank = action.payload.bank;
+      state.trenchCoat.cash = action.payload.cash;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+      state.gameManager.gameState = action.payload.gameState;
+    },
     setMaximumBuy: (state, action: PayloadAction<MaximumBuyStateType>) => {
       state.gameManager.maximumBuy = action.payload.maximumBuy;
       state.gameManager.currentItem = action.payload.currentItem;
@@ -208,6 +238,8 @@ export const {
   setGameSubMenu,
   setGameStateAndSubMenu,
   setRepayBorrowSharkResponse,
+  setDepositWithdrawBankResponse,
+  setDepositWithdrawBankResponseConclusion,
 } = fleaMarketSlice.actions;
 
 //selectors
@@ -226,6 +258,7 @@ export const selectMaximumBuy = (state: RootState) =>
 export const selectCurrentItem = (state: RootState) =>
   state.fleaMarket.gameManager.currentItem;
 export const selectDebt = (state: RootState) => state.fleaMarket.stash.debt;
+export const selectBank = (state: RootState) => state.fleaMarket.stash.bank;
 export const selectCash = (state: RootState) =>
   state.fleaMarket.trenchCoat.cash;
 

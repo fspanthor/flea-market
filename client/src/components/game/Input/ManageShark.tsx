@@ -2,7 +2,6 @@ import { FleaMarketFunction, GameSubMenuEnum } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
   selectCash,
-  selectDebt,
   selectGameSubMenu,
   setRepayBorrowSharkResponse,
 } from "../../../redux/slices/fleaMarketSlice";
