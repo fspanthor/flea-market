@@ -29,6 +29,10 @@ class Stash():
                  'switchblades': self.switchblades, 'cellPhones': self.cell_phones, 'massageChairs': self.massage_chairs,
                  'bank': self.bank, 'debt': self.debt})
 
+    def get_amount(self, item):
+        if hasattr(self, item):
+            return getattr(self, item)
+
     def stash_continue(self, key):
         if key == 'y':
             self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.STASH)
@@ -170,3 +174,13 @@ class Stash():
                 'gameState': game_mode
             }
             return payload
+
+    def add_to_stash(self, item, amount):
+        if hasattr(self, item):
+            new_amount = getattr(self, item) + amount
+            setattr(self, item, new_amount)
+
+    def subtract_from_stash(self, item, amount):
+        if hasattr(self, item):
+            new_amount = getattr(self, item) - amount
+            setattr(self, item, new_amount)

@@ -79,6 +79,11 @@ interface MaximumBuyStateType {
   currentItem: string;
 }
 
+interface SetItemToTransferType {
+  currentItem: string;
+  gameState: string;
+}
+
 interface FleaMarketStateType {
   value: number;
   prices: PricesStateType;
@@ -92,6 +97,19 @@ interface BuySellResponseStateType {
   maximumBuy: number | null;
   currentItem: string;
   gameState: string;
+}
+
+interface SetTransferItemToStashResponseType {
+  stash: StashStateType;
+  trenchCoat: TrenchCoatStateType;
+  gameSubMenu: string;
+}
+
+interface SetTransferItemToTrenchCoatResponseType {
+  trenchCoat: TrenchCoatStateType;
+  stash: StashStateType;
+  gameSubMenu: string;
+  currentItem: string;
 }
 
 const initialState: FleaMarketStateType = {
@@ -159,6 +177,23 @@ export const fleaMarketSlice = createSlice({
     setStash: (state, action: PayloadAction<StashStateType>) => {
       state.stash = action.payload;
     },
+    setTransferItemToStashResponse: (
+      state,
+      action: PayloadAction<SetTransferItemToStashResponseType>
+    ) => {
+      state.stash = action.payload.stash;
+      state.trenchCoat = action.payload.trenchCoat;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+    },
+    setTransferItemToTrenchCoatResponse: (
+      state,
+      action: PayloadAction<SetTransferItemToTrenchCoatResponseType>
+    ) => {
+      state.stash = action.payload.stash;
+      state.trenchCoat = action.payload.trenchCoat;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+      state.gameManager.currentItem = action.payload.currentItem;
+    },
     setTrenchCoat: (state, action: PayloadAction<TrenchCoatStateType>) => {
       state.trenchCoat = action.payload;
     },
@@ -170,6 +205,13 @@ export const fleaMarketSlice = createSlice({
     },
     setCurrentItem: (state, action: PayloadAction<string>) => {
       state.gameManager.currentItem = action.payload;
+    },
+    setItemToTransfer: (
+      state,
+      action: PayloadAction<SetItemToTransferType>
+    ) => {
+      state.gameManager.currentItem = action.payload.currentItem;
+      state.gameManager.gameState = action.payload.gameState;
     },
     setRepayBorrowSharkResponse: (
       state,
@@ -240,6 +282,9 @@ export const {
   setRepayBorrowSharkResponse,
   setDepositWithdrawBankResponse,
   setDepositWithdrawBankResponseConclusion,
+  setTransferItemToStashResponse,
+  setTransferItemToTrenchCoatResponse,
+  setItemToTransfer,
 } = fleaMarketSlice.actions;
 
 //selectors

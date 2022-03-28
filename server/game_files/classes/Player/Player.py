@@ -129,3 +129,123 @@ class Player():
                 'gameState': to_camel_case(self.game.game_manager.game_mode.value)
             }
             return payload
+
+    def select_item_to_manage(self, key):
+        if key == 'q':
+            # reset current item
+            self.game.game_manager.reset_current_item()
+            # set to buy sell jet
+            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+
+            payload = {
+                'currentItem': self.game.game_manager.get_current_item(),
+                'gameState': to_camel_case(self.game.game_manager.game_mode.value),
+            }
+            return payload
+
+        else:
+            current_item = self.game.game_manager.stage_current_item(key)
+            payload = {
+                'currentItem': current_item,
+                'gameState': to_camel_case(self.game.game_manager.game_mode.value),
+            }
+            return payload
+
+    def transfer_item_to_stash(self, amount):
+
+        item_to_transfer = self.game.game_manager.get_current_item()
+        total_transferable = self.trench_coat.get_amount(item_to_transfer)
+
+        if ((item_to_transfer in allowable_items) and (amount <= total_transferable)):
+
+            # subtract inventory
+            self.trench_coat.subtract_inventory(item_to_transfer, amount)
+
+            # add to stash
+            self.stash.add_to_stash(item_to_transfer, amount)
+
+            # update game state
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.TRANSFER_TO_TRENCH_COAT)
+
+            sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+            updated_trench_coat = self.trench_coat.get_trench_coat()
+            updated_stash = self.stash.get_stash()
+
+            payload = {
+                'stash': updated_stash,
+                'trenchCoat': updated_trench_coat,
+                'gameSubMenu': sub_menu
+            }
+            return payload
+
+        else:
+            # update game state
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.TRANSFER_TO_TRENCH_COAT)
+
+            sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+            updated_trench_coat = self.trench_coat.get_trench_coat()
+            updated_stash = self.stash.get_stash()
+
+            payload = {
+                'stash': updated_stash,
+                'trenchCoat': updated_trench_coat,
+                'gameSubMenu': sub_menu
+            }
+            return payload
+
+    def transfer_item_to_trench_coat(self, amount):
+        # convert item to snake_case
+        item_to_transfer = self.game.game_manager.get_current_item()
+        total_transferable = self.stash.get_amount(item_to_transfer)
+
+        if ((item_to_transfer in allowable_items) and (amount <= total_transferable)):
+
+            # subtract from stash
+            self.stash.subtract_from_stash(item_to_transfer, amount)
+
+            # add to trench coat
+            self.trench_coat.add_inventory(item_to_transfer, amount)
+
+            # update game state
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.STASH)
+
+            # clear current item
+            self.game.game_manager.reset_current_item()
+
+            updated_stash = self.stash.get_stash()
+            updated_trench_coat = self.trench_coat.get_trench_coat()
+            sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+            updated_current_item = self.game.game_manager.get_current_item()
+
+            payload = {
+                'stash': updated_stash,
+                'trenchCoat': updated_trench_coat,
+                'gameSubMenu': sub_menu,
+                'currentItem': updated_current_item
+            }
+            return payload
+        else:
+            # update game state
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.STASH)
+            # clear current item
+            self.game.game_manager.reset_current_item()
+            updated_stash = self.stash.get_stash()
+            updated_trench_coat = self.trench_coat.get_trench_coat()
+            sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu().value)
+            updated_current_item = self.game.game_manager.get_current_item()
+
+            payload = {
+                'stash': updated_stash,
+                'trenchCoat': updated_trench_coat,
+                'gameSubMenu': sub_menu,
+                'currentItem': updated_current_item
+            }
+            return payload

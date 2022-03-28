@@ -5,7 +5,6 @@ interface DateDataType {
 }
 
 const Date = ({ dayData }: DateDataType) => {
-  console.log(dayData);
   return (
     <div>
       {dayData !== 14

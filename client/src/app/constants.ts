@@ -15,6 +15,7 @@ export enum GameSubMenuEnum {
   SHARK = "shark",
   SHARK_BORROW = "sharkBorrow",
   STASH = "stash",
+  TRANSFER_TO_TRENCH_COAT = "transferToTrenchCoat",
   BANK = "bank",
   BANK_WITHDRAW = "bankWithdraw",
 }
@@ -43,6 +44,9 @@ export enum FleaMarketFunction {
   BORROW_FROM_SHARK = "BORROW_FROM_SHARK",
   DEPOSIT_TO_BANK = "DEPOSIT_TO_BANK",
   WITHDRAW_FROM_BANK = "WITHDRAW_FROM_BANK",
+  SELECT_ITEM_TO_MANAGE = "SELECT_ITEM_TO_MANAGE",
+  TRANSFER_ITEM_TO_STASH = "TRANSFER_ITEM_TO_STASH",
+  TRANSFER_ITEM_TO_TRENCH_COAT = "TRANSFER_ITEM_TO_TRENCH_COAT",
 }
 
 export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];

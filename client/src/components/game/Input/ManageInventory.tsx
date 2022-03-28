@@ -34,7 +34,7 @@ const bankContinueFunction = async (key: string) => {
 
 const ManageInventory = () => {
   const gameSubMenu = useAppSelector(selectGameSubMenu);
-  console.log({ gameSubMenu });
+
   return (
     <div>
       ManageInventory component
@@ -61,7 +61,10 @@ const ManageInventory = () => {
       )}
       {(gameSubMenu === GameSubMenuEnum.SHARK ||
         GameSubMenuEnum.SHARK_BORROW) && <ManageShark />}
-      {gameSubMenu === GameSubMenuEnum.STASH && <ManageStash />}
+      {(gameSubMenu === GameSubMenuEnum.STASH ||
+        gameSubMenu === GameSubMenuEnum.TRANSFER_TO_TRENCH_COAT) && (
+        <ManageStash />
+      )}
       {(gameSubMenu === GameSubMenuEnum.BANK ||
         GameSubMenuEnum.BANK_WITHDRAW) && <ManageBank />}
     </div>
