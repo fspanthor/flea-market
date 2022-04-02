@@ -42,7 +42,7 @@ class Player():
                 item_to_buy) * amount
             current_cash = self.trench_coat.cash
 
-            if (current_cash >= total_cost) and (amount < self.trench_coat.max_hold):
+            if (current_cash >= total_cost) and (amount <= self.trench_coat.max_hold):
                 # add inventory
                 self.trench_coat.add_inventory(item_to_buy, amount)
 
