@@ -26,9 +26,10 @@ class Chase():
             Utility_Items.CORN_DOGS.value)
 
         if corn_dogs > 0:
-            return Game_Sub_Menu.RUN_OR_BRIBE.value
+            return to_camel_case(Game_Sub_Menu.RUN_OR_BRIBE.value)
         else:
-            return Game_Sub_Menu.RUN.value
+            return to_camel_case(Game_Sub_Menu.RUN.value
+                                 )
 
     def reset_stooges(self):
         self.stooges = 0
@@ -85,3 +86,17 @@ class Chase():
             'gameSubMenu': '',
         }
         return payload
+
+    def run_or_bribe(self, key):
+        if key == 'r':
+            return self.run()
+        else:
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.DIDNT_GET_AWAY)
+            payload = {
+                'chase': {'health': self.health,
+                          'stooges': self.stooges},
+                'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
+                'systemMessage': ''
+            }
+            return payload

@@ -20,13 +20,16 @@ class TrenchCoat():
         self.switchblades = 0
         self.cell_phones = 0
         self.massage_chairs = 0
-        self.corn_dogs = 0
+        self.corn_dogs = 5
         self.cash = 2000
         self.max_hold = 100
 
     def get_amount(self, item):
         if hasattr(self, item):
             return getattr(self, item)
+
+    def get_corn_dogs(self):
+        return self.get_amount('corn_dogs')
 
     def add_inventory(self, item, amount):
         if hasattr(self, item):

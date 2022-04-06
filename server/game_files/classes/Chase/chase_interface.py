@@ -17,9 +17,14 @@ def exit_chase(game_instance):
     return jsonify(game_instance.chase.exit_chase())
 
 
+def run_or_bribe(game_instance, params):
+    return jsonify(game_instance.chase.run_or_bribe(params['key']))
+
+
 chase_interface = {
     'GET_CHASE': get_chase,
     'START_CHASE': start_chase,
     'RUN': run,
-    'EXIT_CHASE': exit_chase
+    'EXIT_CHASE': exit_chase,
+    'RUN_OR_BRIBE': run_or_bribe
 }

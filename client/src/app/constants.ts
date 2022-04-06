@@ -62,8 +62,12 @@ export enum FleaMarketFunction {
   GET_CHASE = "GET_CHASE",
   RUN = "RUN",
   EXIT_CHASE = "EXIT_CHASE",
+  GET_CORN_DOGS = "GET_CORN_DOGS",
+  RUN_OR_BRIBE = "RUN_OR_BRIBE",
 }
 
 export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];
 
 export const spaceBarKey = [" "];
+
+export const runOrBribeKeys = ["r", "b"];

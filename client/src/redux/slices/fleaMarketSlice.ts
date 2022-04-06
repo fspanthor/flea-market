@@ -205,6 +205,9 @@ export const fleaMarketSlice = createSlice({
     setStash: (state, action: PayloadAction<StashStateType>) => {
       state.stash = action.payload;
     },
+    setCornDogs: (state, action: PayloadAction<number>) => {
+      state.trenchCoat.cornDogs = action.payload;
+    },
     setTransferItemToStashResponse: (
       state,
       action: PayloadAction<SetTransferItemToStashResponseType>
@@ -328,6 +331,7 @@ export const {
   setChase,
   setRunResponse,
   setExitChaseResponse,
+  setCornDogs,
 } = fleaMarketSlice.actions;
 
 //selectors

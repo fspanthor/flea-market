@@ -2,6 +2,7 @@ import { memo } from "react";
 import {
   FleaMarketFunction,
   GameSubMenuEnum,
+  runOrBribeKeys,
   spaceBarKey,
 } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
@@ -22,9 +23,16 @@ export const chaseStartFunction = async (key: string) => {
   });
 };
 
-const chaseRunFunction = async (key: string) => {
+const chaseRunFunction = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.RUN,
+  });
+};
+
+const runOrBribeFunction = async (key: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.RUN_OR_BRIBE,
+    params: { key: key },
   });
 };
 
@@ -70,8 +78,9 @@ const Chase = () => {
       {gameSubMenu === GameSubMenuEnum.RUN_OR_BRIBE && (
         <Prompt
           promptText={"WILL YOU (R)UN OR (B)RIBE?"}
-          promptFunction={chaseStartFunction}
-          promptReduxAction={setGameSubMenu}
+          promptFunction={runOrBribeFunction}
+          promptReduxAction={setRunResponse}
+          allowableKeys={runOrBribeKeys}
         />
       )}
       {(gameSubMenu === GameSubMenuEnum.DIDNT_GET_AWAY ||
