@@ -25,6 +25,10 @@ class Game_Sub_Menu(Enum):
     TRANSFER_TO_TRENCH_COAT = 'transfer_to_trench_coat'
     BANK = 'bank'
     BANK_WITHDRAW = 'bank_withdraw'
+    RUN = 'run'
+    RUN_OR_BRIBE = 'run_or_bribe'
+    GOT_AWAY = 'got_away'
+    DIDNT_GET_AWAY = 'didnt_get_away'
 
 
 class Play_Mode(Enum):
@@ -47,6 +51,10 @@ class Items(Enum):
     FAKE_SHOES = 'fake_shoes'
     CELL_PHONES = 'cell_phones'
     MASSAGE_CHAIRS = 'massage_chairs'
+
+
+class Utility_Items(Enum):
+    CORN_DOGS = 'corn_dogs'
 
 
 allowable_items = ([Items.DVDS.value, Items.HOT_SAUCE.value, Items.SWITCHBLADES.value,

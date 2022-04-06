@@ -2,6 +2,7 @@ import { memo } from "react";
 import { GameStateEnum } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import { selectGameState } from "../../../redux/slices/fleaMarketSlice";
+import Chase from "../Chase/Chase";
 import Buy from "./Buy";
 import BuySellJet from "./BuySellJet";
 import Instructions from "./Instructions";
@@ -22,6 +23,7 @@ const Interactive = () => {
       {gameState === GameStateEnum.JET && <Jet />}
       {gameState === GameStateEnum.BUY && <Buy />}
       {gameState === GameStateEnum.SELL && <Sell />}
+      {gameState === GameStateEnum.CHASE && <Chase />}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GameStateEnum, GameSubMenuEnum } from "../../app/constants";
 import type { RootState } from "../../app/store";
 
 export interface SetLocationResponseType {
@@ -48,6 +49,7 @@ interface GameManagerStateType {
   day: number;
   maximumBuy: number | null;
   currentItem: string;
+  systemMessage: string;
 }
 
 interface GameStateAndSubMenuType {
@@ -91,7 +93,14 @@ interface FleaMarketStateType {
   stash: StashStateType;
   trenchCoat: TrenchCoatStateType;
   location: string;
+  chase: ChaseStateType;
 }
+
+interface ChaseStateType {
+  health: number;
+  stooges: number;
+}
+
 interface BuySellResponseStateType {
   trenchCoat: TrenchCoatStateType;
   maximumBuy: number | null;
@@ -110,6 +119,17 @@ interface SetTransferItemToTrenchCoatResponseType {
   stash: StashStateType;
   gameSubMenu: string;
   currentItem: string;
+}
+
+interface RunResponseStateType {
+  gameSubMenu: string;
+  chase: ChaseStateType;
+  systemMessage: string;
+}
+
+interface SetExitChaseResponseType {
+  gameSubMenu: string;
+  gameState: string;
 }
 
 const initialState: FleaMarketStateType = {
@@ -143,12 +163,17 @@ const initialState: FleaMarketStateType = {
     cash: 0,
     maxHold: 0,
   },
+  chase: {
+    health: 0,
+    stooges: 0,
+  },
   gameManager: {
-    gameState: "init",
-    gameSubMenu: "",
+    gameState: GameStateEnum.CHASE,
+    gameSubMenu: GameSubMenuEnum.CHASE_START,
     day: 0,
     maximumBuy: null,
     currentItem: "",
+    systemMessage: "",
   },
   location: "",
 };
@@ -166,6 +191,9 @@ export const fleaMarketSlice = createSlice({
     },
     setGameSubMenu: (state, action: PayloadAction<string>) => {
       state.gameManager.gameSubMenu = action.payload;
+    },
+    setChase: (state, action: PayloadAction<ChaseStateType>) => {
+      state.chase = action.payload;
     },
     setGameStateAndSubMenu: (
       state,
@@ -205,6 +233,18 @@ export const fleaMarketSlice = createSlice({
     },
     setCurrentItem: (state, action: PayloadAction<string>) => {
       state.gameManager.currentItem = action.payload;
+    },
+    setRunResponse: (state, action: PayloadAction<RunResponseStateType>) => {
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+      state.chase = action.payload.chase;
+      state.gameManager.systemMessage = action.payload.systemMessage;
+    },
+    setExitChaseResponse: (
+      state,
+      action: PayloadAction<SetExitChaseResponseType>
+    ) => {
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+      state.gameManager.gameState = action.payload.gameState;
     },
     setItemToTransfer: (
       state,
@@ -285,6 +325,9 @@ export const {
   setTransferItemToStashResponse,
   setTransferItemToTrenchCoatResponse,
   setItemToTransfer,
+  setChase,
+  setRunResponse,
+  setExitChaseResponse,
 } = fleaMarketSlice.actions;
 
 //selectors
@@ -302,9 +345,16 @@ export const selectMaximumBuy = (state: RootState) =>
   state.fleaMarket.gameManager.maximumBuy;
 export const selectCurrentItem = (state: RootState) =>
   state.fleaMarket.gameManager.currentItem;
+export const selectSystemMessage = (state: RootState) =>
+  state.fleaMarket.gameManager.systemMessage;
 export const selectDebt = (state: RootState) => state.fleaMarket.stash.debt;
 export const selectBank = (state: RootState) => state.fleaMarket.stash.bank;
 export const selectCash = (state: RootState) =>
   state.fleaMarket.trenchCoat.cash;
+export const selectStooges = (state: RootState) =>
+  state.fleaMarket.chase.stooges;
+export const selectHealth = (state: RootState) => state.fleaMarket.chase.health;
+export const selectCornDogs = (state: RootState) =>
+  state.fleaMarket.trenchCoat.cornDogs;
 
 export default fleaMarketSlice.reducer;

@@ -9,16 +9,20 @@ class GameManager():
         self.game_sub_menu = ''
         self.game = game
         self.current_item = ''
+        self.system_message = ''
 
     def new_game(self):
         self.day = 1
         self.game_mode = Game_Mode.INIT.value
+        self.game_sub_menu = ''
         self.current_item = ''
+        self.system_message = ''
         self.game.location.set_location(Locations.FLORIDA)
         self.game.prices.set_prices()
         self.game.player.stash.reset_stash()
         self.game.player.trench_coat.reset_trench_coat()
         self.game.shark.reset_shark()
+        self.game.chase.reset_chase()
         return self.game_mode
 
     def set_current_item(self, current_item):

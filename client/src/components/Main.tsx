@@ -28,7 +28,8 @@ const Main = () => {
     <div>
       <div>
         {gameState !== GameStateEnum.INIT &&
-          gameState !== GameStateEnum.INSTRUCTIONS && <HUD />}
+          gameState !== GameStateEnum.INSTRUCTIONS &&
+          gameState !== GameStateEnum.CHASE && <HUD />}
         <Interactive />
       </div>
       {gameState !== GameStateEnum.INIT && <AudioPlayer />}

@@ -5,6 +5,7 @@ from .Prices.Prices import Prices
 from .Player.Player import Player
 from .GameManager.GameManager import GameManager
 from .Shark.Shark import Shark
+from .Chase.Chase import Chase
 
 
 class Game():
@@ -15,3 +16,4 @@ class Game():
         self.game_manager = GameManager(self)
         self.instructions = Instructions(self)
         self.shark = Shark(self)
+        self.chase = Chase(self)
