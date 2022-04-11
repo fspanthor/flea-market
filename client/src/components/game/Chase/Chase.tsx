@@ -9,8 +9,8 @@ import { useAppSelector } from "../../../app/hooks";
 import {
   selectGameSubMenu,
   selectStooges,
-  setGameSubMenu,
-  setRunResponse,
+  setGameStateAndSubMenu,
+  setChaseResponse,
 } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Prompt from "../Input/Prompt";
@@ -60,7 +60,7 @@ const Chase = () => {
           <Prompt
             promptText={"PRESS SPACEBAR TO CONTINUE"}
             promptFunction={chaseStartFunction}
-            promptReduxAction={setGameSubMenu}
+            promptReduxAction={setGameStateAndSubMenu}
             allowableKeys={spaceBarKey}
           />
         </div>
@@ -71,7 +71,7 @@ const Chase = () => {
             "YOU HAVE NO CORNDOGS TO BRIBE WITH.. PRESS SPACE BAR TO RUN"
           }
           promptFunction={chaseRunFunction}
-          promptReduxAction={setRunResponse}
+          promptReduxAction={setChaseResponse}
           allowableKeys={spaceBarKey}
         />
       )}
@@ -79,15 +79,11 @@ const Chase = () => {
         <Prompt
           promptText={"WILL YOU (R)UN OR (B)RIBE?"}
           promptFunction={runOrBribeFunction}
-          promptReduxAction={setRunResponse}
+          promptReduxAction={setChaseResponse}
           allowableKeys={runOrBribeKeys}
         />
       )}
-      {(gameSubMenu === GameSubMenuEnum.DIDNT_GET_AWAY ||
-        gameSubMenu === GameSubMenuEnum.GOT_AWAY ||
-        gameSubMenu === GameSubMenuEnum.GOT_EM ||
-        gameSubMenu === GameSubMenuEnum.HEAL ||
-        gameSubMenu === GameSubMenuEnum.GOT_SOME) && <ChaseResult />}
+      {GameSubMenuEnum.CHASE_RESULT && <ChaseResult />}
     </div>
   );
 };

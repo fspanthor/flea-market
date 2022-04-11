@@ -4,9 +4,12 @@ from ..constants import Items
 
 
 def to_camel_case(str):
-    temp = str.split('_')
-    res = temp[0] + ''.join(ele.title() for ele in temp[1:])
-    return res
+    if len(str) > 0:
+        temp = str.split('_')
+        res = temp[0] + ''.join(ele.title() for ele in temp[1:])
+        return res
+    else:
+        return str
 
 
 def dict_keys_to_camel_case(dict):

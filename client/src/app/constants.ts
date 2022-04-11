@@ -22,13 +22,7 @@ export enum GameSubMenuEnum {
   CHASE_START = "chaseStart",
   RUN = "run",
   RUN_OR_BRIBE = "runOrBribe",
-  DIDNT_GET_AWAY = "didntGetAway",
-  GOT_AWAY = "gotAway",
-  GOT_EM = "gotEm",
-  HEAL = "heal",
   CHASE_RESULT = "chaseResult",
-  GOT_SOME = "gotSome",
-  BRIBE_FAIL = "bribeFail",
 }
 
 export enum FleaMarketFunction {
@@ -61,9 +55,9 @@ export enum FleaMarketFunction {
   START_CHASE = "START_CHASE",
   GET_CHASE = "GET_CHASE",
   RUN = "RUN",
-  EXIT_CHASE = "EXIT_CHASE",
   GET_CORN_DOGS = "GET_CORN_DOGS",
   RUN_OR_BRIBE = "RUN_OR_BRIBE",
+  RUN_OR_BRIBE_CONTINUE = "RUN_OR_BRIBE_CONTINUE",
 }
 
 export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];

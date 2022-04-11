@@ -127,11 +127,6 @@ interface RunResponseStateType {
   systemMessage: string;
 }
 
-interface SetExitChaseResponseType {
-  gameSubMenu: string;
-  gameState: string;
-}
-
 const initialState: FleaMarketStateType = {
   value: 0,
   prices: {
@@ -237,17 +232,10 @@ export const fleaMarketSlice = createSlice({
     setCurrentItem: (state, action: PayloadAction<string>) => {
       state.gameManager.currentItem = action.payload;
     },
-    setRunResponse: (state, action: PayloadAction<RunResponseStateType>) => {
+    setChaseResponse: (state, action: PayloadAction<RunResponseStateType>) => {
       state.gameManager.gameSubMenu = action.payload.gameSubMenu;
       state.chase = action.payload.chase;
       state.gameManager.systemMessage = action.payload.systemMessage;
-    },
-    setExitChaseResponse: (
-      state,
-      action: PayloadAction<SetExitChaseResponseType>
-    ) => {
-      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
-      state.gameManager.gameState = action.payload.gameState;
     },
     setItemToTransfer: (
       state,
@@ -329,8 +317,7 @@ export const {
   setTransferItemToTrenchCoatResponse,
   setItemToTransfer,
   setChase,
-  setRunResponse,
-  setExitChaseResponse,
+  setChaseResponse,
   setCornDogs,
 } = fleaMarketSlice.actions;
 

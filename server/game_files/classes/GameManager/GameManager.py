@@ -5,7 +5,7 @@ from ...constants import Game_Mode, Locations, Game_Sub_Menu
 class GameManager():
     def __init__(self, game):
         self.day = 1
-        self.game_mode = Game_Mode.INIT
+        self.game_mode = Game_Mode.CHASE
         self.game_sub_menu = ''
         self.game = game
         self.current_item = ''
@@ -13,7 +13,7 @@ class GameManager():
 
     def new_game(self):
         self.day = 1
-        self.game_mode = Game_Mode.INIT.value
+        self.game_mode = Game_Mode.CHASE
         self.game_sub_menu = ''
         self.current_item = ''
         self.system_message = ''
@@ -23,7 +23,7 @@ class GameManager():
         self.game.player.trench_coat.reset_trench_coat()
         self.game.shark.reset_shark()
         self.game.chase.reset_chase()
-        return self.game_mode
+        return self.game_mode.value
 
     def set_current_item(self, current_item):
         setattr(self, 'current_item', current_item)
@@ -36,6 +36,14 @@ class GameManager():
 
     def get_current_item(self):
         return getattr(self, 'current_item')
+
+    def game_over(self):
+        self.set_game_mode(Game_Mode.GAME_OVER)
+        self.set_game_sub_menu('')
+        payload = {
+            'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
+            'gameSubMenu': ''}
+        return payload
 
 # set current item and return in camel case
     def stage_current_item(self, key):

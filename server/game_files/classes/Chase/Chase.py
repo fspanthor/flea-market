@@ -12,7 +12,7 @@ class Chase():
 
     def reset_chase(self):
         self.health = 100
-        self.stooges = 0
+        self.stooges = 10
 
     def get_chase(self):
         payload = {
@@ -26,13 +26,36 @@ class Chase():
             Utility_Items.CORN_DOGS.value)
 
         if corn_dogs > 0:
-            return to_camel_case(Game_Sub_Menu.RUN_OR_BRIBE.value)
-        else:
-            return to_camel_case(Game_Sub_Menu.RUN.value
-                                 )
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.RUN_OR_BRIBE)
+
+        if corn_dogs == 0:
+            self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.RUN)
+
+        print(self.game.game_manager.get_game_mode())
+
+        payload = {
+            'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
+            'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value)
+        }
+        return payload
+
+    def exit_chase(self):
+        self.reset_stooges()
+        self.game.game_manager.set_game_sub_menu('')
+        self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+
+        payload = {
+            'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
+            'gameSubMenu': '',
+        }
+        return payload
 
     def reset_stooges(self):
         self.stooges = 0
+
+    def remove_stooge(self):
+        self.stooges -= 1
 
     def subtract_health(self, amount):
         self.health -= amount
@@ -46,44 +69,81 @@ class Chase():
         setattr(self, 'stooges', number)
         return getattr(self, 'stooges')
 
+    def calculate_stooge_damage(self):
+        total_damage = 0
+        for _ in range(self.stooges):
+            damage = random.randint(0, 1)
+            amount = self.stooges * damage
+            total_damage += amount
+        return total_damage
+
     def run(self):
+        self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CHASE_RESULT)
         random_number = random.randint(1, 100)
         if random_number > 50:
-            self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.GOT_AWAY)
-            payload = {
-                'chase': {'health': self.health,
-                          'stooges': self.set_stooges(0)},
-                'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
-                'systemMessage': ''
-            }
-            return payload
+            self.set_stooges(0)
+            # build system message
+            system_message = 'YOU GOT AWAY. EVEN IF THEY GOT YOUR NAME ON IT THEY WONT CATCH YOU NOW.'
         else:
-            total_damage = 0
-
-            for _ in range(self.stooges):
-                damage = random.randint(0, 1)
-                amount = self.stooges * damage
-                total_damage += amount
-
+            total_damage = self.calculate_stooge_damage()
             self.subtract_health(total_damage)
-            self.game.game_manager.set_game_sub_menu(
-                Game_Sub_Menu.DIDNT_GET_AWAY)
-            payload = {
-                'chase': {'health': self.health,
-                          'stooges': self.stooges},
-                'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
-                'systemMessage': f'YOU TOOK {total_damage} DAMAGE'
-            }
-            return payload
 
-    def exit_chase(self):
-        self.reset_stooges()
-        self.game.game_manager.set_game_sub_menu('')
-        self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+            if self.health < 0:
+                self.health = 0
+
+            # build system message
+            system_message = f'YOU TOOK {total_damage} DAMAGE'
 
         payload = {
-            'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
-            'gameSubMenu': '',
+            'chase': {'health': self.health,
+                      'stooges': self.stooges},
+            'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
+            'systemMessage': system_message
+        }
+
+        return payload
+
+    def bribe(self):
+        # bribe_threshold is how hard it is to bribe.. if you roll over this number the bribe suceeds
+        bribe_threshold = 10
+        bribe_success_count = 0
+        bribe_fail_count = 0
+
+        # loop over number of corn dogs to determine how many stooges you shook off
+        for _ in range(self.game.player.trench_coat.get_corn_dogs()):
+            if (self.stooges > 0):
+                dice_roll = random.randint(1, 100)
+                if (dice_roll > bribe_threshold):
+                    bribe_success_count += 1
+                    self.remove_stooge()
+                if (dice_roll < bribe_threshold):
+                    bribe_fail_count += 1
+
+        # calculate damage
+        total_damage = self.calculate_stooge_damage()
+        self.subtract_health(total_damage)
+
+        if self.health < 0:
+            self.health = 0
+
+        # set game sub menu
+        self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CHASE_RESULT)
+
+        # build system message
+        if self.stooges == 0:
+            system_message = f'GOT EM. THERE WAS NO EVIDENCE.'
+        if self.stooges > 0 and bribe_fail_count == 0:
+            system_message = f'YOU SUCCESSFULLY BRIBED {bribe_success_count} FLEA MARKET STOOGES. YOU TOOK {total_damage} DAMAGE.'
+        if bribe_success_count > 0 and bribe_fail_count > 0 and self.stooges > 0:
+            system_message = f'THE CORN DOGS WERE MID SADLY. BRIBE WAS NOT ACCEPTED BY {bribe_fail_count} STOOGES. YOU SUCCESSFULLY BRIBED {bribe_success_count} FLEA MARKET STOOGES. YOU TOOK {total_damage} DAMAGE.'
+        if bribe_success_count == 0 and bribe_fail_count > 0 and self.stooges > 0:
+            system_message = f'THE CORN DOGS WERE MID SADLY. BRIBE WAS NOT ACCEPTED. YOU TOOK {total_damage} DAMAGE.'
+
+        payload = {
+            'chase': {'health': self.health,
+                      'stooges': self.stooges},
+            'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
+            'systemMessage': system_message,
         }
         return payload
 
@@ -91,12 +151,15 @@ class Chase():
         if key == 'r':
             return self.run()
         else:
-            self.game.game_manager.set_game_sub_menu(
-                Game_Sub_Menu.DIDNT_GET_AWAY)
-            payload = {
-                'chase': {'health': self.health,
-                          'stooges': self.stooges},
-                'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
-                'systemMessage': ''
-            }
-            return payload
+            return self.bribe()
+
+    def run_or_bribe_continue(self):
+        # check for game over
+        if self.health > 0:
+            if self.stooges > 0:
+                return self.start_chase()
+
+            if self.stooges == 0:
+                return self.exit_chase()
+        if self.health <= 0:
+            return self.game.game_manager.game_over()

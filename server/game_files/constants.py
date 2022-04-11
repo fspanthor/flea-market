@@ -13,6 +13,8 @@ class Game_Mode(Enum):
     INSTRUCTIONS = 'instructions'
     INIT = 'init'
     MANAGE_INVENTORY = 'manage_inventory'
+    GAME_OVER = 'game_over'
+    CHASE = 'chase'
 
 
 class Game_Sub_Menu(Enum):
@@ -29,6 +31,7 @@ class Game_Sub_Menu(Enum):
     RUN_OR_BRIBE = 'run_or_bribe'
     GOT_AWAY = 'got_away'
     DIDNT_GET_AWAY = 'didnt_get_away'
+    CHASE_RESULT = 'chase_result'
 
 
 class Play_Mode(Enum):

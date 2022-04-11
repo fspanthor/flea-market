@@ -9,7 +9,7 @@ class TrenchCoat():
         self.switchblades = 0
         self.cell_phones = 0
         self.massage_chairs = 0
-        self.corn_dogs = 5
+        self.corn_dogs = 1
         self.cash = 0
         self.max_hold = 100
 
@@ -20,7 +20,7 @@ class TrenchCoat():
         self.switchblades = 0
         self.cell_phones = 0
         self.massage_chairs = 0
-        self.corn_dogs = 5
+        self.corn_dogs = 1
         self.cash = 2000
         self.max_hold = 100
 
