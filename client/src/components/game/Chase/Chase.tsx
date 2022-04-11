@@ -83,7 +83,8 @@ const Chase = () => {
           allowableKeys={runOrBribeKeys}
         />
       )}
-      {GameSubMenuEnum.CHASE_RESULT && <ChaseResult />}
+      {(GameSubMenuEnum.CHASE_RESULT ||
+        gameSubMenu === GameSubMenuEnum.HEAL) && <ChaseResult />}
     </div>
   );
 };

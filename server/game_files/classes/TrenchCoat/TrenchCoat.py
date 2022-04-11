@@ -21,7 +21,7 @@ class TrenchCoat():
         self.cell_phones = 0
         self.massage_chairs = 0
         self.corn_dogs = 1
-        self.cash = 2000
+        self.cash = 5000
         self.max_hold = 100
 
     def get_amount(self, item):

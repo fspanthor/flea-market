@@ -7,12 +7,12 @@ from ...constants import Game_Mode, Game_Sub_Menu, Utility_Items
 class Chase():
     def __init__(self, game):
         self.health = 100
-        self.stooges = 10
+        self.stooges = 1
         self.game = game
 
     def reset_chase(self):
         self.health = 100
-        self.stooges = 10
+        self.stooges = 1
 
     def get_chase(self):
         payload = {
@@ -59,6 +59,10 @@ class Chase():
 
     def subtract_health(self, amount):
         self.health -= amount
+        return self.health
+
+    def reset_health(self):
+        self.health = 100
         return self.health
 
     def add_health(self, amount):
@@ -129,9 +133,10 @@ class Chase():
         # set game sub menu
         self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CHASE_RESULT)
 
-        # build system message
+        # build system message and offer heal if you got em all
         if self.stooges == 0:
-            system_message = f'GOT EM. THERE WAS NO EVIDENCE.'
+            self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.HEAL)
+            system_message = f'GOT EM. THERE WAS NO EVIDENCE. COST TO FULL HEAL IS 4000.'
         if self.stooges > 0 and bribe_fail_count == 0:
             system_message = f'YOU SUCCESSFULLY BRIBED {bribe_success_count} FLEA MARKET STOOGES. YOU TOOK {total_damage} DAMAGE.'
         if bribe_success_count > 0 and bribe_fail_count > 0 and self.stooges > 0:

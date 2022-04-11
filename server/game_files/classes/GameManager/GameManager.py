@@ -111,26 +111,3 @@ class GameManager():
 
     def get_game_sub_menu(self):
         return getattr(self, 'game_sub_menu')
-
-    def get_game_state(self):
-        if self.day == 30:
-            return 'game over'
-        if self.game.location.get_location() == Locations.BRONX:
-            self.game_mode = Game_Mode.SHARK_BANK_STASH
-            return 'prompt for shark, ask for bank, ask for stash'
-        if self.game_mode == Game_Mode.SHARK_BANK_STASH:
-            return 'prompt for shark bank stash'
-        if self.game_mode == Game_Mode.BUY_SELL_JET:
-            return 'prompt for buy sell jet'
-        if self.game_mode == Game_Mode.BUY:
-            return 'prompt for what will you buy'
-        if self.game_mode == Game_Mode.BUY_HOW_MUCH:
-            return 'prompt for buy how much'
-        if self.game_mode == Game_Mode.SELL:
-            return 'prompt for what will you buy'
-        if self.game_mode == Game_Mode.SELL_HOW_MUCH:
-            return 'prompt for buy how much'
-        if self.game_mode == Game_Mode.JET:
-            return 'prompt for where to jet'
-        else:
-            return 'test'

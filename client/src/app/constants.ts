@@ -23,6 +23,7 @@ export enum GameSubMenuEnum {
   RUN = "run",
   RUN_OR_BRIBE = "runOrBribe",
   CHASE_RESULT = "chaseResult",
+  HEAL = "heal",
 }
 
 export enum FleaMarketFunction {
@@ -58,6 +59,7 @@ export enum FleaMarketFunction {
   GET_CORN_DOGS = "GET_CORN_DOGS",
   RUN_OR_BRIBE = "RUN_OR_BRIBE",
   RUN_OR_BRIBE_CONTINUE = "RUN_OR_BRIBE_CONTINUE",
+  HEAL = "HEAL",
 }
 
 export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];
@@ -65,3 +67,5 @@ export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];
 export const spaceBarKey = [" "];
 
 export const runOrBribeKeys = ["r", "b"];
+
+export const yOrN = ["y", "n"];

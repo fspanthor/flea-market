@@ -1,5 +1,10 @@
 import { memo } from "react";
-import { FleaMarketFunction, GameSubMenuEnum } from "../../../app/constants";
+import {
+  FleaMarketFunction,
+  GameSubMenuEnum,
+  spaceBarKey,
+  yOrN,
+} from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
   selectGameSubMenu,
@@ -12,6 +17,12 @@ import Prompt from "../Input/Prompt";
 const runOrBribeContinueFunction = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.RUN_OR_BRIBE_CONTINUE,
+  });
+};
+
+const healFunction = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.HEAL,
   });
 };
 
@@ -28,6 +39,18 @@ const ChaseResult = () => {
             promptText={"PRESS SPACE BAR TO CONTINUE"}
             promptFunction={runOrBribeContinueFunction}
             promptReduxAction={setGameStateAndSubMenu}
+            allowableKeys={spaceBarKey}
+          />
+        </div>
+      )}
+      {gameSubMenu === GameSubMenuEnum.HEAL && (
+        <div>
+          <div>{systemMessage}</div>
+          <Prompt
+            promptText={"PRESS (Y) TO HEAL OR (N) TO DECLINE"}
+            promptFunction={healFunction}
+            promptReduxAction={setGameStateAndSubMenu}
+            allowableKeys={yOrN}
           />
         </div>
       )}

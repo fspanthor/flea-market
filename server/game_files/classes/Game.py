@@ -6,6 +6,7 @@ from .Player.Player import Player
 from .GameManager.GameManager import GameManager
 from .Shark.Shark import Shark
 from .Chase.Chase import Chase
+from .Event.Event import Event
 
 
 class Game():
@@ -17,3 +18,4 @@ class Game():
         self.instructions = Instructions(self)
         self.shark = Shark(self)
         self.chase = Chase(self)
+        self.event = Event(self)
