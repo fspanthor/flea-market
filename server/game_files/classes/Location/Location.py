@@ -40,6 +40,10 @@ class Location():
                 self.game.shark.increment_debt()
                 updated_debt = self.game.shark.get_debt_amount()
 
+                # increment bank savings
+                self.game.player.stash.increment_bank_savings()
+                updated_bank = self.game.player.stash.get_amount('bank')
+
                 # if heading to Florida, set game mode to manage inventory and sub menu to prompt for shark
                 if requested_location == Locations.FLORIDA.value:
                     self.game.game_manager.set_game_sub_menu(
@@ -65,9 +69,10 @@ class Location():
                     'day': updated_day,
                     'gameState': updated_game_state,
                     'gameSubMenu': updated_game_sub_menu,
-                    'debt': updated_debt
+                    'debt': updated_debt,
+                    'bank': updated_bank
                 }
-            # if same location is selected do not make changes to location, prices or day
+            # if same location is selected do not make changes to location, prices, interest or day
             else:
                 self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
                 updated_game_state = to_camel_case(
@@ -78,7 +83,8 @@ class Location():
                         self.game.prices.get_prices()),
                     'day': self.game.game_manager.day,
                     'gameState': updated_game_state,
-                    'debt': self.game.shark.get_debt_amount()
+                    'debt': self.game.shark.get_debt_amount(),
+                    'bank': self.game.player.stash.get_amount('bank')
                 }
             return payload
         # if a key other than allowable keys is passed do not make changes to location, prices or day

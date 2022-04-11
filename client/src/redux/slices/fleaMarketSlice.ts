@@ -9,6 +9,7 @@ export interface SetLocationResponseType {
   location: string;
   prices: PricesStateType;
   debt: number;
+  bank: number;
 }
 
 export interface PricesStateType {
@@ -292,6 +293,7 @@ export const fleaMarketSlice = createSlice({
       state.gameManager.gameSubMenu = action.payload?.gameSubMenu;
       state.prices = action.payload.prices;
       state.stash.debt = action.payload.debt;
+      state.stash.bank = action.payload.bank;
     },
   },
 });

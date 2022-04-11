@@ -184,3 +184,7 @@ class Stash():
         if hasattr(self, item):
             new_amount = getattr(self, item) - amount
             setattr(self, item, new_amount)
+
+    def increment_bank_savings(self):
+        new_bank = round(self.bank * 1.04/10)*10
+        self.bank = new_bank
