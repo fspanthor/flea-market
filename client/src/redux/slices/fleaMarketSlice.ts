@@ -84,7 +84,7 @@ interface MaximumBuyStateType {
 
 interface SetItemToTransferType {
   currentItem: string;
-  gameState: string;
+  gameSubMenu: string;
 }
 
 interface FleaMarketStateType {
@@ -243,7 +243,7 @@ export const fleaMarketSlice = createSlice({
       action: PayloadAction<SetItemToTransferType>
     ) => {
       state.gameManager.currentItem = action.payload.currentItem;
-      state.gameManager.gameState = action.payload.gameState;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
     },
     setRepayBorrowSharkResponse: (
       state,

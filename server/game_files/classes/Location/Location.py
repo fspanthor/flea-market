@@ -45,29 +45,31 @@ class Location():
                 self.game.player.stash.increment_bank_savings()
                 updated_bank = self.game.player.stash.get_amount('bank')
 
-                # if heading to Florida, set game mode to manage inventory and sub menu to prompt for shark
-                if requested_location == Locations.FLORIDA.value:
-                    self.game.game_manager.set_game_sub_menu(
-                        Game_Sub_Menu.PROMPT_FOR_SHARK)
-                    self.game.game_manager.set_game_mode(
-                        Game_Mode.MANAGE_INVENTORY)
+                # check if chase event will happen
+                # update game state
+                random_number = random.randint(1, 100)
+                if random_number > 8:
+                    # set number of stooges
+                    self.game.chase.randomize_stooges(
+                        self.game.game_manager.day)
 
+                    # set game modes to start chase
+                    self.game.game_manager.set_game_mode(
+                        Game_Mode.CHASE)
+                    self.game.game_manager.set_game_sub_menu(
+                        Game_Sub_Menu.CHASE_START)
                     updated_game_sub_menu = to_camel_case(
                         self.game.game_manager.get_game_sub_menu().value)
 
+                # if no chase, check if we are heading to FL
                 else:
-                    # update game state
-                    random_number = random.randint(1, 100)
-                    if random_number > 8:
-                        # set number of stooges
-                        self.game.chase.randomize_stooges(
-                            self.game.game_manager.day)
-
-                        # set game modes to start chase
-                        self.game.game_manager.set_game_mode(
-                            Game_Mode.CHASE)
+                    # if heading to Florida, set game mode to manage inventory and sub menu to prompt for shark
+                    if requested_location == Locations.FLORIDA.value:
                         self.game.game_manager.set_game_sub_menu(
-                            Game_Sub_Menu.CHASE_START)
+                            Game_Sub_Menu.PROMPT_FOR_SHARK)
+                        self.game.game_manager.set_game_mode(
+                            Game_Mode.MANAGE_INVENTORY)
+
                         updated_game_sub_menu = to_camel_case(
                             self.game.game_manager.get_game_sub_menu().value)
                     else:

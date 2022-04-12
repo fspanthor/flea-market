@@ -135,11 +135,12 @@ class Player():
             # reset current item
             self.game.game_manager.reset_current_item()
             # set to buy sell jet
-            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.PROMPT_FOR_BANK)
 
             payload = {
                 'currentItem': self.game.game_manager.get_current_item(),
-                'gameState': to_camel_case(self.game.game_manager.game_mode.value),
+                'gameSubMenu': to_camel_case(self.game.game_manager.game_sub_menu.value),
             }
             return payload
 
@@ -147,7 +148,7 @@ class Player():
             current_item = self.game.game_manager.stage_current_item(key)
             payload = {
                 'currentItem': current_item,
-                'gameState': to_camel_case(self.game.game_manager.game_mode.value),
+                'gameSubMenu': to_camel_case(self.game.game_manager.game_mode.value)
             }
             return payload
 

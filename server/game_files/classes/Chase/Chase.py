@@ -1,7 +1,7 @@
 import random
 
 from ...utilities.utils import to_camel_case
-from ...constants import Game_Mode, Game_Sub_Menu, Utility_Items
+from ...constants import Game_Mode, Game_Sub_Menu, Locations, Utility_Items
 
 
 class Chase():
@@ -42,14 +42,28 @@ class Chase():
 
     def exit_chase(self):
         self.reset_stooges()
-        self.game.game_manager.set_game_sub_menu('')
-        self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
 
-        payload = {
-            'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
-            'gameSubMenu': '',
-        }
-        return payload
+        # if next location is florida, show manage inventory stuff
+        if self.game.location.get_location().value == Locations.FLORIDA.value:
+            self.game.game_manager.set_game_sub_menu(
+                Game_Sub_Menu.PROMPT_FOR_SHARK)
+            self.game.game_manager.set_game_mode(
+                Game_Mode.MANAGE_INVENTORY)
+
+            payload = {
+                'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
+                'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
+            }
+            return payload
+        else:
+            self.game.game_manager.set_game_sub_menu('')
+            self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
+
+            payload = {
+                'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
+                'gameSubMenu': '',
+            }
+            return payload
 
     def reset_stooges(self):
         self.stooges = 0
