@@ -33,6 +33,7 @@ class Game_Sub_Menu(Enum):
     DIDNT_GET_AWAY = 'didnt_get_away'
     CHASE_RESULT = 'chase_result'
     HEAL = 'heal'
+    CHASE_START = 'chase_start'
 
 
 class Play_Mode(Enum):

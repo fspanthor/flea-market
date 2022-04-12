@@ -7,12 +7,12 @@ from ...constants import Game_Mode, Game_Sub_Menu, Utility_Items
 class Chase():
     def __init__(self, game):
         self.health = 100
-        self.stooges = 1
+        self.stooges = 0
         self.game = game
 
     def reset_chase(self):
         self.health = 100
-        self.stooges = 1
+        self.stooges = 0
 
     def get_chase(self):
         payload = {
@@ -72,6 +72,24 @@ class Chase():
     def set_stooges(self, number):
         setattr(self, 'stooges', number)
         return getattr(self, 'stooges')
+
+    def randomize_stooges(self, day):
+        if day < 5:
+            self.set_stooges(0)
+            return
+        if day < 10:
+            self.set_stooges(random.randint(1, 3))
+            return
+        if day < 15:
+            self.set_stooges(random.randint(2, 4))
+            return
+        if day < 20:
+            self.set_stooges(random.randint(2, 5))
+            return
+        if day < 25:
+            self.set_stooges(random.randint(3, 6))
+        if day < 30:
+            self.set_stooges(random.randint(5, 8))
 
     def calculate_stooge_damage(self):
         total_damage = 0

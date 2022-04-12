@@ -164,8 +164,8 @@ const initialState: FleaMarketStateType = {
     stooges: 0,
   },
   gameManager: {
-    gameState: GameStateEnum.CHASE,
-    gameSubMenu: GameSubMenuEnum.CHASE_START,
+    gameState: GameStateEnum.INIT,
+    gameSubMenu: "",
     day: 0,
     maximumBuy: null,
     currentItem: "",

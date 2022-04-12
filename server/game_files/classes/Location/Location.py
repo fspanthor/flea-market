@@ -1,4 +1,5 @@
 
+import random
 from ...utilities.utils import dict_keys_to_camel_case, to_camel_case
 from ...constants import Game_Mode, Game_Sub_Menu, Locations
 
@@ -56,9 +57,23 @@ class Location():
 
                 else:
                     # update game state
-                    self.game.game_manager.set_game_mode(
-                        Game_Mode.BUY_SELL_JET)
-                    updated_game_sub_menu = ''
+                    random_number = random.randint(1, 100)
+                    if random_number > 8:
+                        # set number of stooges
+                        self.game.chase.randomize_stooges(
+                            self.game.game_manager.day)
+
+                        # set game modes to start chase
+                        self.game.game_manager.set_game_mode(
+                            Game_Mode.CHASE)
+                        self.game.game_manager.set_game_sub_menu(
+                            Game_Sub_Menu.CHASE_START)
+                        updated_game_sub_menu = to_camel_case(
+                            self.game.game_manager.get_game_sub_menu().value)
+                    else:
+                        self.game.game_manager.set_game_mode(
+                            Game_Mode.BUY_SELL_JET)
+                        updated_game_sub_menu = ''
 
                 updated_game_state = to_camel_case(
                     self.game.game_manager.get_game_mode().value)
