@@ -10,6 +10,7 @@ import Jet from "./Jet";
 import ManageInventory from "./ManageInventory";
 import Sell from "./Sell";
 import Title from "./Title";
+import Event from "./Event";
 
 const Interactive = () => {
   const gameState = useAppSelector(selectGameState);
@@ -24,6 +25,7 @@ const Interactive = () => {
       {gameState === GameStateEnum.BUY && <Buy />}
       {gameState === GameStateEnum.SELL && <Sell />}
       {gameState === GameStateEnum.CHASE && <Chase />}
+      {gameState === GameStateEnum.EVENT && <Event />}
     </div>
   );
 };

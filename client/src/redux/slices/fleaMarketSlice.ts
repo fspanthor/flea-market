@@ -10,6 +10,7 @@ export interface SetLocationResponseType {
   prices: PricesStateType;
   debt: number;
   bank: number;
+  systemMessage?: string;
 }
 
 export interface PricesStateType {
@@ -50,7 +51,7 @@ interface GameManagerStateType {
   day: number;
   maximumBuy: number | null;
   currentItem: string;
-  systemMessage: string;
+  systemMessage: string | undefined;
 }
 
 interface GameStateAndSubMenuType {
@@ -294,6 +295,7 @@ export const fleaMarketSlice = createSlice({
       state.prices = action.payload.prices;
       state.stash.debt = action.payload.debt;
       state.stash.bank = action.payload.bank;
+      state.gameManager.systemMessage = action.payload.systemMessage;
     },
   },
 });

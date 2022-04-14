@@ -15,6 +15,7 @@ class Game_Mode(Enum):
     MANAGE_INVENTORY = 'manage_inventory'
     GAME_OVER = 'game_over'
     CHASE = 'chase'
+    EVENT = 'event'
 
 
 class Game_Sub_Menu(Enum):

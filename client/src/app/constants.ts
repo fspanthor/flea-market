@@ -7,6 +7,7 @@ export enum GameStateEnum {
   JET = "jet",
   MANAGE_INVENTORY = "manageInventory",
   CHASE = "chase",
+  EVENT = "event",
 }
 
 export enum GameSubMenuEnum {
@@ -60,6 +61,7 @@ export enum FleaMarketFunction {
   RUN_OR_BRIBE = "RUN_OR_BRIBE",
   RUN_OR_BRIBE_CONTINUE = "RUN_OR_BRIBE_CONTINUE",
   HEAL = "HEAL",
+  EVENT_CONTINUE = "EVENT_CONTINUE",
 }
 
 export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];

@@ -1,4 +1,5 @@
 from functools import reduce
+import random
 
 from ..constants import Items
 
@@ -48,3 +49,7 @@ def get_item_for_key(key):
     if key == 'm':
         item = Items.MASSAGE_CHAIRS.value
     return item
+
+
+def randomize(lower_bound, upper_bound):
+    return round(random.randint(lower_bound, upper_bound)/10)*10
