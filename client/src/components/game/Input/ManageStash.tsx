@@ -46,7 +46,8 @@ const ManageStash = () => {
   const currentTrenchCoat: Record<string, any> =
     useAppSelector(selectTrenchCoat);
 
-  const manageStashAllowableKeys = ["d", "h", "s", "f", "c", "m", "q"];
+  const manageStashAllowableKeys = ["Q", "q"];
+  manageStashAllowableKeys.push(...itemAllowableKeys);
 
   return (
     <div>

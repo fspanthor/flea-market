@@ -66,7 +66,7 @@ class GameManager():
 
     def game_over(self):
         self.set_game_mode(Game_Mode.GAME_OVER)
-        self.set_game_sub_menu('')
+        self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
         payload = {
             'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
             'gameSubMenu': ''}

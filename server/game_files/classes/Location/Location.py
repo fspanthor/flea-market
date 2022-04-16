@@ -25,7 +25,12 @@ class Location():
             current_location = to_camel_case(self.location.value)
             requested_location = to_camel_case(
                 self.game.game_manager.requested_location(key))
+
+            # check for game over by time
             if current_location != requested_location:
+                if self.game.game_manager.day == 30:
+                    return self.game.game_manager.game_over()
+
                 # select new location
                 self.game.game_manager.jet(key)
                 updated_location = to_camel_case(self.location.value)
@@ -79,7 +84,8 @@ class Location():
                 if random_number_for_event < 35:
                     # clear sub menu
                     # it may be re-set during random event
-                    self.game.game_manager.set_game_sub_menu('')
+                    self.game.game_manager.set_game_sub_menu(
+                        Game_Sub_Menu.CLEAR)
                     system_message = self.game.event.random_event()
                     self.game.game_manager.set_game_mode(
                         Game_Mode.EVENT)

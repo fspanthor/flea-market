@@ -8,6 +8,7 @@ export enum GameStateEnum {
   MANAGE_INVENTORY = "manageInventory",
   CHASE = "chase",
   EVENT = "event",
+  GAME_OVER = "gameOver",
 }
 
 export enum GameSubMenuEnum {

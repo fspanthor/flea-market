@@ -328,14 +328,15 @@ export const fleaMarketSlice = createSlice({
       state,
       action: PayloadAction<SetLocationResponseType>
     ) => {
-      state.location = action.payload.location;
-      state.gameManager.day = action.payload.day;
+      action.payload?.location && (state.location = action.payload.location);
+      action.payload?.day && (state.gameManager.day = action.payload.day);
       state.gameManager.gameState = action.payload.gameState;
       state.gameManager.gameSubMenu = action.payload?.gameSubMenu;
-      state.prices = action.payload.prices;
-      state.stash.debt = action.payload.debt;
-      state.stash.bank = action.payload.bank;
-      state.gameManager.systemMessage = action.payload.systemMessage;
+      action.payload?.prices && (state.prices = action.payload.prices);
+      action.payload?.debt && (state.stash.debt = action.payload.debt);
+      action.payload?.bank && (state.stash.bank = action.payload.bank);
+      action.payload?.systemMessage &&
+        (state.gameManager.systemMessage = action.payload.systemMessage);
       action.payload?.trenchCoat &&
         (state.trenchCoat = action.payload?.trenchCoat);
     },

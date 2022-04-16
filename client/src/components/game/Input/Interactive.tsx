@@ -11,6 +11,7 @@ import ManageInventory from "./ManageInventory";
 import Sell from "./Sell";
 import Title from "./Title";
 import Event from "./Event";
+import GameOver from "./GameOver";
 
 const Interactive = () => {
   const gameState = useAppSelector(selectGameState);
@@ -26,6 +27,7 @@ const Interactive = () => {
       {gameState === GameStateEnum.SELL && <Sell />}
       {gameState === GameStateEnum.CHASE && <Chase />}
       {gameState === GameStateEnum.EVENT && <Event />}
+      {gameState === GameStateEnum.GAME_OVER && <GameOver />}
     </div>
   );
 };

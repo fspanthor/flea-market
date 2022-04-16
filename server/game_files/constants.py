@@ -36,6 +36,7 @@ class Game_Sub_Menu(Enum):
     HEAL = 'heal'
     CHASE_START = 'chase_start'
     YES_OR_NO_EVENT = 'yes_or_no_event'
+    CLEAR = ''
 
 
 class Play_Mode(Enum):

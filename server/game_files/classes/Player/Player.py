@@ -131,6 +131,9 @@ class Player():
             return payload
 
     def select_item_to_manage(self, key):
+        # set to stash by default
+        # self.game.game_manager.set_game_sub_menu(
+        #     Game_Sub_Menu.STASH)
         if key == 'q' or key == 'Q':
             # reset current item
             self.game.game_manager.reset_current_item()
@@ -148,7 +151,7 @@ class Player():
             current_item = self.game.game_manager.stage_current_item(key)
             payload = {
                 'currentItem': current_item,
-                'gameSubMenu': to_camel_case(self.game.game_manager.game_mode.value)
+                'gameSubMenu': to_camel_case(self.game.game_manager.game_sub_menu.value)
             }
             return payload
 

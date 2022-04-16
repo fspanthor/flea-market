@@ -198,7 +198,7 @@ class Event():
         if dice_roll < 80:
             amount_to_find = int((cash * .10)/10 * 10)
             self.game.player.trench_coat.add_cash(amount_to_find)
-            system_message = f'FOUND ${amount_to_find} JUST LAYING ON THE GROUND!!'
+            system_message = f'FOUND ${amount_to_find} JUST LYING ON THE GROUND!!'
 
         if dice_roll > 80:
             amount_to_find = int((cash * .25)/10 * 10)
@@ -249,7 +249,7 @@ class Event():
             }
             return payload
         else:
-            self.game.game_manager.set_game_sub_menu('')
+            self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CLEAR)
             self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
 
             payload = {

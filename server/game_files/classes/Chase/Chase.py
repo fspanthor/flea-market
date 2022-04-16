@@ -48,7 +48,7 @@ class Chase():
         if random_number_for_event < 50:
             # clear sub menu
             # it may be re-set during random event
-            self.game.game_manager.set_game_sub_menu('')
+            self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CLEAR)
             system_message = self.game.event.random_event()
             self.game.game_manager.set_game_mode(
                 Game_Mode.EVENT)
@@ -92,7 +92,7 @@ class Chase():
             }
             return payload
         else:
-            self.game.game_manager.set_game_sub_menu('')
+            self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CLEAR)
             self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
 
             payload = {
