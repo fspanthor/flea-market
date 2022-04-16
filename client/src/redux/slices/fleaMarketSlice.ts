@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GameStateEnum, GameSubMenuEnum } from "../../app/constants";
+import { GameStateEnum } from "../../app/constants";
 import type { RootState } from "../../app/store";
 
 export interface SetLocationResponseType {
@@ -11,6 +11,7 @@ export interface SetLocationResponseType {
   debt: number;
   bank: number;
   systemMessage?: string;
+  trenchCoat?: TrenchCoatStateType;
 }
 
 export interface SetExitChaseResponseTyppe {
@@ -22,6 +23,7 @@ export interface SetExitChaseResponseTyppe {
   debt?: number;
   bank?: number;
   systemMessage?: string;
+  trenchCoat?: TrenchCoatStateType;
 }
 
 export interface PricesStateType {
@@ -220,6 +222,8 @@ export const fleaMarketSlice = createSlice({
       action.payload?.bank && (state.stash.bank = action.payload?.bank);
       action.payload?.systemMessage &&
         (state.gameManager.systemMessage = action.payload?.systemMessage);
+      action.payload?.trenchCoat &&
+        (state.trenchCoat = action.payload?.trenchCoat);
     },
     setStash: (state, action: PayloadAction<StashStateType>) => {
       state.stash = action.payload;
@@ -318,6 +322,8 @@ export const fleaMarketSlice = createSlice({
       state.stash.debt = action.payload.debt;
       state.stash.bank = action.payload.bank;
       state.gameManager.systemMessage = action.payload.systemMessage;
+      action.payload?.trenchCoat &&
+        (state.trenchCoat = action.payload?.trenchCoat);
     },
   },
 });

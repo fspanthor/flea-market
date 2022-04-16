@@ -2,8 +2,8 @@
 import random
 
 from ...classes.Prices.Prices import Price_Limit
-from ...constants import Game_Mode, Game_Sub_Menu, Locations
-from ...utilities.utils import randomize, to_camel_case
+from ...constants import Game_Mode, Game_Sub_Menu, Items, Locations
+from ...utilities.utils import d_100_dice_roll, randomize, to_camel_case
 
 
 class Event():
@@ -23,7 +23,10 @@ class Event():
 
     def random_event(self):
         event_functions = [self.game.event.sale_event,
-                           self.game.event.surge_event]
+                           self.game.event.surge_event,
+                           self.game.event.robbed,
+                           self.game.event.found_money,
+                           self.game.event.random_message]
 
         # pick random event
         number_of_events = len(event_functions)
@@ -34,7 +37,12 @@ class Event():
     def sale_event(self):
         prices = self.game.prices
 
-        sale_item = random.randint(1, 6)
+        dice_roll = d_100_dice_roll()
+        if dice_roll < 80:
+            sale_item = random.randint(1, 4)
+        if dice_roll > 80:
+            sale_item = random.randint(5, 6)
+
         if sale_item == 1:
             prices.dvds = randomize(
                 int(Price_Limit.DVDS_LOW/4), int(Price_Limit.DVDS_HIGH/4))
@@ -65,7 +73,12 @@ class Event():
     def surge_event(self):
         prices = self.game.prices
 
-        surge_item = random.randint(1, 6)
+        dice_roll = d_100_dice_roll()
+        if dice_roll < 80:
+            surge_item = random.randint(1, 4)
+        if dice_roll > 80:
+            surge_item = random.randint(5, 6)
+
         if surge_item == 1:
             prices.dvds = randomize(
                 int(Price_Limit.DVDS_LOW*4), int(Price_Limit.DVDS_HIGH*4))
@@ -91,6 +104,50 @@ class Event():
                 int(Price_Limit.GOLF_CARTS_LOW*2), int(Price_Limit.GOLF_CARTS_HIGH*2))
             item = 'MASSAGE CHAIRS'
         system_message = f'LOCALS ARE BUYING {item} AT OUTRAGEOUS PRICES HERE!!'
+        return system_message
+
+    def robbed(self):
+        dice_roll = d_100_dice_roll()
+
+        cash = self.game.player.trench_coat.get_amount('cash')
+        if cash > 0 and dice_roll < 80:
+            amount_to_rob = int((cash * .10)/10 * 10)
+            self.game.player.trench_coat.subtract_cash(amount_to_rob)
+            system_message = f'YOUR CAR BROKE DOWN AND IT COST ${amount_to_rob} TO FIX!!'
+
+        if cash > 0 and dice_roll > 80:
+            amount_to_rob = int((cash * .25)/10 * 10)
+            self.game.player.trench_coat.subtract_cash(amount_to_rob)
+            system_message = f'GIMMIE THAT CASH. LOST ${amount_to_rob}!!'
+
+        if cash <= 0:
+            system_message = 'YOU GOT NO MONEY HUH'
+
+        return system_message
+
+    def found_money(self):
+        dice_roll = d_100_dice_roll()
+        cash = self.game.player.trench_coat.get_amount('cash')
+        amount_to_find = int((cash * .10)/10 * 10)
+
+        if dice_roll < 80:
+            amount_to_find = int((cash * .10)/10 * 10)
+            self.game.player.trench_coat.add_cash(amount_to_find)
+            system_message = f'FOUND ${amount_to_find} JUST LAYING ON THE GROUND!!'
+
+        if dice_roll > 80:
+            amount_to_find = int((cash * .25)/10 * 10)
+            self.game.player.trench_coat.add_cash(amount_to_find)
+            system_message = f'YOU FOUND A SUITCASE FULL OF CASH!! ${amount_to_find} ADDED TO TRENCH COAT.'
+
+        if cash <= 0:
+            system_message = 'YOU GOT NO MONEY HUH'
+
+        return system_message
+
+    def random_message(self):
+        system_message = 'WHY DOES IT FEEL LIKE EVERYONE IS STARING AT YOU..'
+
         return system_message
 
     def event_continue(self):

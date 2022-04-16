@@ -64,10 +64,23 @@ export enum FleaMarketFunction {
   EVENT_CONTINUE = "EVENT_CONTINUE",
 }
 
-export const itemAllowableKeys = ["d", "h", "s", "f", "c", "m"];
+export const itemAllowableKeys = [
+  "d",
+  "h",
+  "s",
+  "f",
+  "c",
+  "m",
+  "D",
+  "H",
+  "S",
+  "F",
+  "C",
+  "M",
+];
 
 export const spaceBarKey = [" "];
 
-export const runOrBribeKeys = ["r", "b"];
+export const runOrBribeKeys = ["r", "b", "R", "B"];
 
-export const yOrN = ["y", "n"];
+export const yOrN = ["y", "n", "Y", "N"];

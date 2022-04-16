@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { FleaMarketFunction } from "../../../app/constants";
+import { FleaMarketFunction, yOrN } from "../../../app/constants";
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";
@@ -10,8 +10,6 @@ const instructionsPrompt = async (key: string) => {
     params: { key: key },
   });
 };
-
-const titleAllowableKeys = ["y", "n"];
 
 const Title = () => {
   return (
@@ -25,7 +23,7 @@ const Title = () => {
       <Input
         gameFunction={instructionsPrompt}
         reduxAction={setGameState}
-        allowableKeys={titleAllowableKeys}
+        allowableKeys={yOrN}
       />
     </div>
   );

@@ -34,22 +34,26 @@ def get_params_if_params_exist(request):
 
 def get_item_for_key(key):
     # this is a safety measure in case a bad character makes it to this function
-    if key != 'd' or 'h' or 's' or 'f' or 'c' or 'm':
+    if key != 'd' or 'h' or 's' or 'f' or 'c' or 'm' or 'D' or 'H' or 'S' or 'F' or 'C' or 'M':
         item = Items.DVDS.value
-    if key == 'd':
+    if key == 'd' or key == 'D':
         item = Items.DVDS.value
-    if key == 'h':
+    if key == 'h' or key == 'H':
         item = Items.HOT_SAUCE.value
-    if key == 's':
+    if key == 's' or key == 'S':
         item = Items.SWITCHBLADES.value
-    if key == 'f':
+    if key == 'f' or key == 'F':
         item = Items.FAKE_SHOES.value
-    if key == 'c':
+    if key == 'c' or key == 'C':
         item = Items.CELL_PHONES.value
-    if key == 'm':
+    if key == 'm' or key == 'M':
         item = Items.MASSAGE_CHAIRS.value
     return item
 
 
 def randomize(lower_bound, upper_bound):
     return round(random.randint(lower_bound, upper_bound)/10)*10
+
+
+def d_100_dice_roll():
+    return random.randint(1, 100)

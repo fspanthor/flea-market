@@ -58,13 +58,13 @@ class GameManager():
         self.day = self.day + 1
 
     def buy_sell_jet(self, key):
-        if key == 'b':
+        if key == 'b' or key == 'B':
             self.set_game_mode(Game_Mode.BUY)
             return self.get_game_mode().value
-        if key == 's':
+        if key == 's' or key == 'S':
             self.set_game_mode(Game_Mode.SELL)
             return self.get_game_mode().value
-        if key == 'j':
+        if key == 'j' or key == 'J':
             self.set_game_mode(Game_Mode.JET)
             return self.get_game_mode().value
         else:

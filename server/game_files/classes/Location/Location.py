@@ -86,6 +86,7 @@ class Location():
                         self.game.game_manager.get_game_sub_menu())
                     updated_game_state = to_camel_case(
                         self.game.game_manager.get_game_mode().value)
+                    updated_trench_coat = self.game.player.trench_coat.get_trench_coat()
 
                     payload = {
                         'location': updated_location,
@@ -95,7 +96,8 @@ class Location():
                         'gameSubMenu': updated_game_sub_menu,
                         'debt': updated_debt,
                         'bank': updated_bank,
-                        'systemMessage': system_message
+                        'systemMessage': system_message,
+                        'trenchCoat': updated_trench_coat
                     }
                     return payload
 

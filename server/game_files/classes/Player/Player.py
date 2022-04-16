@@ -131,7 +131,7 @@ class Player():
             return payload
 
     def select_item_to_manage(self, key):
-        if key == 'q':
+        if key == 'q' or key == 'Q':
             # reset current item
             self.game.game_manager.reset_current_item()
             # set to buy sell jet

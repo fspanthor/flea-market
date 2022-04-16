@@ -34,10 +34,10 @@ class Stash():
             return getattr(self, item)
 
     def stash_continue(self, key):
-        if key == 'y':
+        if key == 'y' or key == 'Y':
             self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.STASH)
             return to_camel_case(self.game.game_manager.get_game_sub_menu().value)
-        if key == 'n':
+        if key == 'n' or key == 'N':
             self.game.game_manager.set_game_sub_menu(
                 Game_Sub_Menu.PROMPT_FOR_BANK)
             return to_camel_case(self.game.game_manager.get_game_sub_menu().value)
@@ -45,7 +45,7 @@ class Stash():
             return to_camel_case(self.game.game_manager.get_game_sub_menu().value)
 
     def bank_continue(self, key):
-        if key == 'y':
+        if key == 'y' or key == 'Y':
             self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.BANK)
             game_mode = to_camel_case(
                 self.game.game_manager.get_game_mode().value)
@@ -57,7 +57,7 @@ class Stash():
                 'gameState': game_mode
             }
             return payload
-        if key == 'n':
+        if key == 'n' or key == 'N':
             # reset sub menu
             self.game.game_manager.set_game_sub_menu(
                 '')

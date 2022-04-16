@@ -91,10 +91,10 @@ class Shark ():
         return self.__dict__
 
     def shark_continue(self, key):
-        if key == 'y':
+        if key == 'y' or key == 'Y':
             self.game_manager.set_game_sub_menu(Game_Sub_Menu.SHARK)
             return to_camel_case(self.game_manager.get_game_sub_menu().value)
-        if key == 'n':
+        if key == 'n' or key == 'N':
             self.game_manager.set_game_sub_menu(Game_Sub_Menu.PROMPT_FOR_STASH)
             return to_camel_case(self.game_manager.get_game_sub_menu().value)
         else:

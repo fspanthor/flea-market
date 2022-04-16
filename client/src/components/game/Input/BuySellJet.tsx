@@ -11,7 +11,7 @@ export const buySellJetPrompt = async (key: string) => {
   });
 };
 
-const buySellJetAllowableKeys = ["b", "s", "j"];
+const buySellJetAllowableKeys = ["b", "s", "j", "B", "S", "J"];
 
 const BuySellJet = () => {
   return (

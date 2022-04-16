@@ -61,6 +61,7 @@ class Chase():
             updated_day = self.game.game_manager.day
             updated_debt = self.game.shark.get_debt_amount()
             updated_bank = self.game.player.stash.get_amount('bank')
+            updated_trench_coat = self.game.player.trench_coat.get_trench_coat()
 
             payload = {
                 'location': updated_location,
@@ -70,7 +71,8 @@ class Chase():
                 'gameSubMenu': updated_game_sub_menu,
                 'debt': updated_debt,
                 'bank': updated_bank,
-                'systemMessage': system_message
+                'systemMessage': system_message,
+                'trenchCoat': updated_trench_coat
             }
             return payload
 
@@ -216,7 +218,7 @@ class Chase():
         return payload
 
     def run_or_bribe(self, key):
-        if key == 'r':
+        if key == 'r' or key == 'B':
             return self.run()
         else:
             return self.bribe()

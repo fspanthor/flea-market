@@ -11,10 +11,10 @@ class Instructions():
         self.game_manager = game.game_manager
 
     def instructions_prompt(self, key):
-        if key == 'y':
+        if key == 'y' or key == 'Y':
             self.game_manager.set_game_mode(Game_Mode.INSTRUCTIONS)
             return to_camel_case(self.game_manager.get_game_mode().value)
-        if key == 'n':
+        if key == 'n' or key == 'N':
             self.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
             return to_camel_case(self.game_manager.get_game_mode().value)
         else:
