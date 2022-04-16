@@ -1,8 +1,10 @@
 from flask import jsonify
 
+from ...utilities.utils import to_camel_case
+
 
 def get_location(game_instance):
-    return jsonify(game_instance.location.get_location().value)
+    return jsonify(to_camel_case(game_instance.location.get_location().value))
 
 
 def change_location(game_instance, params):

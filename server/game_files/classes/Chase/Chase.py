@@ -1,6 +1,6 @@
 import random
 
-from ...utilities.utils import to_camel_case
+from ...utilities.utils import dict_keys_to_camel_case, to_camel_case
 from ...constants import Game_Mode, Game_Sub_Menu, Locations, Utility_Items
 
 
@@ -42,6 +42,37 @@ class Chase():
 
     def exit_chase(self):
         self.reset_stooges()
+
+        # check if random event will happen after chase
+        random_number_for_event = random.randint(1, 100)
+        if random_number_for_event < 50:
+            self.game.game_manager.set_game_sub_menu('')
+            self.game.game_manager.set_game_mode(
+                Game_Mode.EVENT)
+            system_message = self.game.event.random_event()
+            updated_prices = dict_keys_to_camel_case(
+                self.game.prices.get_prices())
+            updated_game_sub_menu = to_camel_case(
+                self.game.game_manager.get_game_sub_menu())
+            updated_game_state = to_camel_case(
+                self.game.game_manager.get_game_mode().value)
+            updated_location = to_camel_case(
+                self.game.location.get_location().value)
+            updated_day = self.game.game_manager.day
+            updated_debt = self.game.shark.get_debt_amount()
+            updated_bank = self.game.player.stash.get_amount('bank')
+
+            payload = {
+                'location': updated_location,
+                'prices': updated_prices,
+                'day': updated_day,
+                'gameState': updated_game_state,
+                'gameSubMenu': updated_game_sub_menu,
+                'debt': updated_debt,
+                'bank': updated_bank,
+                'systemMessage': system_message
+            }
+            return payload
 
         # if next location is florida, show manage inventory stuff
         if self.game.location.get_location().value == Locations.FLORIDA.value:

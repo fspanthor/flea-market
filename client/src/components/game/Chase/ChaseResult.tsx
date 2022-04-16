@@ -9,7 +9,7 @@ import { useAppSelector } from "../../../app/hooks";
 import {
   selectGameSubMenu,
   selectSystemMessage,
-  setGameStateAndSubMenu,
+  setExitChase,
 } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Prompt from "../Input/Prompt";
@@ -38,7 +38,7 @@ const ChaseResult = () => {
           <Prompt
             promptText={"PRESS SPACE BAR TO CONTINUE"}
             promptFunction={runOrBribeContinueFunction}
-            promptReduxAction={setGameStateAndSubMenu}
+            promptReduxAction={setExitChase}
             allowableKeys={spaceBarKey}
           />
         </div>
@@ -49,7 +49,7 @@ const ChaseResult = () => {
           <Prompt
             promptText={"PRESS (Y) TO HEAL OR (N) TO DECLINE"}
             promptFunction={healFunction}
-            promptReduxAction={setGameStateAndSubMenu}
+            promptReduxAction={setExitChase}
             allowableKeys={yOrN}
           />
         </div>

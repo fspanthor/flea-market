@@ -13,6 +13,17 @@ export interface SetLocationResponseType {
   systemMessage?: string;
 }
 
+export interface SetExitChaseResponseTyppe {
+  day?: number;
+  gameState: string;
+  gameSubMenu?: string;
+  location?: string;
+  prices?: PricesStateType;
+  debt?: number;
+  bank?: number;
+  systemMessage?: string;
+}
+
 export interface PricesStateType {
   massageChairs: number;
   cellPhones: number;
@@ -199,6 +210,17 @@ export const fleaMarketSlice = createSlice({
       state.gameManager.gameState = action.payload.gameState;
       state.gameManager.gameSubMenu = action.payload.gameSubMenu;
     },
+    setExitChase: (state, action: PayloadAction<SetExitChaseResponseTyppe>) => {
+      action.payload?.location && (state.location = action.payload?.location);
+      action.payload?.day && (state.gameManager.day = action.payload?.day);
+      state.gameManager.gameState = action.payload.gameState;
+      state.gameManager.gameSubMenu = action.payload?.gameSubMenu;
+      action.payload?.prices && (state.prices = action.payload?.prices);
+      action.payload?.debt && (state.stash.debt = action.payload?.debt);
+      action.payload?.bank && (state.stash.bank = action.payload?.bank);
+      action.payload?.systemMessage &&
+        (state.gameManager.systemMessage = action.payload?.systemMessage);
+    },
     setStash: (state, action: PayloadAction<StashStateType>) => {
       state.stash = action.payload;
     },
@@ -323,6 +345,7 @@ export const {
   setChase,
   setChaseResponse,
   setCornDogs,
+  setExitChase,
 } = fleaMarketSlice.actions;
 
 //selectors

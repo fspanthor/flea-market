@@ -11,8 +11,6 @@ class Event():
         self.game = game
 
     def heal(self):
-        self.game.game_manager.set_game_sub_menu('')
-        self.game.game_manager.set_game_mode(Game_Mode.BUY_SELL_JET)
         current_cash = self.game.player.trench_coat.cash
 
         # reset health
@@ -21,11 +19,17 @@ class Event():
             self.game.player.trench_coat.subtract_cash(4000)
             self.game.chase.reset_health()
 
-        payload = {
-            'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
-            'gameSubMenu': '',
-        }
-        return payload
+        return self.game.chase.exit_chase()
+
+    def random_event(self):
+        event_functions = [self.game.event.sale_event,
+                           self.game.event.surge_event]
+
+        # pick random event
+        number_of_events = len(event_functions)
+        event_id = random.randint(0, number_of_events - 1)
+        function = event_functions[event_id]
+        return function()
 
     def sale_event(self):
         prices = self.game.prices

@@ -48,7 +48,7 @@ class Location():
                 # check if chase event will happen
                 # update game state
                 random_number_for_chase = random.randint(1, 100)
-                if random_number_for_chase > 100:
+                if random_number_for_chase < 25:
                     # set number of stooges
                     self.game.chase.randomize_stooges(
                         self.game.game_manager.day)
@@ -60,13 +60,26 @@ class Location():
                         Game_Sub_Menu.CHASE_START)
                     updated_game_sub_menu = to_camel_case(
                         self.game.game_manager.get_game_sub_menu().value)
+                    updated_game_state = to_camel_case(
+                        self.game.game_manager.get_game_mode().value)
+
+                    payload = {
+                        'location': updated_location,
+                        'prices': updated_prices,
+                        'day': updated_day,
+                        'gameState': updated_game_state,
+                        'gameSubMenu': updated_game_sub_menu,
+                        'debt': updated_debt,
+                        'bank': updated_bank,
+                    }
+                    return payload
 
                 random_number_for_event = random.randint(1, 100)
-                if random_number_for_event > 0:
+                if random_number_for_event < 35:
                     self.game.game_manager.set_game_sub_menu('')
                     self.game.game_manager.set_game_mode(
                         Game_Mode.EVENT)
-                    system_message = self.game.event.sale_event()
+                    system_message = self.game.event.random_event()
                     updated_prices = dict_keys_to_camel_case(
                         self.game.prices.get_prices())
                     updated_game_sub_menu = to_camel_case(
