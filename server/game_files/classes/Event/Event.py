@@ -2,7 +2,7 @@
 import random
 
 from ...classes.Prices.Prices import Price_Limit
-from ...constants import Game_Mode, Game_Sub_Menu, Items, Locations
+from ...constants import Game_Mode, Game_Sub_Menu, Items, Locations, Utility_Items
 from ...utilities.utils import d_100_dice_roll, randomize, to_camel_case
 
 
@@ -26,13 +26,78 @@ class Event():
                            self.game.event.surge_event,
                            self.game.event.robbed,
                            self.game.event.found_money,
-                           self.game.event.random_message]
+                           self.game.event.random_message,
+                           self.game.event.buy_corn_dog,
+                           self.game.event.add_trench_coat_pockets]
 
         # pick random event
         number_of_events = len(event_functions)
         event_id = random.randint(0, number_of_events - 1)
         function = event_functions[event_id]
         return function()
+
+    def buy_corn_dog(self):
+        self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.YES_OR_NO_EVENT)
+        current_corn_dogs = self.game.player.trench_coat.get_corn_dogs()
+        corn_dog_price = current_corn_dogs * 2000 if current_corn_dogs > 0 else 2000
+        current_cash = self.game.player.trench_coat.get_amount('cash')
+
+        # if player can afford corn dog, set corn dog as current item
+        # set staged amount
+        if current_cash >= corn_dog_price:
+            self.game.game_manager.set_current_item(Utility_Items.CORN_DOGS)
+            self.game.game_manager.set_staged_amount(1)
+            self.game.game_manager.set_staged_price(corn_dog_price)
+
+        # if player cannot afford, set amount and price to 0
+        if current_cash < corn_dog_price:
+            self.game.game_manager.set_current_item(Utility_Items.CORN_DOGS)
+            self.game.game_manager.set_staged_amount(0)
+            self.game.game_manager.set_staged_price(0)
+
+        if current_corn_dogs == 0:
+            system_message = 'WOULD YOU LIKE TO BUY A CORN DOG FOR $2000?'
+
+        if current_corn_dogs > 0:
+            corn_dog_price = current_corn_dogs * 2000
+            system_message = f'WOULD YOU LIKE TO BUY A CORN DOG FOR {corn_dog_price}?'
+
+        return system_message
+
+    def add_trench_coat_pockets(self):
+        self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.YES_OR_NO_EVENT)
+        current_cash = self.game.player.trench_coat.get_amount('cash')
+        current_day = self.game.game_manager.day
+
+        # determine increase amount and price to increase
+
+        if current_day < 10:
+            increase_amount = random.randint(10, 20)
+            price_to_increase = increase_amount * 200
+
+        if current_day >= 10 and current_day < 20:
+            increase_amount = random.randint(20, 35)
+            price_to_increase = increase_amount * 400
+
+        if current_day >= 20:
+            increase_amount = random.randint(30, 50)
+            price_to_increase = increase_amount * 800
+
+        # if player can afford, set max hold as current item
+        # set staged amount
+        if current_cash >= price_to_increase:
+            self.game.game_manager.set_current_item(Utility_Items.MAX_HOLD)
+            self.game.game_manager.set_staged_amount(increase_amount)
+            self.game.game_manager.set_staged_price(price_to_increase)
+
+        # if player cannot afford, set amount and price to 0
+        if current_cash < price_to_increase:
+            self.game.game_manager.set_current_item(Utility_Items.MAX_HOLD)
+            self.game.game_manager.set_staged_amount(0)
+            self.game.game_manager.set_staged_price(0)
+
+        system_message = f'WOULD YOU LIKE TO ADD {increase_amount} POCKETS TO YOUR TRENCH COAT FOR ${price_to_increase}??'
+        return system_message
 
     def sale_event(self):
         prices = self.game.prices
@@ -150,6 +215,24 @@ class Event():
 
         return system_message
 
+    def yes_or_no_continue(self, key):
+
+        # at this point we can trust that we can afford the current amount and staged price
+        if key == 'y' or key == 'Y':
+            current_item = self.game.game_manager.get_current_item().value
+            staged_amount = self.game.game_manager.get_staged_amount()
+            staged_price = self.game.game_manager.get_staged_price()
+
+            self.game.player.trench_coat.add_inventory(
+                current_item, staged_amount)
+            self.game.player.trench_coat.subtract_cash(staged_price)
+
+        self.game.game_manager.reset_current_item()
+        self.game.game_manager.reset_staged_amount()
+        self.game.game_manager.reset_staged_price()
+
+        return self.event_continue()
+
     def event_continue(self):
 
         # if location is florida show inventory prompts
@@ -162,6 +245,7 @@ class Event():
             payload = {
                 'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
                 'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value),
+                'trenchCoat': self.game.player.trench_coat.get_trench_coat()
             }
             return payload
         else:
@@ -171,5 +255,6 @@ class Event():
             payload = {
                 'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
                 'gameSubMenu': '',
+                'trenchCoat': self.game.player.trench_coat.get_trench_coat()
             }
             return payload

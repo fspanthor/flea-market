@@ -46,14 +46,17 @@ class Chase():
         # check if random event will happen after chase
         random_number_for_event = random.randint(1, 100)
         if random_number_for_event < 50:
+            # clear sub menu
+            # it may be re-set during random event
             self.game.game_manager.set_game_sub_menu('')
+            system_message = self.game.event.random_event()
             self.game.game_manager.set_game_mode(
                 Game_Mode.EVENT)
-            system_message = self.game.event.random_event()
+
             updated_prices = dict_keys_to_camel_case(
                 self.game.prices.get_prices())
             updated_game_sub_menu = to_camel_case(
-                self.game.game_manager.get_game_sub_menu())
+                self.game.game_manager.get_game_sub_menu().value)
             updated_game_state = to_camel_case(
                 self.game.game_manager.get_game_mode().value)
             updated_location = to_camel_case(

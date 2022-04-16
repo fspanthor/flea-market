@@ -1,9 +1,16 @@
 import { memo } from "react";
-import { FleaMarketFunction, spaceBarKey } from "../../../app/constants";
+import {
+  FleaMarketFunction,
+  GameSubMenuEnum,
+  spaceBarKey,
+  yOrN,
+} from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
+  selectGameSubMenu,
   selectSystemMessage,
   setGameStateAndSubMenu,
+  setYesOrNoContinue,
 } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Prompt from "./Prompt";
@@ -14,20 +21,42 @@ const eventContinueFunction = async () => {
   });
 };
 
+const eventYesOrNoFunction = async (key: string) => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.YES_OR_NO_CONTINUE,
+    params: { key: key },
+  });
+};
+
 const Event = () => {
   const systemMessage = useAppSelector(selectSystemMessage);
+  const gameSubMenu = useAppSelector(selectGameSubMenu);
 
   return (
     <div>
-      event
       <div>
-        <div>{systemMessage}</div>
-        <Prompt
-          promptText={"PRESS SPACE BAR TO CONTINUE"}
-          promptFunction={eventContinueFunction}
-          promptReduxAction={setGameStateAndSubMenu}
-          allowableKeys={spaceBarKey}
-        />
+        {gameSubMenu !== GameSubMenuEnum.YES_OR_NO_EVENT && (
+          <div>
+            <div>{systemMessage}</div>
+            <Prompt
+              promptText={"PRESS SPACE BAR TO CONTINUE"}
+              promptFunction={eventContinueFunction}
+              promptReduxAction={setGameStateAndSubMenu}
+              allowableKeys={spaceBarKey}
+            />
+          </div>
+        )}
+        {gameSubMenu === GameSubMenuEnum.YES_OR_NO_EVENT && (
+          <div>
+            <div>{systemMessage}</div>
+            <Prompt
+              promptText={"PRESS (Y) OR (N)"}
+              promptFunction={eventYesOrNoFunction}
+              promptReduxAction={setYesOrNoContinue}
+              allowableKeys={yOrN}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

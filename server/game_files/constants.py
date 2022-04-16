@@ -35,6 +35,7 @@ class Game_Sub_Menu(Enum):
     CHASE_RESULT = 'chase_result'
     HEAL = 'heal'
     CHASE_START = 'chase_start'
+    YES_OR_NO_EVENT = 'yes_or_no_event'
 
 
 class Play_Mode(Enum):
@@ -61,6 +62,7 @@ class Items(Enum):
 
 class Utility_Items(Enum):
     CORN_DOGS = 'corn_dogs'
+    MAX_HOLD = 'max_hold'
 
 
 allowable_items = ([Items.DVDS.value, Items.HOT_SAUCE.value, Items.SWITCHBLADES.value,

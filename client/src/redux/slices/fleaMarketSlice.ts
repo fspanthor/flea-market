@@ -72,6 +72,11 @@ interface GameStateAndSubMenuType {
   gameSubMenu?: string;
 }
 
+interface SetYesOrNoContinueType {
+  gameState?: string;
+  gameSubMenu?: string;
+  trenchCoat?: TrenchCoatStateType;
+}
 interface SetRepayBorrowSharkResponseType {
   debt: number;
   cash: number;
@@ -211,6 +216,15 @@ export const fleaMarketSlice = createSlice({
     ) => {
       state.gameManager.gameState = action.payload.gameState;
       state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+    },
+    setYesOrNoContinue: (
+      state,
+      action: PayloadAction<SetYesOrNoContinueType>
+    ) => {
+      state.gameManager.gameState = action.payload.gameState;
+      state.gameManager.gameSubMenu = action.payload.gameSubMenu;
+      action.payload?.trenchCoat &&
+        (state.trenchCoat = action.payload?.trenchCoat);
     },
     setExitChase: (state, action: PayloadAction<SetExitChaseResponseTyppe>) => {
       action.payload?.location && (state.location = action.payload?.location);
@@ -352,6 +366,7 @@ export const {
   setChaseResponse,
   setCornDogs,
   setExitChase,
+  setYesOrNoContinue,
 } = fleaMarketSlice.actions;
 
 //selectors

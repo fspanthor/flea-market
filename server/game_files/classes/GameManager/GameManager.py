@@ -9,6 +9,8 @@ class GameManager():
         self.game_sub_menu = ''
         self.game = game
         self.current_item = ''
+        self.staged_amount = 0
+        self.staged_price = 0
         self.system_message = ''
 
     def new_game(self):
@@ -17,6 +19,8 @@ class GameManager():
         self.game_sub_menu = ''
         self.current_item = ''
         self.system_message = ''
+        self.staged_amount = 0
+        self.staged_price = 0
         self.game.location.set_location(Locations.FLORIDA)
         self.game.prices.set_prices()
         self.game.player.stash.reset_stash()
@@ -29,13 +33,36 @@ class GameManager():
         setattr(self, 'current_item', current_item)
         return getattr(self, 'current_item')
 
+    def set_staged_amount(self, amount):
+        setattr(self, 'staged_amount', amount)
+        return
+
+    def set_staged_price(self, price):
+        setattr(self, 'staged_price', price)
+        return
+
 # when current item resets its needs to be empty string
 # there are times when an empty current_item can be submitted via request.. cant be None
     def reset_current_item(self):
         setattr(self, 'current_item', '')
+        return
 
     def get_current_item(self):
         return getattr(self, 'current_item')
+
+    def get_staged_amount(self):
+        return getattr(self, 'staged_amount')
+
+    def get_staged_price(self):
+        return getattr(self, 'staged_price')
+
+    def reset_staged_amount(self):
+        setattr(self, 'staged_amount', 0)
+        return
+
+    def reset_staged_price(self):
+        setattr(self, 'staged_price', 0)
+        return
 
     def game_over(self):
         self.set_game_mode(Game_Mode.GAME_OVER)

@@ -25,6 +25,7 @@ export enum GameSubMenuEnum {
   RUN_OR_BRIBE = "runOrBribe",
   CHASE_RESULT = "chaseResult",
   HEAL = "heal",
+  YES_OR_NO_EVENT = "yesOrNoEvent",
 }
 
 export enum FleaMarketFunction {
@@ -62,6 +63,7 @@ export enum FleaMarketFunction {
   RUN_OR_BRIBE_CONTINUE = "RUN_OR_BRIBE_CONTINUE",
   HEAL = "HEAL",
   EVENT_CONTINUE = "EVENT_CONTINUE",
+  YES_OR_NO_CONTINUE = "YES_OR_NO_CONTINUE",
 }
 
 export const itemAllowableKeys = [
