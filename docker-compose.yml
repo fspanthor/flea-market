@@ -3,13 +3,13 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile.server
-    image: flea-market-server2
+    image: flea-market-server
     ports:
       - 5000:5000
   client:
     build:
       context: ./client
       dockerfile: Dockerfile.client
-    image: flea-market-client2
+    image: flea-market-client
     ports:
       - "3000:80"
