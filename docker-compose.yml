@@ -1,0 +1,15 @@
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.server
+    image: flea-market-server2
+    ports:
+      - 5000:5000
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.client
+    image: flea-market-client2
+    ports:
+      - "3000:80"
