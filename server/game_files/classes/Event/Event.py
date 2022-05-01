@@ -146,7 +146,7 @@ class Event():
 
         if surge_item == 1:
             prices.dvds = randomize(
-                int(Price_Limit.DVDS_LOW*4), int(Price_Limit.DVDS_HIGH*4))
+                int(Price_Limit.DVDS_LOW*7), int(Price_Limit.DVDS_HIGH*11))
             item = 'DVDS'
         if surge_item == 2:
             prices.hot_sauce = randomize(

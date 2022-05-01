@@ -81,7 +81,7 @@ class Location():
 
                 # check if event will happen
                 random_number_for_event = random.randint(1, 100)
-                if random_number_for_event < 35:
+                if random_number_for_event < 45:
                     # clear sub menu
                     # it may be re-set during random event
                     self.game.game_manager.set_game_sub_menu(

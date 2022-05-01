@@ -45,7 +45,7 @@ class Chase():
 
         # check if random event will happen after chase
         random_number_for_event = random.randint(1, 100)
-        if random_number_for_event < 50:
+        if random_number_for_event < 55:
             # clear sub menu
             # it may be re-set during random event
             self.game.game_manager.set_game_sub_menu(Game_Sub_Menu.CLEAR)
