@@ -4,9 +4,8 @@ services:
     #   context: ./client
     #   dockerfile: Dockerfile.client
     # image: client
-    image: 494836267659.dkr.ecr.us-west-1.amazonaws.com/flea-market-client2
+    image: 494836267659.dkr.ecr.us-west-1.amazonaws.com/flea-market-client
     ports:
-      #- "3000:80"
       - "80:80"
     depends_on:
       - server
@@ -15,9 +14,8 @@ services:
     #   context: ./server
     #   dockerfile: Dockerfile.server
     # image: server
-    image: 494836267659.dkr.ecr.us-west-1.amazonaws.com/flea-market-server2
-    # ports:
-    #   - 5000:5000
+    image: 494836267659.dkr.ecr.us-west-1.amazonaws.com/flea-market-server
+
 
 
   
