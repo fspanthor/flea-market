@@ -11,7 +11,6 @@ class Stash():
         self.cell_phones = 0
         self.massage_chairs = 0
         self.bank = 0
-        self.debt = 5500
         self.game = game
 
     def reset_stash(self):
@@ -22,12 +21,11 @@ class Stash():
         self.cell_phones = 0
         self.massage_chairs = 0
         self.bank = 0
-        self.debt = 5500
 
     def get_stash(self):
         return ({'fakeShoes': self.fake_shoes, 'dvds': self.dvds, 'hotSauce': self.hot_sauce,
                  'switchblades': self.switchblades, 'cellPhones': self.cell_phones, 'massageChairs': self.massage_chairs,
-                 'bank': self.bank, 'debt': self.debt})
+                 'bank': self.bank, 'debt': self.game.shark.get_debt_amount()})
 
     def get_amount(self, item):
         if hasattr(self, item):
