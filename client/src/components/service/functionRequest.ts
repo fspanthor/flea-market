@@ -14,7 +14,8 @@ const env = process.env.NODE_ENV;
 const prodUrl = "https://flea-market-tycoon.herokuapp.com/";
 
 //const serverAddress = env === "production" ? prodUrl : "http://localhost:5000/";
-const serverAddress = "http://localhost:5000/";
+//const serverAddress = "http://localhost:5000/api";
+const serverAddress = "/api";
 console.log("server address: ", serverAddress);
 
 export const sendFunctionRequest = async (func: FuncType) => {

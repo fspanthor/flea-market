@@ -25,7 +25,7 @@ Session(app)
 #    return app.send_static_file('index.html')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/api', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def flea_market_flask_post():
     print('request method: ', request.method)
