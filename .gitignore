@@ -13,6 +13,9 @@ server/venv
 # production
 client/build
 
+#db keys
+server/db/db_keys.py
+
 # misc
 .DS_Store
 .env.local
