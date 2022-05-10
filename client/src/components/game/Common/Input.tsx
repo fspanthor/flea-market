@@ -1,6 +1,7 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { memo, useCallback, useEffect } from "react";
 import { useAppDispatch } from "../../../app/hooks";
+import { StyledCursor } from "../../../styles/commonStyles";
 
 //redux action uses ActionCreatorWithPayload<any, string> because I cant figure out how
 //to union ActionCreatorWithPayload<number, string> and ActionCreatorWithPayload<string, string>
@@ -46,7 +47,12 @@ const Input = ({
     document.body.addEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  return <div>{">_"}</div>;
+  return (
+    <div>
+      <span>{">"}</span>
+      <StyledCursor>{"_"}</StyledCursor>
+    </div>
+  );
 };
 
 export default memo(Input);

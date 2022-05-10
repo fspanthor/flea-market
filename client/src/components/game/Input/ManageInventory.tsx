@@ -41,7 +41,6 @@ const ManageInventory = () => {
 
   return (
     <div>
-      ManageInventory component
       {gameSubMenu === GameSubMenuEnum.PROMPT_FOR_SHARK && (
         <Prompt
           promptText={"DO YOU WISH TO VISIT THE LOAN SHARK?"}
