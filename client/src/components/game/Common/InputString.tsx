@@ -2,7 +2,10 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { memo, useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectCurrentItem } from "../../../redux/slices/fleaMarketSlice";
-import { StyledCursor } from "../../../styles/commonStyles";
+import {
+  StyledCursor,
+  StyledCursorWrapper,
+} from "../../../styles/commonStyles";
 
 interface InputStringPropsType {
   gameFunction: any;
@@ -94,10 +97,10 @@ const InputString = ({
   }, [handleKeyDown]);
 
   return (
-    <div>
+    <StyledCursorWrapper>
       <span>{`>${input}`}</span>
       <StyledCursor>_</StyledCursor>
-    </div>
+    </StyledCursorWrapper>
   );
 };
 export default memo(InputString);

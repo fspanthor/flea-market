@@ -1,8 +1,10 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { memo, useCallback, useEffect } from "react";
-import styled from "styled-components";
 import { useAppDispatch } from "../../../app/hooks";
-import { StyledCursor } from "../../../styles/commonStyles";
+import {
+  StyledCursor,
+  StyledCursorWrapper,
+} from "../../../styles/commonStyles";
 
 //redux action uses ActionCreatorWithPayload<any, string> because I cant figure out how
 //to union ActionCreatorWithPayload<number, string> and ActionCreatorWithPayload<string, string>
@@ -11,12 +13,6 @@ interface InputPropsType {
   reduxAction: ActionCreatorWithPayload<any, string>;
   allowableKeys?: string[];
 }
-
-const StyledCursorWrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-`;
 
 /**
  *

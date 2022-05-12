@@ -27,11 +27,16 @@ def restart_game(game_instance):
     return jsonify(game_instance.game_manager.restart_game())
 
 
+def get_high_scores(game_instance):
+    return jsonify(game_instance.game_manager.get_high_scores())
+
+
 game_manager_interface = {
     'BUY_SELL_JET': buy_sell_jet,
     'NEW_GAME': new_game,
     'GET_DAY': get_day,
     'STAGE_CURRENT_ITEM': stage_current_item,
     'PERSIST_HIGH_SCORE': persist_high_score,
-    'RESTART_GAME': restart_game
+    'RESTART_GAME': restart_game,
+    'GET_HIGH_SCORES': get_high_scores,
 }

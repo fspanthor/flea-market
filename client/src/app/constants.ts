@@ -70,6 +70,7 @@ export enum FleaMarketFunction {
   YES_OR_NO_CONTINUE = "YES_OR_NO_CONTINUE",
   PERSIST_HIGH_SCORE = "PERSIST_HIGH_SCORE",
   RESTART_GAME = "RESTART_GAME",
+  GET_HIGH_SCORES = "GET_HIGH_SCORES",
 }
 
 export const itemAllowableKeys = [

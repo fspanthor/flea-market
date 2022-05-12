@@ -1,4 +1,4 @@
-#from ...db.pymongo_connection import check_high_score, insert_high_score
+#from ...db.pymongo_connection import check_high_score, insert_high_score, retrieve_high_scores
 from ...utilities.utils import get_item_for_key, to_camel_case
 from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
@@ -175,3 +175,8 @@ class GameManager():
             'gameState': to_camel_case(self.new_game()),
         }
         return payload
+
+    def get_high_scores(self):
+        # scores = retrieve_high_scores()
+        # return scores
+        return True

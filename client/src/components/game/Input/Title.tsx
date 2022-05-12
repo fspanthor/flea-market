@@ -3,6 +3,7 @@ import { FleaMarketFunction, yOrN } from "../../../app/constants";
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";
+import { HighScores } from "../View/HighScores";
 
 const instructionsPrompt = async (key: string) => {
   return await sendFunctionRequest({
@@ -25,6 +26,7 @@ const Title = () => {
         reduxAction={setGameState}
         allowableKeys={yOrN}
       />
+      <HighScores />
     </div>
   );
 };
