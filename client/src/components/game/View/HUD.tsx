@@ -21,6 +21,7 @@ import Location from "./Location";
 import Date from "./Date";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import { FleaMarketFunction } from "../../../app/constants";
+import styled from "styled-components";
 
 const getPrices = async () => {
   return await sendFunctionRequest({
@@ -112,14 +113,24 @@ const HUD = () => {
     fetchTrenchCoat,
   ]);
 
+  const StyledHUD = styled.div`
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+  `;
+
   return (
-    <div>
+    <StyledHUD>
       {showPriceData && <Prices priceData={priceData} />}
-      {showStashData && <Stash stashData={stashData} />}
-      {showTrenchCoatData && <TrenchCoat trenchCoatData={trenchCoatData} />}
+      <div>
+        {showStashData && <Stash stashData={stashData} />}
+        {showTrenchCoatData && <TrenchCoat trenchCoatData={trenchCoatData} />}
+      </div>
       {showLocationData && <Location locationData={locationData} />}
       {showDayData && <Date dayData={dayData} />}
-    </div>
+    </StyledHUD>
   );
 };
 export default memo(HUD);

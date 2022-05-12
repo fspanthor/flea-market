@@ -1,13 +1,18 @@
 import { memo } from "react";
+import styled from "styled-components";
 import { TrenchCoatStateType } from "../../../redux/slices/fleaMarketSlice";
 
 interface trenchCoatDataType {
   trenchCoatData: TrenchCoatStateType;
 }
 
+const StyledTrenchCoat = styled.span`
+  display: inline-block;
+`;
+
 const TrenchCoat = ({ trenchCoatData }: trenchCoatDataType) => {
   return (
-    <div>
+    <StyledTrenchCoat>
       <h3>Trench Coat:</h3>
       <ul>
         <li>{`DVDs:  ${trenchCoatData.dvds}`}</li>
@@ -20,7 +25,7 @@ const TrenchCoat = ({ trenchCoatData }: trenchCoatDataType) => {
         <li>{`Cash:  ${trenchCoatData.cash}`}</li>
         <li>{`Max Hold:  ${trenchCoatData.maxHold}`}</li>
       </ul>
-    </div>
+    </StyledTrenchCoat>
   );
 };
 export default memo(TrenchCoat);

@@ -1,5 +1,6 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { memo, useCallback, useEffect } from "react";
+import styled from "styled-components";
 import { useAppDispatch } from "../../../app/hooks";
 import { StyledCursor } from "../../../styles/commonStyles";
 
@@ -10,6 +11,12 @@ interface InputPropsType {
   reduxAction: ActionCreatorWithPayload<any, string>;
   allowableKeys?: string[];
 }
+
+const StyledCursorWrapper = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+`;
 
 /**
  *
@@ -48,10 +55,10 @@ const Input = ({
   }, [handleKeyDown]);
 
   return (
-    <div>
+    <StyledCursorWrapper>
       <span>{">"}</span>
       <StyledCursor>{"_"}</StyledCursor>
-    </div>
+    </StyledCursorWrapper>
   );
 };
 

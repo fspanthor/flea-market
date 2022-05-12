@@ -1,13 +1,18 @@
 import { memo } from "react";
 import { StashStateType } from "../../../redux/slices/fleaMarketSlice";
+import styled from "styled-components";
 
 interface stashDataType {
   stashData: StashStateType;
 }
 
+const StyledStash = styled.span`
+  display: inline-block;
+`;
+
 const Stash = ({ stashData }: stashDataType) => {
   return (
-    <div>
+    <StyledStash>
       <h3>Stash:</h3>
       <ul>
         <li>{`DVDs:  ${stashData.dvds}`}</li>
@@ -19,7 +24,7 @@ const Stash = ({ stashData }: stashDataType) => {
         <li>{`Bank:  ${stashData.bank}`}</li>
         <li>{`Debt:  ${stashData.debt}`}</li>
       </ul>
-    </div>
+    </StyledStash>
   );
 };
 

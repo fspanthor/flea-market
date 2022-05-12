@@ -12,12 +12,21 @@ import Sell from "./Sell";
 import Title from "./Title";
 import Event from "./Event";
 import GameOver from "./GameOver";
+import styled from "styled-components";
+
+const StyledInteractive = styled.div`
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+`;
 
 const Interactive = () => {
   const gameState = useAppSelector(selectGameState);
   console.log("gameState: ", gameState);
   return (
-    <div>
+    <StyledInteractive>
       {gameState === GameStateEnum.INIT && <Title />}
       {gameState === GameStateEnum.INSTRUCTIONS && <Instructions />}
       {gameState === GameStateEnum.MANAGE_INVENTORY && <ManageInventory />}
@@ -28,7 +37,7 @@ const Interactive = () => {
       {gameState === GameStateEnum.CHASE && <Chase />}
       {gameState === GameStateEnum.EVENT && <Event />}
       {gameState === GameStateEnum.GAME_OVER && <GameOver />}
-    </div>
+    </StyledInteractive>
   );
 };
 

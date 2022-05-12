@@ -5,6 +5,21 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectGameState } from "../../../redux/slices/fleaMarketSlice";
 import fleaMarketTheme from "../../../assets/audio/flea-market-theme.mp3";
 import fleaMarketMain from "../../../assets/audio/flea-market-main.mp3";
+import styled from "styled-components";
+
+const StyledAudioPlayer = styled.div`
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+`;
 
 const AudioPlayer = () => {
   const [muted, setMuted] = useState(true);
@@ -32,14 +47,12 @@ const AudioPlayer = () => {
   }, [audioTrack, gameState]);
 
   return (
-    <div>
-      <button onClick={() => setMuted(!muted)}>
-        {muted ? "unmute" : "mute"}
-      </button>
+    <StyledAudioPlayer>
+      <div onClick={() => setMuted(!muted)}>{muted ? "unmute" : "mute"}</div>
       <audio autoPlay={true} loop muted={muted} ref={audioPlayerRef}>
         <source src={audioTrack} type="audio/mpeg" />
       </audio>
-    </div>
+    </StyledAudioPlayer>
   );
 };
 
