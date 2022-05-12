@@ -1,4 +1,8 @@
-import { FleaMarketFunction, GameSubMenuEnum } from "../../../app/constants";
+import {
+  FleaMarketFunction,
+  GameSubMenuEnum,
+  numberKeys,
+} from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
   selectCash,
@@ -33,6 +37,7 @@ const ManageShark = () => {
           <InputString
             gameFunction={repayShark}
             reduxAction={setRepayBorrowSharkResponse}
+            allowableKeys={numberKeys}
             comparator={currentCash}
           />
         </div>
@@ -44,6 +49,7 @@ const ManageShark = () => {
           <InputString
             gameFunction={borrowFromShark}
             reduxAction={setRepayBorrowSharkResponse}
+            allowableKeys={numberKeys}
             comparator={currentCash > 0 ? currentCash : 2000}
           />
         </div>

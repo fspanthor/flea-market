@@ -1,5 +1,9 @@
 import { memo, useCallback } from "react";
-import { FleaMarketFunction, itemAllowableKeys } from "../../../app/constants";
+import {
+  FleaMarketFunction,
+  itemAllowableKeys,
+  numberKeys,
+} from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 
 import {
@@ -46,6 +50,7 @@ const Buy = () => {
           <InputString
             gameFunction={buyItem}
             reduxAction={setBuySellResponse}
+            allowableKeys={numberKeys}
           />
         </div>
       )}

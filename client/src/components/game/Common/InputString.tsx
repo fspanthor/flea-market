@@ -7,7 +7,7 @@ import { StyledCursor } from "../../../styles/commonStyles";
 interface InputStringPropsType {
   gameFunction: any;
   reduxAction: ActionCreatorWithPayload<any, string>;
-  allowableKeys?: string[];
+  allowableKeys: string[];
   comparator?: number;
 }
 
@@ -39,10 +39,10 @@ const InputString = ({
    */
   const handleKeyDown = useCallback(
     async (e: KeyboardEvent) => {
-      const numberKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
       if (
-        allowableKeys === undefined ||
-        allowableKeys.find((allowableKey) => allowableKey === e.key)
+        allowableKeys.find((allowableKey) => allowableKey === e.key) ||
+        e.key === "Enter" ||
+        e.key === "Backspace"
       ) {
         e.preventDefault();
         e.stopPropagation();
@@ -55,7 +55,7 @@ const InputString = ({
           }
           return;
         }
-        if (allowableKey(e.key, numberKeys) && input.length < 100) {
+        if (allowableKey(e.key, allowableKeys) && input.length < 65) {
           document.body.removeEventListener("keydown", handleKeyDown);
           setInput((prevState) => prevState + e.key);
           return;

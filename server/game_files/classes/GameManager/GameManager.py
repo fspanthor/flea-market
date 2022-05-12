@@ -1,10 +1,11 @@
+#from ...db.pymongo_connection import check_high_score
 from ...utilities.utils import get_item_for_key, to_camel_case
 from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
 
 class GameManager():
     def __init__(self, game):
-        self.day = 1
+        self.day = 29
         self.game_mode = Game_Mode.INIT
         self.game_sub_menu = ''
         self.game = game
@@ -14,7 +15,7 @@ class GameManager():
         self.system_message = ''
 
     def new_game(self):
-        self.day = 1
+        self.day = 29
         self.game_mode = Game_Mode.INIT
         self.game_sub_menu = ''
         self.current_item = ''
@@ -66,10 +67,34 @@ class GameManager():
 
     def game_over(self):
         self.set_game_mode(Game_Mode.GAME_OVER)
-        self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
+        current_day = self.game.game_manager.day
+        current_debt = self.game.shark.debt
+        current_score = self.game.player.stash.bank + self.game.player.trench_coat.cash
+        #high_score = check_high_score(current_score)
+
+        # if day is 30, current debt is 0 and high score is true, go to high score submit
+        # add high core here
+        # if (current_day >= 30 and current_debt <= 0):
+        #     self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
+
+        # # if day is 30, current debt is 0 and high score is false, show win screen without submit
+        # # add high core here
+        # if (current_day >= 30 and current_debt <= 0):
+        #     self.set_game_sub_menu(Game_Sub_Menu.WIN)
+
+        # # if day is 30 but debt is > 0 just send game over
+        # if (current_day >= 30 and current_debt > 0):
+        #     self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
+
+        # # if player did not finish game just send game over
+        # if (current_day < 30):
+        #     self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
+
+        self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
+
         payload = {
             'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
-            'gameSubMenu': ''}
+            'gameSubMenu': to_camel_case(self.game.game_manager.get_game_sub_menu().value)}
         return payload
 
 # set current item and return in camel case

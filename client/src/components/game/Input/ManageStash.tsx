@@ -2,6 +2,7 @@ import {
   FleaMarketFunction,
   GameSubMenuEnum,
   itemAllowableKeys,
+  numberKeys,
 } from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
@@ -68,6 +69,7 @@ const ManageStash = () => {
           <InputString
             gameFunction={transferItemToStash}
             reduxAction={setTransferItemToStashResponse}
+            allowableKeys={numberKeys}
             comparator={currentTrenchCoat[currentItem]}
           />
         </div>
@@ -79,6 +81,7 @@ const ManageStash = () => {
             <InputString
               gameFunction={transferItemToTrenchCoat}
               reduxAction={setTransferItemToTrenchCoatResponse}
+              allowableKeys={numberKeys}
               comparator={currentStash[currentItem]}
             />
           </div>

@@ -37,6 +37,8 @@ class Game_Sub_Menu(Enum):
     CHASE_START = 'chase_start'
     YES_OR_NO_EVENT = 'yes_or_no_event'
     CLEAR = ''
+    HIGH_SCORE = 'high_score'
+    WIN = 'win'
 
 
 class Play_Mode(Enum):

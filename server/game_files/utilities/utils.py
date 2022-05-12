@@ -1,6 +1,5 @@
 from functools import reduce
 import random
-
 from ..constants import Items
 
 

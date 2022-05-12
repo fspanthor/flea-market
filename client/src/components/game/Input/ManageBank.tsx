@@ -1,4 +1,8 @@
-import { FleaMarketFunction, GameSubMenuEnum } from "../../../app/constants";
+import {
+  FleaMarketFunction,
+  GameSubMenuEnum,
+  numberKeys,
+} from "../../../app/constants";
 import { useAppSelector } from "../../../app/hooks";
 import {
   selectBank,
@@ -36,6 +40,7 @@ const ManageBank = () => {
           <InputString
             gameFunction={depositToBank}
             reduxAction={setDepositWithdrawBankResponse}
+            allowableKeys={numberKeys}
             comparator={currentCash}
           />
         </div>
@@ -46,6 +51,7 @@ const ManageBank = () => {
           <InputString
             gameFunction={withdrawFromBank}
             reduxAction={setDepositWithdrawBankResponseConclusion}
+            allowableKeys={numberKeys}
             comparator={currentBank}
           />
         </div>
