@@ -11,15 +11,21 @@ import {
 import { useAppSelector } from "../../../app/hooks";
 import {
   selectGameSubMenu,
-  setGameSubMenu,
+  setGameStateAndSubMenu,
 } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import InputString from "../Common/InputString";
+import Prompt from "./Prompt";
 
-const sharkContinueFunction = async (key: string) => {
+const persistHighScoreFunction = async () => {
   return await sendFunctionRequest({
-    function: FleaMarketFunction.SHARK_CONTINUE,
-    params: { key: key },
+    function: FleaMarketFunction.PERSIST_HIGH_SCORE,
+  });
+};
+
+const restartGameFunction = async () => {
+  return await sendFunctionRequest({
+    function: FleaMarketFunction.RESTART_GAME,
   });
 };
 
@@ -35,8 +41,8 @@ const GameOver = () => {
             <div>
               <span>HIGH SCORE!! ENTER YOUR NAME TO RECORD YOUR SCORE: </span>
               <InputString
-                gameFunction={sharkContinueFunction}
-                reduxAction={setGameSubMenu}
+                gameFunction={persistHighScoreFunction}
+                reduxAction={setGameStateAndSubMenu}
                 allowableKeys={[
                   ...lowercaseLetters,
                   ...uppercaseLetters,
@@ -44,6 +50,33 @@ const GameOver = () => {
                   ...specialCharacters,
                   ...spaceBarKey,
                 ]}
+              />
+            </div>
+          )}
+          {gameSubMenu === GameSubMenuEnum.WIN && (
+            <div>
+              <span>
+                LOOKS LIKE YOU MANAGED TO PAY OFF THE SHARK! YOU WIN! PLAY AGAIN
+                TO TRY TO GET A HIGH SCORE AND IMPRESS YOUR FRIENDS.
+              </span>
+              <Prompt
+                promptText={"PRESS SPACE BAR TO QUIT TO MAIN MENU"}
+                promptFunction={restartGameFunction}
+                promptReduxAction={setGameStateAndSubMenu}
+                allowableKeys={spaceBarKey}
+              />
+            </div>
+          )}
+          {gameSubMenu === GameSubMenuEnum.CLEAR && (
+            <div>
+              <span>
+                L. PAY OFF THE SHARK AND SURVIVE 30 DAYS TO WIN. DONT GIVE UP.
+              </span>
+              <Prompt
+                promptText={"PRESS SPACE BAR TO QUIT TO MAIN MENU"}
+                promptFunction={restartGameFunction}
+                promptReduxAction={setGameStateAndSubMenu}
+                allowableKeys={spaceBarKey}
               />
             </div>
           )}

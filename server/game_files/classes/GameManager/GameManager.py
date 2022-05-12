@@ -1,4 +1,4 @@
-#from ...db.pymongo_connection import check_high_score
+#from ...db.pymongo_connection import check_high_score, insert_high_score
 from ...utilities.utils import get_item_for_key, to_camel_case
 from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
@@ -90,7 +90,7 @@ class GameManager():
         # if (current_day < 30):
         #     self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
 
-        self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
+        self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
 
         payload = {
             'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
@@ -163,3 +163,15 @@ class GameManager():
 
     def get_game_sub_menu(self):
         return getattr(self, 'game_sub_menu')
+
+    def persist_high_score(self):
+        player_score = self.game.player.stash.bank + self.game.player.trench_coat.cash
+        # insert_high_score(player_score)
+        return self.restart_game()
+
+    def restart_game(self):
+        self.new_game()
+        payload = {
+            'gameState': to_camel_case(self.new_game()),
+        }
+        return payload

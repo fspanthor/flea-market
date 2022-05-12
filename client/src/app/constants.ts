@@ -29,6 +29,7 @@ export enum GameSubMenuEnum {
   YES_OR_NO_EVENT = "yesOrNoEvent",
   HIGH_SCORE = "highScore",
   WIN = "win",
+  CLEAR = "",
 }
 
 export enum FleaMarketFunction {
@@ -67,6 +68,8 @@ export enum FleaMarketFunction {
   HEAL = "HEAL",
   EVENT_CONTINUE = "EVENT_CONTINUE",
   YES_OR_NO_CONTINUE = "YES_OR_NO_CONTINUE",
+  PERSIST_HIGH_SCORE = "PERSIST_HIGH_SCORE",
+  RESTART_GAME = "RESTART_GAME",
 }
 
 export const itemAllowableKeys = [
