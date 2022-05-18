@@ -14,6 +14,7 @@ const StyledPrices = styled.span`
 const StyledUl = styled.ul`
   position: relative;
   bottom: 10px;
+  list-style-type: none;
 `;
 
 const StyledH3 = styled.h3`

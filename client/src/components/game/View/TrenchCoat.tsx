@@ -14,6 +14,7 @@ const StyledTrenchCoat = styled.span`
 
 const StyledUl = styled.ul`
   margin: 10px;
+  list-style-type: none;
 `;
 
 const StyledUtils = styled.div`
@@ -26,6 +27,7 @@ const StyledH3 = styled.h3`
   position: relative;
   top: 18px;
   font-size: 20px;
+  left: 19px;
 `;
 
 const TrenchCoat = ({ trenchCoatData }: trenchCoatDataType) => {

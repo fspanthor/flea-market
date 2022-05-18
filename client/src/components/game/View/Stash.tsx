@@ -19,6 +19,7 @@ const StyledBankDebt = styled.div`
 `;
 
 const StyledUl = styled.ul`
+  list-style-type: none;
   margin: 10px;
 `;
 
@@ -26,6 +27,7 @@ const StyledH3 = styled.h3`
   position: relative;
   top: 18px;
   font-size: 20px;
+  left: 17px;
 `;
 
 const Stash = ({ stashData }: stashDataType) => {
