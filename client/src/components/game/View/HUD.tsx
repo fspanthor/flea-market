@@ -53,6 +53,14 @@ const getDay = async () => {
   });
 };
 
+const StyledHUD = styled.div`
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+`;
+
 const HUD = () => {
   const dispatch = useAppDispatch();
 
@@ -112,14 +120,6 @@ const HUD = () => {
     fetchStash,
     fetchTrenchCoat,
   ]);
-
-  const StyledHUD = styled.div`
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    display: flex;
-    text-align: center;
-  `;
 
   return (
     <StyledHUD>

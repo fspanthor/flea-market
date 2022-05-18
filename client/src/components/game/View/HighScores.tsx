@@ -1,15 +1,17 @@
+import { useEffect } from "react";
 import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { FleaMarketFunction } from "../../../app/constants";
 import { sendFunctionRequest } from "../../service/functionRequest";
 
 interface HighScoresType {
-  player: string;
+  user_name: string;
   score: number;
 }
-const getHighScores = async () => {
+const getHighScores = async (amount: number) => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.GET_HIGH_SCORES,
+    params: { amount: amount },
   });
 };
 
@@ -21,26 +23,26 @@ const StyledHighScores = styled.div`
 `;
 
 export const HighScores = () => {
-  //   const [showHighScores, setShowHighScores] = useState(false);
+  const [highScores, setHighScores] = useState<null | HighScoresType[]>();
 
-  //   const fetchHighScores = useCallback(async () => {
-  //     const highScores = await getHighScores();
-  //     setShowHighScores(true);
-  //   }, []);
+  const fetchHighScores = useCallback(async () => {
+    //pass number of high scores to display here
+    const highScores = await getHighScores(20);
+    setHighScores(highScores);
+  }, []);
 
-  const zzz = getHighScores();
-
-  const highScores: HighScoresType[] = [
-    { player: "test", score: 20 },
-    { player: "zzzz", score: 40 },
-  ];
+  useEffect(() => fetchHighScores(), [fetchHighScores]);
 
   return (
-    <StyledHighScores>
-      <div>HIGH SCORES</div>
-      {highScores.map((highScore) => (
-        <ol>{`${highScore.player}: ${highScore.score}`}</ol>
-      ))}
-    </StyledHighScores>
+    <div>
+      {highScores && (
+        <StyledHighScores>
+          <div>HIGH SCORES</div>
+          {highScores.map((highScore, index) => (
+            <ol key={index}>{`${highScore.user_name}: ${highScore.score}`}</ol>
+          ))}
+        </StyledHighScores>
+      )}
+    </div>
   );
 };

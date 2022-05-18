@@ -1,4 +1,4 @@
-#from ...db.pymongo_connection import check_high_score, insert_high_score, retrieve_high_scores
+from ...db.pymongo_connection import check_high_score, insert_high_score, retrieve_high_scores
 from ...utilities.utils import get_item_for_key, to_camel_case
 from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
@@ -75,7 +75,7 @@ class GameManager():
         # if day is 30, current debt is 0 and high score is true, go to high score submit
         # add high core here
         # if (current_day >= 30 and current_debt <= 0):
-        #     self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
+        self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
 
         # # if day is 30, current debt is 0 and high score is false, show win screen without submit
         # # add high core here
@@ -90,7 +90,7 @@ class GameManager():
         # if (current_day < 30):
         #     self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
 
-        self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
+        # self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
 
         payload = {
             'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),
@@ -164,9 +164,9 @@ class GameManager():
     def get_game_sub_menu(self):
         return getattr(self, 'game_sub_menu')
 
-    def persist_high_score(self):
+    def persist_high_score(self, value):
         player_score = self.game.player.stash.bank + self.game.player.trench_coat.cash
-        # insert_high_score(player_score)
+        insert_high_score(value, player_score)
         return self.restart_game()
 
     def restart_game(self):
@@ -176,7 +176,6 @@ class GameManager():
         }
         return payload
 
-    def get_high_scores(self):
-        # scores = retrieve_high_scores()
-        # return scores
-        return True
+    def get_high_scores(self, amount):
+        scores = retrieve_high_scores(amount)
+        return scores

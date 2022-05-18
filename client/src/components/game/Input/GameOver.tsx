@@ -17,9 +17,10 @@ import { sendFunctionRequest } from "../../service/functionRequest";
 import InputString from "../Common/InputString";
 import Prompt from "./Prompt";
 
-const persistHighScoreFunction = async () => {
+const persistHighScoreFunction = async (value: string) => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.PERSIST_HIGH_SCORE,
+    params: { value: value },
   });
 };
 
@@ -35,7 +36,7 @@ const GameOver = () => {
   return (
     <div>
       <div>
-        game over
+        GAME OVER
         <div>
           {gameSubMenu === GameSubMenuEnum.HIGH_SCORE && (
             <div>
@@ -50,6 +51,7 @@ const GameOver = () => {
                   ...specialCharacters,
                   ...spaceBarKey,
                 ]}
+                inputIsString={true}
               />
             </div>
           )}

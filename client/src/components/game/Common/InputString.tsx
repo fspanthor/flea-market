@@ -12,6 +12,7 @@ interface InputStringPropsType {
   reduxAction: ActionCreatorWithPayload<any, string>;
   allowableKeys: string[];
   comparator?: number;
+  inputIsString?: boolean;
 }
 
 const InputString = ({
@@ -19,6 +20,7 @@ const InputString = ({
   reduxAction,
   allowableKeys,
   comparator,
+  inputIsString,
 }: InputStringPropsType) => {
   const currentItem = useAppSelector(selectCurrentItem);
 
@@ -72,7 +74,7 @@ const InputString = ({
             const gameFunctionReturn =
               gameFunction.length === 2
                 ? await gameFunction(currentItem, parseInt(input))
-                : await gameFunction(parseInt(input));
+                : await gameFunction(inputIsString ? input : parseInt(input));
             dispatch(reduxAction(gameFunctionReturn));
             return;
           } else {
@@ -88,6 +90,7 @@ const InputString = ({
       dispatch,
       gameFunction,
       input,
+      inputIsString,
       reduxAction,
     ]
   );

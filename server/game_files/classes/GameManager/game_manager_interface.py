@@ -19,16 +19,16 @@ def stage_current_item(game_instance, params):
     return jsonify(game_instance.game_manager.stage_current_item(params['key']))
 
 
-def persist_high_score(game_instance):
-    return jsonify(game_instance.game_manager.persist_high_score())
+def persist_high_score(game_instance, params):
+    return jsonify(game_instance.game_manager.persist_high_score(params['value']))
 
 
 def restart_game(game_instance):
     return jsonify(game_instance.game_manager.restart_game())
 
 
-def get_high_scores(game_instance):
-    return jsonify(game_instance.game_manager.get_high_scores())
+def get_high_scores(game_instance, params):
+    return jsonify(game_instance.game_manager.get_high_scores(params['amount']))
 
 
 game_manager_interface = {
