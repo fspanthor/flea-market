@@ -2,6 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { FleaMarketFunction } from "../../../app/constants";
 
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
+import { GreyText } from "../../../styles/commonStyles";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";
 
@@ -40,7 +41,7 @@ const Instructions = () => {
         <li>Cell Phones: 5000 - 14000</li>
         <li>Massage Chairs: 15000 - 30000</li>
       </ul>
-      <div>PRESS ANY KEY TO CONTINUE......</div>
+      <GreyText>PRESS ANY KEY TO CONTINUE......</GreyText>
       {instructions && (
         <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
       )}

@@ -20,6 +20,7 @@ const StyledInteractive = styled.div`
   flex-direction: column;
   display: flex;
   text-align: center;
+  font-size 20px;
 `;
 
 const Interactive = () => {

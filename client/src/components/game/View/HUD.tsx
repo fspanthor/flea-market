@@ -59,6 +59,18 @@ const StyledHUD = styled.div`
   flex-direction: column;
   display: flex;
   text-align: center;
+  font-size: 15px;
+`;
+
+const StyledInventory = styled.div`
+  position: relative;
+  bottom: 31px;
+`;
+
+const StyledLocationAndDate = styled.div`
+  position: relative;
+  bottom: 26px;
+  font-size: 15px;
 `;
 
 const HUD = () => {
@@ -124,12 +136,14 @@ const HUD = () => {
   return (
     <StyledHUD>
       {showPriceData && <Prices priceData={priceData} />}
-      <div>
+      <StyledInventory>
         {showStashData && <Stash stashData={stashData} />}
         {showTrenchCoatData && <TrenchCoat trenchCoatData={trenchCoatData} />}
-      </div>
-      {showLocationData && <Location locationData={locationData} />}
-      {showDayData && <Date dayData={dayData} />}
+      </StyledInventory>
+      <StyledLocationAndDate>
+        {showLocationData && <Location locationData={locationData} />}
+        {showDayData && <Date dayData={dayData} />}
+      </StyledLocationAndDate>
     </StyledHUD>
   );
 };

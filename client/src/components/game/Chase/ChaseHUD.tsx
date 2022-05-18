@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
 import { FleaMarketFunction } from "../../../app/constants";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
@@ -21,6 +22,12 @@ const getCornDogs = async () => {
     function: FleaMarketFunction.GET_CORN_DOGS,
   });
 };
+
+const StyledSpan = styled.span`
+  color: white;
+  margin: 10px;
+  color: green;
+`;
 
 const ChaseHUD = () => {
   const dispatch = useAppDispatch();
@@ -53,9 +60,9 @@ const ChaseHUD = () => {
     <div>
       {showChaseData && showCornDogs && (
         <div>
-          <span>Health: {healthData}%</span>
-          <span>Stooges: {stoogeData}</span>
-          <span>Corndogs: {cornDogData}</span>
+          <StyledSpan>Health: {healthData}%</StyledSpan>
+          <StyledSpan>Stooges: {stoogeData}</StyledSpan>
+          <StyledSpan>Corndogs: {cornDogData}</StyledSpan>
         </div>
       )}
     </div>

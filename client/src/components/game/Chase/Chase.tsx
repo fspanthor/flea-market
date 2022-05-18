@@ -12,6 +12,7 @@ import {
   setGameStateAndSubMenu,
   setChaseResponse,
 } from "../../../redux/slices/fleaMarketSlice";
+import { GreyText } from "../../../styles/commonStyles";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Prompt from "../Input/Prompt";
 import ChaseHUD from "./ChaseHUD";
@@ -57,12 +58,14 @@ const Chase = () => {
       {gameSubMenu === GameSubMenuEnum.CHASE_START && (
         <div>
           <div>{chaseStartText(stoogesData)}</div>
-          <Prompt
-            promptText={"PRESS SPACEBAR TO CONTINUE"}
-            promptFunction={chaseStartFunction}
-            promptReduxAction={setGameStateAndSubMenu}
-            allowableKeys={spaceBarKey}
-          />
+          <GreyText>
+            <Prompt
+              promptText={"PRESS SPACEBAR TO CONTINUE"}
+              promptFunction={chaseStartFunction}
+              promptReduxAction={setGameStateAndSubMenu}
+              allowableKeys={spaceBarKey}
+            />
+          </GreyText>
         </div>
       )}
       {gameSubMenu === GameSubMenuEnum.RUN && (

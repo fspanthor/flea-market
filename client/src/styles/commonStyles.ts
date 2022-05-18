@@ -8,5 +8,13 @@ export const StyledCursor = styled.span`
 export const StyledCursorWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  position: relative;
+  right: 190px;
+  top: 19px;
+  font-size: 25px;
+  color: #00ff41;
+`;
+
+export const GreyText = styled.div`
+  color: grey;
 `;

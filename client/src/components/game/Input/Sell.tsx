@@ -10,6 +10,7 @@ import {
   setBuySellResponse,
   setCurrentItem,
 } from "../../../redux/slices/fleaMarketSlice";
+import { GreyText } from "../../../styles/commonStyles";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";
 import InputString from "../Common/InputString";
@@ -32,7 +33,7 @@ const Sell = () => {
   const currentItem = useAppSelector(selectCurrentItem);
   return (
     <div>
-      WHAT WILL YOU SELL?{" "}
+      <GreyText>WHAT WILL YOU SELL? </GreyText>
       {currentItem.length === 0 && (
         <div>
           <Input

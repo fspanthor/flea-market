@@ -1,4 +1,5 @@
 import { memo } from "react";
+import styled from "styled-components";
 import { FleaMarketFunction } from "../../../app/constants";
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { sendFunctionRequest } from "../../service/functionRequest";
@@ -11,18 +12,24 @@ export const buySellJetPrompt = async (key: string) => {
   });
 };
 
+const StyledBuySellJet = styled.div`
+  position: relative;
+  bottom: 17px;
+  color: grey;
+`;
+
 const buySellJetAllowableKeys = ["b", "s", "j", "B", "S", "J"];
 
 const BuySellJet = () => {
   return (
-    <div>
+    <StyledBuySellJet>
       <span>WILL YOU (B)UY (S)ELL OR (J)ET?</span>
       <Input
         gameFunction={buySellJetPrompt}
         reduxAction={setGameState}
         allowableKeys={buySellJetAllowableKeys}
       />
-    </div>
+    </StyledBuySellJet>
   );
 };
 
