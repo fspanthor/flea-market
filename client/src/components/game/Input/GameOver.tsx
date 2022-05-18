@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import {
   FleaMarketFunction,
   GameSubMenuEnum,
@@ -17,13 +17,6 @@ import { sendFunctionRequest } from "../../service/functionRequest";
 import InputString from "../Common/InputString";
 import Prompt from "./Prompt";
 
-const persistHighScoreFunction = async (value: string) => {
-  return await sendFunctionRequest({
-    function: FleaMarketFunction.PERSIST_HIGH_SCORE,
-    params: { value: value },
-  });
-};
-
 const restartGameFunction = async () => {
   return await sendFunctionRequest({
     function: FleaMarketFunction.RESTART_GAME,
@@ -31,6 +24,13 @@ const restartGameFunction = async () => {
 };
 
 const GameOver = () => {
+  const persistHighScoreFunction = useCallback(async (value: string) => {
+    return await sendFunctionRequest({
+      function: FleaMarketFunction.PERSIST_HIGH_SCORE,
+      params: { value: value },
+    });
+  }, []);
+
   const gameSubMenu = useAppSelector(selectGameSubMenu);
 
   return (

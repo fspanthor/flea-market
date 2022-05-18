@@ -63,31 +63,31 @@ const StyledScoreLine = styled.ol`
 `;
 
 export const HighScores = () => {
-  // const [highScores, setHighScores] = useState<null | HighScoresType[]>(null);
+  const [highScores, setHighScores] = useState<null | HighScoresType[]>(null);
 
-  // const fetchHighScores = useCallback(async () => {
-  //   //pass number of high scores to display here
-  //   const highScores = await getHighScores(10);
-  //   setHighScores(highScores);
-  // }, []);
+  const fetchHighScores = useCallback(async () => {
+    //pass number of high scores to display here
+    const highScores = await getHighScores(10);
+    setHighScores(highScores);
+  }, []);
 
-  // useEffect(() => fetchHighScores(), [fetchHighScores]);
+  useEffect(() => fetchHighScores(), [fetchHighScores]);
 
-  const highScores = [
-    {
-      user_name: "longnamehignamrelongnamehignamrelongnamehignamre",
-      score: 5000,
-    },
-    { user_name: "longnamehighscore2", score: 5100 },
-    { user_name: "longnamehighscore3", score: 5000 },
-    { user_name: "longnazscore4", score: 5100 },
-    { user_name: "longnamehighscore5", score: 5000 },
-    { user_name: "longnamehighscore6", score: 5100 },
-    { user_name: "longnamehighscore7", score: 5000 },
-    { user_name: "zzzzzzz8", score: 5100 },
-    { user_name: "9", score: 5000 },
-    { user_name: "10", score: 5100 },
-  ];
+  // const highScores = [
+  //   {
+  //     user_name: "longnamehignamrelongnamehignamrelongnamehignamre",
+  //     score: 5000,
+  //   },
+  //   { user_name: "longnamehighscore2", score: 5100 },
+  //   { user_name: "longnamehighscore3", score: 5000 },
+  //   { user_name: "longnazscore4", score: 5100 },
+  //   { user_name: "longnamehighscore5", score: 5000 },
+  //   { user_name: "longnamehighscore6", score: 5100 },
+  //   { user_name: "longnamehighscore7", score: 5000 },
+  //   { user_name: "zzzzzzz8", score: 5100 },
+  //   { user_name: "9", score: 5000 },
+  //   { user_name: "10", score: 5100 },
+  // ];
 
   return (
     <StyledHighScores>
