@@ -11,7 +11,7 @@ server/venv
 /coverage
 
 # production
-client/build
+#client/build
 
 #db keys
 server/db/db_keys.py
