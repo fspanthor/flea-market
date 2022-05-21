@@ -11,7 +11,7 @@ export const StyledCursorWrapper = styled.div`
   position: relative;
   right: 190px;
   top: 19px;
-  font-size: 25px;
+  font-size: 18px;
   color: #00ff41;
 `;
 

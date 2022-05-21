@@ -11,6 +11,7 @@ import {
   selectSystemMessage,
   setExitChase,
 } from "../../../redux/slices/fleaMarketSlice";
+import { GreyText } from "../../../styles/commonStyles";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Prompt from "../Input/Prompt";
 
@@ -35,23 +36,27 @@ const ChaseResult = () => {
       {gameSubMenu === GameSubMenuEnum.CHASE_RESULT && (
         <div>
           <div>{systemMessage}</div>
-          <Prompt
-            promptText={"PRESS SPACE BAR TO CONTINUE"}
-            promptFunction={runOrBribeContinueFunction}
-            promptReduxAction={setExitChase}
-            allowableKeys={spaceBarKey}
-          />
+          <GreyText>
+            <Prompt
+              promptText={"PRESS SPACE BAR TO CONTINUE"}
+              promptFunction={runOrBribeContinueFunction}
+              promptReduxAction={setExitChase}
+              allowableKeys={spaceBarKey}
+            />
+          </GreyText>
         </div>
       )}
       {gameSubMenu === GameSubMenuEnum.HEAL && (
         <div>
           <div>{systemMessage}</div>
-          <Prompt
-            promptText={"PRESS (Y) TO HEAL OR (N) TO DECLINE"}
-            promptFunction={healFunction}
-            promptReduxAction={setExitChase}
-            allowableKeys={yOrN}
-          />
+          <GreyText>
+            <Prompt
+              promptText={"PRESS (Y) TO HEAL OR (N) TO DECLINE"}
+              promptFunction={healFunction}
+              promptReduxAction={setExitChase}
+              allowableKeys={yOrN}
+            />
+          </GreyText>
         </div>
       )}
     </div>

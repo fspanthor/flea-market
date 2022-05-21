@@ -24,9 +24,8 @@ const getCornDogs = async () => {
 };
 
 const StyledSpan = styled.span`
-  color: white;
   margin: 10px;
-  color: green;
+  color: darksalmon;
 `;
 
 const ChaseHUD = () => {

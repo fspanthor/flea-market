@@ -12,6 +12,7 @@ import {
   setGameStateAndSubMenu,
   setYesOrNoContinue,
 } from "../../../redux/slices/fleaMarketSlice";
+import { GreyText } from "../../../styles/commonStyles";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Prompt from "./Prompt";
 
@@ -37,7 +38,7 @@ const Event = () => {
       <div>
         {gameSubMenu !== GameSubMenuEnum.YES_OR_NO_EVENT && (
           <div>
-            <div>{systemMessage}</div>
+            <GreyText>{systemMessage}</GreyText>
             <Prompt
               promptText={"PRESS SPACE BAR TO CONTINUE"}
               promptFunction={eventContinueFunction}
@@ -48,7 +49,7 @@ const Event = () => {
         )}
         {gameSubMenu === GameSubMenuEnum.YES_OR_NO_EVENT && (
           <div>
-            <div>{systemMessage}</div>
+            <GreyText>{systemMessage}</GreyText>
             <Prompt
               promptText={"PRESS (Y) OR (N)"}
               promptFunction={eventYesOrNoFunction}

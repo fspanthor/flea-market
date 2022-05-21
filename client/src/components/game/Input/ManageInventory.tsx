@@ -14,6 +14,7 @@ import Prompt from "./Prompt";
 import ManageShark from "./ManageShark";
 import ManageBank from "./ManageBank";
 import ManageStash from "./ManageStash";
+import { GreyText } from "../../../styles/commonStyles";
 
 const sharkContinueFunction = async (key: string) => {
   return await sendFunctionRequest({
@@ -40,7 +41,7 @@ const ManageInventory = () => {
   const gameSubMenu = useAppSelector(selectGameSubMenu);
 
   return (
-    <div>
+    <GreyText>
       {gameSubMenu === GameSubMenuEnum.PROMPT_FOR_SHARK && (
         <Prompt
           promptText={"DO YOU WISH TO VISIT THE LOAN SHARK?"}
@@ -73,7 +74,7 @@ const ManageInventory = () => {
       )}
       {(gameSubMenu === GameSubMenuEnum.BANK ||
         GameSubMenuEnum.BANK_WITHDRAW) && <ManageBank />}
-    </div>
+    </GreyText>
   );
 };
 export default ManageInventory;

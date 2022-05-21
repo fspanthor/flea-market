@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useCallback, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { FleaMarketFunction } from "../../../app/constants";
-import { cursorBlinkAnimation } from "../../../styles/animations";
 import { sendFunctionRequest } from "../../service/functionRequest";
 
 interface HighScoresType {
@@ -71,7 +70,9 @@ export const HighScores = () => {
     setHighScores(highScores);
   }, []);
 
-  useEffect(() => fetchHighScores(), [fetchHighScores]);
+  useEffect(() => {
+    fetchHighScores();
+  }, [fetchHighScores]);
 
   // const highScores = [
   //   {

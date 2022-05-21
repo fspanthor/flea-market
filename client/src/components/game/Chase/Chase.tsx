@@ -69,22 +69,26 @@ const Chase = () => {
         </div>
       )}
       {gameSubMenu === GameSubMenuEnum.RUN && (
-        <Prompt
-          promptText={
-            "YOU HAVE NO CORNDOGS TO BRIBE WITH.. PRESS SPACE BAR TO RUN"
-          }
-          promptFunction={chaseRunFunction}
-          promptReduxAction={setChaseResponse}
-          allowableKeys={spaceBarKey}
-        />
+        <GreyText>
+          <Prompt
+            promptText={
+              "YOU HAVE NO CORNDOGS TO BRIBE WITH.. PRESS SPACE BAR TO RUN"
+            }
+            promptFunction={chaseRunFunction}
+            promptReduxAction={setChaseResponse}
+            allowableKeys={spaceBarKey}
+          />
+        </GreyText>
       )}
       {gameSubMenu === GameSubMenuEnum.RUN_OR_BRIBE && (
-        <Prompt
-          promptText={"WILL YOU (R)UN OR (B)RIBE?"}
-          promptFunction={runOrBribeFunction}
-          promptReduxAction={setChaseResponse}
-          allowableKeys={runOrBribeKeys}
-        />
+        <GreyText>
+          <Prompt
+            promptText={"WILL YOU (R)UN OR (B)RIBE?"}
+            promptFunction={runOrBribeFunction}
+            promptReduxAction={setChaseResponse}
+            allowableKeys={runOrBribeKeys}
+          />
+        </GreyText>
       )}
       {(GameSubMenuEnum.CHASE_RESULT ||
         gameSubMenu === GameSubMenuEnum.HEAL) && <ChaseResult />}
