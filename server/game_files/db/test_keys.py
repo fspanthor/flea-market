@@ -1,0 +1,6 @@
+user = 'z'
+password = 'z'
+clusterId = 'cluster0.04qbn.mongodb.net'
+dbId = 'z'
+dbName = 'z'
+collectionName = 'z'
