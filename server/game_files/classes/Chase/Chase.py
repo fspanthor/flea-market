@@ -63,7 +63,7 @@ class Chase():
                 self.game.location.get_location().value)
             updated_day = self.game.game_manager.day
             updated_debt = self.game.shark.get_debt_amount()
-            updated_bank = self.game.player.stash.get_amount('bank')
+            updated_bank = self.game.player.stash.bank
             updated_trench_coat = self.game.player.trench_coat.get_trench_coat()
 
             payload = {

@@ -48,8 +48,7 @@ class Location():
 
                 # increment bank savings
                 self.game.player.stash.increment_bank_savings()
-                updated_bank = self.game.player.stash.get_amount('bank')
-
+                updated_bank = self.game.player.stash.bank
                 # check if chase event will happen
                 # update game state
                 random_number_for_chase = random.randint(1, 100)

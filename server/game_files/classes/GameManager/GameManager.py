@@ -5,7 +5,7 @@ from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
 class GameManager():
     def __init__(self, game):
-        self.day = 1
+        self.day = 29
         self.game_mode = Game_Mode.INIT
         self.game_sub_menu = ''
         self.game = game
@@ -15,7 +15,7 @@ class GameManager():
         self.system_message = ''
 
     def new_game(self):
-        self.day = 1
+        self.day = 29
         self.game_mode = Game_Mode.INIT
         self.game_sub_menu = ''
         self.current_item = ''
@@ -70,27 +70,25 @@ class GameManager():
         current_day = self.game.game_manager.day
         current_debt = self.game.shark.debt
         current_score = self.game.player.stash.bank + self.game.player.trench_coat.cash
-        #high_score = check_high_score(current_score)
+        high_score = check_high_score(current_score)
+
+        print(high_score)
 
         # if day is 30, current debt is 0 and high score is true, go to high score submit
-        # add high core here
-        # if (current_day >= 30 and current_debt <= 0):
-        self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
+        if (current_day >= 30 and current_debt <= 0 and high_score == True):
+            self.set_game_sub_menu(Game_Sub_Menu.HIGH_SCORE)
 
         # # if day is 30, current debt is 0 and high score is false, show win screen without submit
-        # # add high core here
-        # if (current_day >= 30 and current_debt <= 0):
-        #     self.set_game_sub_menu(Game_Sub_Menu.WIN)
+        if (current_day >= 30 and current_debt <= 0 and high_score == False):
+            self.set_game_sub_menu(Game_Sub_Menu.WIN)
 
         # # if day is 30 but debt is > 0 just send game over
-        # if (current_day >= 30 and current_debt > 0):
-        #     self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
+        if (current_day >= 30 and current_debt > 0):
+            self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
 
         # # if player did not finish game just send game over
-        # if (current_day < 30):
-        #     self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
-
-        # self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
+        if (current_day < 30):
+            self.set_game_sub_menu(Game_Sub_Menu.CLEAR)
 
         payload = {
             'gameState': to_camel_case(self.game.game_manager.get_game_mode().value),

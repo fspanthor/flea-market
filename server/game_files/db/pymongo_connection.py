@@ -43,5 +43,20 @@ def retrieve_high_scores(number_of_scores):
 
 
 def check_high_score(score):
-    # check if current score > the number 10 high score
-    return 1
+    # check if current score > the number 10 high score. if there are not 10 scores any score will count as high score.
+
+    scores = list(collection.find({}, {'_id': 0}).sort(
+        'score', pymongo.DESCENDING).limit(10))
+
+    number_of_scores = len(scores)
+
+    if number_of_scores < 10:
+        return True
+
+    if number_of_scores >= 10:
+        cutoff_score = scores[9]['score']
+
+    if score > cutoff_score:
+        return True
+    else:
+        return False
