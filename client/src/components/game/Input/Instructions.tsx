@@ -1,10 +1,15 @@
 import { memo, useEffect, useState } from "react";
+import styled from "styled-components";
 import { FleaMarketFunction } from "../../../app/constants";
 
 import { setGameState } from "../../../redux/slices/fleaMarketSlice";
 import { GreyText } from "../../../styles/commonStyles";
 import { sendFunctionRequest } from "../../service/functionRequest";
 import Input from "../Common/Input";
+
+const StyledUl = styled.ul`
+  list-style-type: none;
+`;
 
 const instructionsContinue = async (key: string) => {
   return await sendFunctionRequest({
@@ -33,14 +38,14 @@ const Instructions = () => {
   return (
     <div>
       {instructions}
-      <ul>
+      <StyledUl>
         <li>DVDs: 10 - 60</li>
         <li>Hot Sauce: 70 - 250</li>
         <li>Switchblades: 300 - 900</li>
         <li>Fake Shoes: 1000 - 4500</li>
         <li>Cell Phones: 5000 - 14000</li>
         <li>Massage Chairs: 15000 - 30000</li>
-      </ul>
+      </StyledUl>
       <GreyText>PRESS ANY KEY TO CONTINUE......</GreyText>
       {instructions && (
         <Input gameFunction={instructionsContinue} reduxAction={setGameState} />
