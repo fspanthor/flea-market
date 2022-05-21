@@ -5,9 +5,26 @@ import random
 from game_files.class_interface import call_function
 from game_files.classes.Game import Game
 from game_files.utilities.utils import get_params_if_params_exist
+import os
 
-app = Flask(__name__, static_folder='../client/build', static_url_path='/')
-#app = Flask(__name__)
+# get env
+try:
+    env = os.environ.get('FLASK_ENV')
+    print('FLASK_ENV: ', env)
+except KeyError:
+    print('FLASK_ENV not found')
+
+
+def define_flask_object(env):
+    # set flask variable with export FLASK_ENV=development to use development mode
+    if env == 'development':
+        return Flask(__name__)
+    # if no FLASK_ENV, use production config
+    else:
+        return Flask(__name__, static_folder='../client/build', static_url_path='/')
+
+
+app = define_flask_object(env)
 CORS(app)
 app.config["SESSION_PERMANENT"] = False
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -17,13 +34,13 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = '\xe5\xec\xcd\x1a\xdf\xd9\xfb\xf7\xc1\xadO\xed\x8b\xa2"\xea\xe4d\xd9!\x0e\x92D\x11'
 Session(app)
 
-# this is key for making this run in production but messes up local.. need to fix this
-
 
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    return app.send_static_file('index.html')
+    # if running in prod send built index.html for client
+    if env != 'development':
+        return app.send_static_file('index.html')
 
 
 @app.route('/api', methods=['POST'])

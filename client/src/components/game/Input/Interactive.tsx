@@ -25,7 +25,6 @@ const StyledInteractive = styled.div`
 
 const Interactive = () => {
   const gameState = useAppSelector(selectGameState);
-  console.log("gameState: ", gameState);
   return (
     <StyledInteractive>
       {gameState === GameStateEnum.INIT && <Title />}
