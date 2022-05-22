@@ -9,32 +9,16 @@ try:
 except KeyError:
     print('FLASK_ENV not found')
 
-if env == 'development':
-    from .db_keys import user, password, clusterId, dbId, dbName, collectionName
-else:
+if env == 'production':
     from .env_db_keys import user, password, clusterId, dbId, dbName, collectionName
+else:
+    from .db_keys import user, password, clusterId, dbId, dbName, collectionName
 
 
 CONNECTION_STRING = f"mongodb+srv://{urllib.parse.quote_plus(user)}:{urllib.parse.quote_plus(password)}@{clusterId}/{dbId}"
 client = MongoClient(CONNECTION_STRING)
 db = client[dbName]
 collection = db[collectionName]
-
-
-def test():
-
-    # python -c 'import pymongo_insert; pymongo_insert.test()'
-
-    # to insert stuff:
-    # document = {"_id": ObjectId(), "user_name": "hi", "score": 2000}
-    # collection.insert_one(document)
-
-    # to query top scores:
-
-    scores = list(collection.find({}, {'_id': 0}).sort(
-        'score', pymongo.DESCENDING).limit(2))
-
-    print(scores)
 
 
 def insert_high_score(name, score):

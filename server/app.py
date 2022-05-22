@@ -16,12 +16,10 @@ except KeyError:
 
 
 def define_flask_object(env):
-    # set flask variable with export FLASK_ENV=development to use development mode
-    if env == 'development':
-        return Flask(__name__)
-    # if no FLASK_ENV, use production config
-    else:
+    if env == 'production':
         return Flask(__name__, static_folder='../client/build', static_url_path='/')
+    else:
+        return Flask(__name__)
 
 
 app = define_flask_object(env)
