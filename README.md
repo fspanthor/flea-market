@@ -27,7 +27,7 @@ $ npm start
   
 Server:  
 $ cd server  
-$ source venv/bin/activate  
+$ source <name_of_virtualenv>/bin/activate  
 $ export FLASK_ENV=development (_to enable reload on code change_)  
 $ flask run  
   
