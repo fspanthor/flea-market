@@ -14,7 +14,7 @@ server/venv
 #client/build
 
 #db keys
-server/db/db_keys.py
+server/db/db_keys
 
 # misc
 .DS_Store

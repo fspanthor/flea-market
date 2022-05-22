@@ -2,8 +2,18 @@ from bson import ObjectId
 from pymongo import MongoClient
 import pymongo
 import urllib.parse
-# from .db_keys import user, password, clusterId, dbId, dbName, collectionName
-from .test_keys import user, password, clusterId, dbId, dbName, collectionName
+import os
+
+try:
+    env = os.environ.get('FLASK_ENV')
+except KeyError:
+    print('FLASK_ENV not found')
+
+if env == 'development':
+    from .db_keys import user, password, clusterId, dbId, dbName, collectionName
+else:
+    from .test_keys import user, password, clusterId, dbId, dbName, collectionName
+
 
 CONNECTION_STRING = f"mongodb+srv://{urllib.parse.quote_plus(user)}:{urllib.parse.quote_plus(password)}@{clusterId}/{dbId}"
 client = MongoClient(CONNECTION_STRING)
