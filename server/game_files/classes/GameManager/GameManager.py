@@ -5,7 +5,7 @@ from ...constants import Game_Mode, Locations, Game_Sub_Menu
 
 class GameManager():
     def __init__(self, game):
-        self.day = 0
+        self.day = 1
         self.game_mode = Game_Mode.INIT
         self.game_sub_menu = ''
         self.game = game
@@ -15,7 +15,7 @@ class GameManager():
         self.system_message = ''
 
     def new_game(self):
-        self.day = 0
+        self.day = 1
         self.game_mode = Game_Mode.INIT
         self.game_sub_menu = ''
         self.current_item = ''
