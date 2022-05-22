@@ -20,7 +20,7 @@ $ cd server
 $ python3 -m venv <name_of_virtualenv>  
 in venv -> $pip install -r requirements.txt  
   
-**Development Instructions**
+**Development Instructions**  
 Client:  
 $ cd client  
 $ npm start  
