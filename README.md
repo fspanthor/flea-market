@@ -4,6 +4,7 @@ Based on the TI-83+ game 'Drug Wars'. Try to get a high score!
 **Tech stuff:**  
 Front end is React using Redux Toolkit for state management.  
 Server is running a Flask app using Flask-Session to support server side sessions.
+The client and server communicate via a simple REST api using fetch() method on client side.
 High Scores DB is a MongoDB Atlas cluster. 
   
 In production (via Heroku) the whole app runs on a Gunicorn server where Flask serves the static React side and the server routes.
