@@ -12,7 +12,7 @@ except KeyError:
 if env == 'development':
     from .db_keys import user, password, clusterId, dbId, dbName, collectionName
 else:
-    from .test_keys import user, password, clusterId, dbId, dbName, collectionName
+    from .env_db_keys import user, password, clusterId, dbId, dbName, collectionName
 
 
 CONNECTION_STRING = f"mongodb+srv://{urllib.parse.quote_plus(user)}:{urllib.parse.quote_plus(password)}@{clusterId}/{dbId}"
