@@ -168,6 +168,9 @@ class Player():
             # add to stash
             self.stash.add_to_stash(item_to_transfer, amount)
 
+            # update max hold
+            self.trench_coat.max_hold += amount
+
             # update game state
             self.game.game_manager.set_game_sub_menu(
                 Game_Sub_Menu.TRANSFER_TO_TRENCH_COAT)
@@ -213,6 +216,9 @@ class Player():
 
             # add to trench coat
             self.trench_coat.add_inventory(item_to_transfer, amount)
+
+            # update max hold
+            self.trench_coat.max_hold -= amount
 
             # update game state
             self.game.game_manager.set_game_sub_menu(
